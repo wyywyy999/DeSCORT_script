@@ -1,0 +1,22 @@
+{
+  "script": "tutorials/03_finetune/02_finetune.py",
+  "launcher": [
+    "{python}"
+  ],
+  "args": [
+    "--train_dataset_path",
+    "${DESCORT_DATA_ROOT}/finetune/all_data",
+    "--pretrianed_model_path",
+    "${DESCORT_MODEL_ROOT}/foundation/models",
+    "--output_dir",
+    "${DESCORT_OUTPUT_ROOT}/finetune",
+    "--do_train",
+    "True",
+    "--remove_unused_columns",
+    "False",
+    "--seed",
+    "42",
+    "--report_to",
+    "none"
+  ]
+}

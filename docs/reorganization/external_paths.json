@@ -1,0 +1,586 @@
+[
+  {
+    "path": "tutorials/01_preprocess_data/01_csv2parquet.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/csv_raw_data",
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/raw_data"
+    ]
+  },
+  {
+    "path": "tutorials/01_preprocess_data/02_preprocess_data.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/raw_data",
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/well_level_new",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/raw_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new"
+    ]
+  },
+  {
+    "path": "tutorials/01_preprocess_data/03_make_label_vocab.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/raw_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Orf/raw_data/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/01_preprocess_data/04_select_intersection_union_feature.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/MAD_feature_select_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl"
+    ]
+  },
+  {
+    "path": "tutorials/01_preprocess_data/05_get_union_feature_data.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Orf/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Orf/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_select_union_feature_3183.pkl"
+    ]
+  },
+  {
+    "path": "tutorials/02_pretrain/01_process_data.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/MAD_Zscore_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_tmp_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compoud/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/A549/normalization_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/U2OS/MAD_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/U2OS/normalization_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_1/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_10/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_11/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_13/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_15/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_2/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_3/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_5/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_6/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_7/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_8/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_9/MAD_data_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000_A549_Crispr_gene_list_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/gene2index_21611.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/tutorials/02_batch/Target_1_Compound/raw_data"
+    ]
+  },
+  {
+    "path": "tutorials/02_pretrain/02_combined_dataset.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_cpg0021_A549_161"
+    ]
+  },
+  {
+    "path": "tutorials/02_pretrain/pretrain_model.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021/all_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_Zscore/cpg0021_A549/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/all_data_clip",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/all_data_clip_cpg0000",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/cpg0000_A549/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/cpg0021_A549/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/cpg0021_HeLa/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data_union/all_data_clip_cpg0000",
+      "/fse/DC/CP_data/feature_data/all_merged_data_select_feature_intersection/normaliztion_data_chunk/A549/A549_merged_data"
+    ]
+  },
+  {
+    "path": "tutorials/03_finetune/01_process_data.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/MAD_Zscore_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/raw_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_tmp_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compoud/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/A549/normalization_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/U2OS/MAD_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/U2OS/normalization_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_1/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_10/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_11/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_13/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_15/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_2/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_3/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_5/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_6/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_7/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_8/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_9/MAD_data_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0016_batch_effect/vocab_union_feature_3505.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0016/cpg0016_batch_effect/cpg0016_batch_effect_label2index_302.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/gene2index_21611.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/tutorials/02_batch/Target_1_Compound/raw_data"
+    ]
+  },
+  {
+    "path": "tutorials/03_finetune/02_finetune.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/BacthCorrection/cpg0021_cpg0000/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_cpg0021_A549_161/all_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021/cpg0021_A549_DMEM/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_1_99_clip/Targert_1_Compound/train_merged_data",
+      "/fse/DC/CP_data/feature_data/all_merged_data_select_feature_intersection/normaliztion_data_chunk/A549/A549_merged_data",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/foundation_model/feature_1024_0.3_mlm_autoembedding_3epochs_well_level_clip_cpg0021_mlm_contrastive_first_stage/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
+    ]
+  },
+  {
+    "path": "tutorials/03_finetune/03_run_calculate_emb.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/raw_data",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/01_mAP/cpg0000_U2OS_Crispr_1024_50epochs_161/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/02_batch_effect/cpg0016_U2OS_5w_50epochs_layernorm/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/03_biological/cpg0021_A549_DMEM_1epochs_layernorm/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data/",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/normalization_clip_data_select_feature_only_source_4",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0016_batch_effect/vocab_union_feature_3505.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_label2index_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0016/cpg0016_batch_effect/cpg0016_batch_effect_label2index_302.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_Orf/cpg0000_Orf_all_Gene2Index_vocab_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_three_type/cpg0000_all_Compound2Index_vocab_817.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_4_and_10_Compound2Index_vocab_73202.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_4_select_union_feature_1963.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_all_Compound2Index_vocab_138907.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/gene2index_21611.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/01_run_calculate_emb.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/01_mAP/cpg0000_U2OS_Crispr_1024_50epochs_161/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT/models",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data/",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/normalization_clip_data_select_feature_only_source_4",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_label2index_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_Orf/cpg0000_Orf_all_Gene2Index_vocab_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_three_type/cpg0000_all_Compound2Index_vocab_817.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_4_and_10_Compound2Index_vocab_73202.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_4_select_union_feature_1963.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_all_Compound2Index_vocab_138907.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/gene2index_21611.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0000_U2OS_Crispr_2705_50epochs_161"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/02_run_calculate_mAP.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data_select_feature/2020_11_04_CPJUMP1",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_attention_mask_result/replicates_level/perturbation_activity/well-level/condition_pretrain_finetune/cpg0021_HeLa_DeSCORT_1615_nosampling_CP257H",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_attention_mask_result/sister_level/perturbation_activity/well-level/condition_pretrain_finetune/cpg0021_HeLa_DeSCORT_1024_sampling",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_attention_mask_result/sister_level/perturbation_activity/well-level/original/original_cpg0021_HeLa_1615_CP257N",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_attention_mask_result/sister_level/perturbation_consistency/well-level/condition_pretrain_finetune_layernrom/cpg0021_HeLa_DeSCORT_1615_nosampling_layernorm_finetune_CP257N",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_HeLa_DeSCORT_1615_nosampling_layernorm_finetune/20210422_6W_CP257/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_A549.sh",
+    "absolute_path_literals": [
+      "/data/A549_150epochs"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_U2OS.sh",
+    "absolute_path_literals": [
+      "/data/U2OS_300epochs"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_original_A549.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_original_U2OS.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Orf/raw_data/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/04_mAP/03_calculate_mAP_modality.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Crispr/raw_data/normalization_clip_data_select_feature/2020_11_04_CPJUMP1",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/src/tutorials/04_mAP",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/src/tutorials/04_mAP/cross_modality_palte_dict.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_attention_mask_result/replicates_level/perturbation_activity/well-level/cross_modality",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0000_JUMP"
+    ]
+  },
+  {
+    "path": "tutorials/05_batch_effect/03_batch_method.py",
+    "absolute_path_literals": [
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.h5ad"
+    ]
+  },
+  {
+    "path": "tutorials/05_batch_effect/04_calculate_metrics.py",
+    "absolute_path_literals": [
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/new_batch_adata",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/new_metrices_result"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/01_process_data_cell_line_transfer.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/02_finetune.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/03_run_inference.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit}",
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/U2OS/hit}",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/cell_line_transfer/Morgan/${model_name}/models}",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/unseen_gene/Morgan/${model_name}/models}",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl}"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data_cell_line_transfer.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/04_new_data_generation/intersection_columns_1107.pkl"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/02_finetune.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc/cell_line_transfer/A549/hit",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc/unseen_gene/DeSCORT/A549_13k_5k_direct_mlm_mean1_dir1_marg01_3ep/models"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/03_run_inference.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc/cell_line_transfer/A549/hit}",
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc/cell_line_transfer/HeLa_DMEM/hit}",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_new/cell_line_transfer/Crispr"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/01_process_data_unseen_gene_generation.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549}",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/02_finetune.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/train_data/hit",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/03_run_inference.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/test_data/hit}",
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/train_data/hit}",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/unseen_gene/Morgan/${model_name}/models}",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl}"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/01_process_data_unseen_gene_generation.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/04_new_data_generation/intersection_columns_1107.pkl"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/02_finetune.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/train_data/hit",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc/unseen_gene/DeSCORT/A549_13k_5k_direct_mlm_mean1_dir1_marg01_3ep/models"
+    ]
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/03_run_inference.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/test_data/hit}",
+      "/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/train_data/hit}",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_new/unseen_gene_generation/Crispr"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/01_umap_analysis.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/annotated_gene_sets.json",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/A549_DMEM_hits.xlsx",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/01_umap_analysis_HeLa_DMEM.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/annotated_gene_sets.json",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/HeLa_DMEM_hits.xlsx",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_HeLa_DeSCORT_1615_nosampling_layernorm_finetune/20210422_6W_CP257/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/01_umap_analysis_HeLa_HPLM.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/annotated_gene_sets.json",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/HeLa_HPLM_hits.xlsx",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_HeLa_DeSCORT_1615_nosampling_layernorm_finetune/20210422_6W_CP257/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/02_CORUM_STRING.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/A549_DMEM_hits.xlsx",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/02_CORUM_STRING_HeLa_DMEM.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/HeLa_DMEM_hits.xlsx",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_HeLa_DeSCORT_1615_nosampling_layernorm_finetune/20210422_6W_CP257/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/02_CORUM_STRING_HeLa_HPLM.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/HeLa_HPLM_hits.xlsx",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_HeLa_DeSCORT_1615_nosampling_layernorm_finetune/20210422_6W_CP257/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/03_de_cluster.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/03_de_cluster_all_100_clusters.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/07_biological/03_de_cluster_all_50_clusters.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/01_process_data.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/MAD_Zscore_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/raw_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_tmp_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compoud/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Orf/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/A549/normalization_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/U2OS/MAD_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/well_data_new/U2OS/normalization_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_1/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_10/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_11/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_13/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_15/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_2/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_3/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_5/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_6/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_7/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_8/MAD_data_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_9/MAD_data_clip_data",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_three_type/vocab_union_feature_3344.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_three_type/cpg0000_three_type_label2index_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/gene2index_21611.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/tutorials/02_batch/Target_1_Compound/raw_data"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/02_combined_dataset.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_three_type/U2OS"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/02_finetune.sh",
+    "absolute_path_literals": [
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/BacthCorrection/cpg0021_cpg0000/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_three_type/U2OS/all_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021/cpg0021_A549_DMEM/train_merged_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_1_99_clip/Targert_1_Compound/train_merged_data",
+      "/fse/DC/CP_data/feature_data/all_merged_data_select_feature_intersection/normaliztion_data_chunk/A549/A549_merged_data",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/foundation_model/feature_1024_0.3_mlm_autoembedding_3epochs_well_level_clip_cpg0021_mlm_contrastive_first_stage/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/03_run_calculate_emb.sh",
+    "absolute_path_literals": [
+      "/data/U2OS_300epochs",
+      "/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/raw_data",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/01_mAP/cpg0000_U2OS_Crispr_1024_50epochs_161/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/03_biological/cpg0021_A549_DMEM_1epochs_layernorm/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/08_three_type/cpg0000_U2OS_three_type_300epochs/models",
+      "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Crispr/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Orf/raw_data/normalization_clip_data_select_feature",
+      "/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Orf/raw_data/normalization_clip_data",
+      "/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/normalization_clip_data_select_feature_only_source_4",
+      "/fse/DC/CP_data/shiyuyan/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/02_batch_effect/layernorm_three_type_all_100epochs_20260930_v4/models/cpg0000_A549_all_layernorm_100epochs/models",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_three_type/vocab_union_feature_3344.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_three_type/cpg0000_three_type_label2index_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_label2index_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_Orf/cpg0000_Orf_all_Gene2Index_vocab_161.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0000_three_type/cpg0000_all_Compound2Index_vocab_817.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_4_and_10_Compound2Index_vocab_73202.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_4_select_union_feature_1963.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0016/cpg0016_source_all_Compound2Index_vocab_138907.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_A549_union_feature_1382.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/cpg0021_HeLa_union_feature_1615.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/gene2index_21611.pkl",
+      "/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549"
+    ]
+  },
+  {
+    "path": "tutorials/09_paper_plot_code/code/mAP/plot_map_combined_bars.py",
+    "absolute_path_literals": [
+      "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/09_paper_plot_code"
+    ]
+  },
+  {
+    "path": "tutorials/09_paper_plot_code/code/paper_plot_style.py",
+    "absolute_path_literals": [
+      "/data/home/wangyongyan/.codex/skills/nature-figure/scripts"
+    ]
+  }
+]

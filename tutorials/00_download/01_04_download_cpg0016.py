@@ -1,0 +1,13 @@
+"""Download profiles; explicit output path and dry-run support."""
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+from descort.data.download import main as download_main
+
+
+def main():
+    download_main('cpg0016')
+
+
+if __name__ == "__main__":
+    main()

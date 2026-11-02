@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "descort"
+version = "0.1.0"
+description = "Cell Painting morphology representation and perturbation prediction"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.23,<2",
+    "pandas>=2.0,<3",
+    "torch>=2.7,<3",
+    "transformers>=4.51.3,<4.52",
+    "datasets>=4,<5",
+    "pyarrow>=19",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+train = ["accelerate>=1.6", "tensorboard", "safetensors>=0.5"]
+preprocess = ["pycytominer>=1.3"]
+vc = ["anndata>=0.10,<0.12", "scipy>=1.13", "scikit-learn>=1.6", "threadpoolctl"]
+analysis = [
+    "anndata>=0.10,<0.12", "scanpy>=1.10,<1.12", "scipy>=1.13",
+    "scikit-learn>=1.6", "matplotlib>=3.6", "seaborn>=0.13", "joblib",
+    "copairs", "duckdb", "umap-learn", "gseapy", "statsmodels", "threadpoolctl",
+]
+distributed = ["deepspeed>=0.18,<0.19"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["descort", "descort.*"]
+namespaces = false
+
+[tool.setuptools]
+include-package-data = false

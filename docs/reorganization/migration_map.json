@@ -1,0 +1,262 @@
+[
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/01_process_data.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/01_process_data.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/01_process_data_cell_line_transfer.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/01_process_data_cell_line_transfer.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/02_finetune.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/02_finetune.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/02_finetune.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/02_finetune.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/03_inference.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/03_inference.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/03_run_inference.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/03_run_inference.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/04_calculate_vcc2026_metric.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/04_calculate_vcc2026_metric.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Compound/04_calculate_vcc2026_metric.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Compound/04_calculate_vcc2026_metric.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/01_process_data.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/01_process_data_cell_line_transfer.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data_cell_line_transfer.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/02_finetune.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/02_finetune.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/02_finetune.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/02_finetune.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/03_inference.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/03_inference.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/03_run_inference.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/03_run_inference.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.py",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.sh",
+    "new": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/01_process_data.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/01_process_data.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/01_process_data_unseen_gene_generation.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/01_process_data_unseen_gene_generation.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/02_finetune.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/02_finetune.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/02_finetune.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/02_finetune.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/03_inference.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/03_inference.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/03_run_inference.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/03_run_inference.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/01_process_data.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/01_process_data.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/01_process_data_unseen_gene_generation.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/01_process_data_unseen_gene_generation.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/02_finetune.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/02_finetune.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/02_finetune.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/02_finetune.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/03_inference.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/03_inference.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/03_run_inference.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/03_run_inference.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.py",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/06_vc_new/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.sh",
+    "new": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/01_umap_analysis.py",
+    "new": "tutorials/07_biological/01_umap_analysis.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/01_umap_analysis.sh",
+    "new": "tutorials/07_biological/01_umap_analysis.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/01_umap_analysis_HeLa_DMEM.sh",
+    "new": "tutorials/07_biological/01_umap_analysis_HeLa_DMEM.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/01_umap_analysis_HeLa_HPLM.sh",
+    "new": "tutorials/07_biological/01_umap_analysis_HeLa_HPLM.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/02_CORUM_STRING.py",
+    "new": "tutorials/07_biological/02_CORUM_STRING.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/02_CORUM_STRING.sh",
+    "new": "tutorials/07_biological/02_CORUM_STRING.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/02_CORUM_STRING_HeLa_DMEM.sh",
+    "new": "tutorials/07_biological/02_CORUM_STRING_HeLa_DMEM.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/02_CORUM_STRING_HeLa_HPLM.sh",
+    "new": "tutorials/07_biological/02_CORUM_STRING_HeLa_HPLM.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/03_de_cluster.py",
+    "new": "tutorials/07_biological/03_de_cluster.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/03_de_cluster.sh",
+    "new": "tutorials/07_biological/03_de_cluster.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/03_de_cluster_all_100_clusters.sh",
+    "new": "tutorials/07_biological/03_de_cluster_all_100_clusters.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/03_de_cluster_all_50_clusters.sh",
+    "new": "tutorials/07_biological/03_de_cluster_all_50_clusters.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/04_cluster_enrichment.py",
+    "new": "tutorials/07_biological/04_cluster_enrichment.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/04_cluster_enrichment.sh",
+    "new": "tutorials/07_biological/04_cluster_enrichment.sh",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/audit_panel_alignment.py",
+    "new": "tutorials/07_biological/audit_panel_alignment.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/de_cluster_scalable.py",
+    "new": "tutorials/07_biological/de_cluster_scalable.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "tutorials/07_biological_new/verify_analysis.py",
+    "new": "tutorials/07_biological/verify_analysis.py",
+    "kind": "copied source into independent repository"
+  },
+  {
+    "old": "src/descort/modeling_descort.py",
+    "new": "archive/legacy_models/modeling_descort.py",
+    "kind": "historical implementation copied for reference"
+  },
+  {
+    "old": "src/descort/model/modeling_descort copy.py",
+    "new": "archive/legacy_models/modeling_descort copy.py",
+    "kind": "historical implementation copied for reference"
+  },
+  {
+    "old": "src/descort/model/modeling_descort copy 2.py",
+    "new": "archive/legacy_models/modeling_descort copy 2.py",
+    "kind": "historical implementation copied for reference"
+  }
+]

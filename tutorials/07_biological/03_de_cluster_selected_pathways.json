@@ -1,0 +1,50 @@
+[
+  [
+    "ANNOTATED",
+    "GLYCOSYLATION"
+  ],
+  [
+    "ANNOTATED",
+    "PROCESS_UTILIZING_AUTOPHAGIC_MECHANISM"
+  ],
+  [
+    "GO_BP",
+    "U2-type Prespliceosome Assembly (GO:1903241)"
+  ],
+  [
+    "GO_BP",
+    "Protein Import Into Mitochondrial Matrix (GO:0030150)"
+  ],
+  [
+    "GO_BP",
+    "Regulation of Angiogenesis (GO:0045765)"
+  ],
+  [
+    "GO_BP",
+    "Sister Chromatid Segregation (GO:0000819)"
+  ],
+  [
+    "GO_BP",
+    "Regulation of Rho Protein Signal Transduction (GO:0035023)"
+  ],
+  [
+    "GO_BP",
+    "Positive Regulation of Biosynthetic Process (GO:0009891)"
+  ],
+  [
+    "GO_BP",
+    "Mitotic Nuclear Division (GO:0140014)"
+  ],
+  [
+    "GO_CC",
+    "Cytosolic Large Ribosomal Subunit (GO:0022625)"
+  ],
+  [
+    "GO_CC",
+    "U6 snRNP (GO:0005688)"
+  ],
+  [
+    "GO_MF",
+    "snoRNA Binding (GO:0030515)"
+  ]
+]

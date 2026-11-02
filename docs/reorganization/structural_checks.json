@@ -1,0 +1,11 @@
+{
+  "python_files_parsed": 108,
+  "shell_scripts_checked": 60,
+  "broken_markdown_links": [],
+  "original_files_verified": 2880,
+  "resource_entries": 127,
+  "wheel_sha256": "26f1a830714ebecb7da5755c9764a2bd516482f500edf6e00ba37621cb8c2902",
+  "wheel_contains_only_package_and_metadata": true,
+  "config_argument_checks": "PASS",
+  "architecture_image_exact_copy": true
+}

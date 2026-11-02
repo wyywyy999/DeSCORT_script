@@ -1,0 +1,67 @@
+[
+  {
+    "path": "src/descort/model/configuration_descort.py",
+    "identical_to_original": true,
+    "sha256": "36f058194047488696020ab536d9df10d0ad39920039365b1d1d6236f3b2a015"
+  },
+  {
+    "path": "src/descort/model/modeling_descort.py",
+    "identical_to_original": true,
+    "sha256": "db3bbe34d2d9e8def2b79e6cb3e0a45173c18757612f02e9139e5c8624d6b50c"
+  },
+  {
+    "path": "src/descort/model/model_output.py",
+    "identical_to_original": true,
+    "sha256": "5e865dc7f6bbd3527e489b9bf808c3e712a9aff458f651aed8e507629d0c5bab"
+  },
+  {
+    "path": "src/descort/model/perturbation_loss.py",
+    "identical_to_original": true,
+    "sha256": "f6f68d1b8e6e7c8d14260d67f58eba4f6183c2fa3967004ec9c59f3231d9e23f"
+  },
+  {
+    "path": "src/descort/data/dataset.py",
+    "identical_to_original": true,
+    "sha256": "9e6835096a57c684a0a6d33325023f255c39668006715460e48497148f002bea"
+  },
+  {
+    "path": "src/descort/data/collator.py",
+    "identical_to_original": true,
+    "sha256": "bcb25346c3634def285e76e84143f82895162f213cd96650132547f5c8164eb1"
+  },
+  {
+    "path": "src/descort/data/sampler.py",
+    "identical_to_original": true,
+    "sha256": "ff06cfcce16ad5eefdcc12387d22b7bbf9120644a6968bbb146f94d2a368658d"
+  },
+  {
+    "path": "src/descort/preprocess/preprocess.py",
+    "identical_to_original": true,
+    "sha256": "7d51dd0417c7ebb8f383da21a8432385458ea52e5a0514d83f77c564616dc01b"
+  },
+  {
+    "path": "src/descort/mAP/utils.py",
+    "identical_to_original": true,
+    "sha256": "b845b3d4414c859a33d272cc987567d7aa50ae298243b68cb2e5c7df6938f346"
+  },
+  {
+    "path": "src/descort/embedding/extract.py",
+    "function_ast_identical_to_original": true
+  },
+  {
+    "path": "tutorials/04_mAP/01_calculate_emb.py",
+    "embedding_exactly_equal_to_finetune_entry": true,
+    "shape": [
+      3,
+      16
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/03_calculate_emb.py",
+    "embedding_exactly_equal_to_finetune_entry": true,
+    "shape": [
+      3,
+      16
+    ]
+  }
+]

@@ -1,0 +1,310 @@
+[
+  {
+    "path": "tutorials/00_download/01_01_download_A549_cpg0021.py",
+    "exit_code": 0,
+    "seconds": 1.62,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/00_download/01_02_download_HeLa_cpg0021.py",
+    "exit_code": 0,
+    "seconds": 1.36,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/00_download/01_04_download_cpg0016.py",
+    "exit_code": 0,
+    "seconds": 1.51,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/00_download/01_03_download_cpg0000.py",
+    "exit_code": 0,
+    "seconds": 1.12,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/01_preprocess_data/01_csv2parquet.py",
+    "exit_code": 0,
+    "seconds": 1.13,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/01_preprocess_data/02_preprocess_data.py",
+    "exit_code": 0,
+    "seconds": 0.97,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/01_preprocess_data/03_make_label_vocab.py",
+    "exit_code": 0,
+    "seconds": 1.16,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/01_preprocess_data/04_select_intersection_union_feature.py",
+    "exit_code": 0,
+    "seconds": 1.08,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/01_preprocess_data/05_get_union_feature_data.py",
+    "exit_code": 0,
+    "seconds": 1.0,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/02_pretrain/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.18,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/02_pretrain/02_combined_dataset.py",
+    "exit_code": 0,
+    "seconds": 1.11,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/02_pretrain/02_pretrain_model.py",
+    "exit_code": 0,
+    "seconds": 14.83,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/03_finetune/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.24,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/03_finetune/02_finetune.py",
+    "exit_code": 0,
+    "seconds": 14.31,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/05_batch_effect/03_batch_method.py",
+    "exit_code": 0,
+    "seconds": 0.04,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/05_batch_effect/04_calculate_metrics.py",
+    "exit_code": 0,
+    "seconds": 0.08,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/05_batch_effect/05_remove_descort3505_source4_outlier.py",
+    "exit_code": 0,
+    "seconds": 3.55,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.09,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/02_finetune.py",
+    "exit_code": 0,
+    "seconds": 15.53,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/03_inference.py",
+    "exit_code": 0,
+    "seconds": 15.55,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/04_calculate_vcc2026_metric.py",
+    "exit_code": 0,
+    "seconds": 4.34,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.09,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/02_finetune.py",
+    "exit_code": 0,
+    "seconds": 16.09,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/03_inference.py",
+    "exit_code": 0,
+    "seconds": 16.43,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.py",
+    "exit_code": 0,
+    "seconds": 4.0,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.32,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/02_finetune.py",
+    "exit_code": 0,
+    "seconds": 15.72,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/03_inference.py",
+    "exit_code": 0,
+    "seconds": 15.8,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.py",
+    "exit_code": 0,
+    "seconds": 3.99,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.18,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/02_finetune.py",
+    "exit_code": 0,
+    "seconds": 16.34,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/03_inference.py",
+    "exit_code": 0,
+    "seconds": 16.11,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.py",
+    "exit_code": 0,
+    "seconds": 3.97,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/07_biological/01_umap_analysis.py",
+    "exit_code": 0,
+    "seconds": 2.95,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/07_biological/02_CORUM_STRING.py",
+    "exit_code": 0,
+    "seconds": 5.15,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/07_biological/03_de_cluster.py",
+    "exit_code": 0,
+    "seconds": 3.22,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/07_biological/04_cluster_enrichment.py",
+    "exit_code": 0,
+    "seconds": 1.94,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/08_three_type/01_process_data.py",
+    "exit_code": 0,
+    "seconds": 1.25,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/08_three_type/02_finetune.py",
+    "exit_code": 0,
+    "seconds": 15.75,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/08_three_type/02_combined_dataset.py",
+    "exit_code": 0,
+    "seconds": 1.37,
+    "tail": null,
+    "has_usage": true
+  },
+  {
+    "path": "tutorials/04_mAP/02_calculate_mAP.py",
+    "exit_code": 0,
+    "has_usage": true,
+    "tail": null,
+    "numba_cache_dir": "/tmp/descort-numba-cache"
+  },
+  {
+    "path": "tutorials/03_finetune/03_calculate_emb.py",
+    "exit_code": 0,
+    "has_usage": true,
+    "tail": null,
+    "numba_cache_dir": "/tmp/descort-numba-cache"
+  },
+  {
+    "path": "tutorials/04_mAP/01_calculate_emb.py",
+    "exit_code": 0,
+    "has_usage": true,
+    "tail": null,
+    "numba_cache_dir": "/tmp/descort-numba-cache"
+  },
+  {
+    "path": "tutorials/08_three_type/03_calculate_emb.py",
+    "exit_code": 0,
+    "has_usage": true,
+    "tail": null,
+    "numba_cache_dir": "/tmp/descort-numba-cache"
+  }
+]

@@ -1,0 +1,1289 @@
+{
+  "original_resource_root": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files",
+  "hash_policy": "SHA-256 for files up to 2 MiB; larger files are indexed without reading their payload",
+  "resources": [
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/A549_U2OS_counts_by_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/A549_U2OS_counts_by_smiles.csv",
+      "bytes": 17620,
+      "sha256": "28095135042eb3ef4ab022f65088591c6b6ea04e9718fc7ba02dba1862e6e0e6",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_batch_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_batch_smiles.csv",
+      "bytes": 48710,
+      "sha256": "4a339f5efc71efeb489ba8e8a6297bd849b87efcf8b640fb2bae0ed67551cb8a",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_file.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_file.csv",
+      "bytes": 1955,
+      "sha256": "eac41e40b5ad41fbf6bded137d40b3fe888832e1c7f3eb20c01f9490f300d8d3",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_smiles.csv",
+      "bytes": 28338,
+      "sha256": "f7e09dc621366842d5064466de41e26a909acb3882b5199788beb542e2d3ebdd",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_treatment.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/A549_counts_by_treatment.csv",
+      "bytes": 1799,
+      "sha256": "97032545b91f38415fd1d5dacb22a7b87c0720889ceaffa5504560d6c7b1546f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_batch_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_batch_smiles.csv",
+      "bytes": 22541,
+      "sha256": "348852d22284b638c4d65b6db80d1bb9dfe2f60e95e31eccd210be872a6ae702",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_file.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_file.csv",
+      "bytes": 347,
+      "sha256": "4903aa798f568e37fba0d38886f7cc98ba620e0aa179231e8897bdedb3602944",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_smiles.csv",
+      "bytes": 27738,
+      "sha256": "c7f313342afdc10af1410f8dc02e68714651a92446a4b554d6f16b832c7e05b9",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_treatment.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/U2OS_counts_by_treatment.csv",
+      "bytes": 1798,
+      "sha256": "5c43c6ab1dfcd1d5990050534509575ffc715db00131d340faa07b262dabcf8d",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/compound_perturbation_counts/summary.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/compound_perturbation_counts/summary.csv",
+      "bytes": 274,
+      "sha256": "c6626825135a56379420a147cd4b159c436c03cd6b9e240a971eee841b8a73a0",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0000-jump-pilot_draft.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0000-jump-pilot_draft.csv",
+      "bytes": 2219260597,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0000-jump-pilot_smiles_counts.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0000-jump-pilot_smiles_counts.csv",
+      "bytes": 17922,
+      "sha256": "b28842eb2be5aabb6aa6f4d4ca3f030d1d173c3f2cd33a1e45be1ece6f4f5037",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0000-jump-pilot_smiles_summary.json",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0000-jump-pilot_smiles_summary.json",
+      "bytes": 353,
+      "sha256": "6fc8726259ae3f694f275697d929b80103c05f419b555010306fedaf92d2fd59",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0000-jump-pilot_unique_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0000-jump-pilot_unique_smiles.csv",
+      "bytes": 16365,
+      "sha256": "e35f25a342633b38ee15ed69ad1b930a23a8735945f1b66ab84dd9f7491423ff",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0000_compound_reference.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0000_compound_reference.csv",
+      "bytes": 71028,
+      "sha256": "9271a0a6bb42d5601db31a60687cb9ff398a2b557e67dbe79bc7c89ed12a4bc8",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/matched_rows_by_source.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/matched_rows_by_source.csv",
+      "bytes": 20,
+      "sha256": "4e478a893a878261f54849a7c3be218a5ecc71668fbdd415cee57d15b21b1561",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/matched_rows_by_source_via_metadata.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/matched_rows_by_source_via_metadata.csv",
+      "bytes": 231,
+      "sha256": "9032eac41a1ca5885c9884679c777349caa04617e975abad8033d3a8c0917ead",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/overlapping_compounds_metadata.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/overlapping_compounds_metadata.csv",
+      "bytes": 37999,
+      "sha256": "01fc67bcd594b28a931b0e93fd95e0dc7944d564a0a9404f8da0e4c6e8fac35f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/overlapping_wells_metadata.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/overlapping_wells_metadata.csv",
+      "bytes": 4192612,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/per_compound_overlap.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/per_compound_overlap.csv",
+      "bytes": 34744,
+      "sha256": "f2d30c98a3314377be725e311ece2f449cabb85b690c0d2076425db1f7889411",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/per_compound_overlap_via_well_metadata.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/per_compound_overlap_via_well_metadata.csv",
+      "bytes": 35700,
+      "sha256": "e1d0e904b90fa1beed7926058f3539562a63869a555b3e69df88407c21ee5b4a",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/reference_noncontrol_compounds.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/reference_noncontrol_compounds.csv",
+      "bytes": 36260,
+      "sha256": "43866e749303338e0f7b55377810c7d9ffd931cf0e90389313012c23d7673f08",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/summary.json",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/summary.json",
+      "bytes": 1406,
+      "sha256": "73bf7c239c1c55edaed8f04cfcb47937e94b07a6e4137c0b3696243a42deb28c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/summary_via_well_metadata.json",
+      "relative_to_original": "common_files/06_vc/Morgan/cpg0016_cpg0000_compound_overlap/summary_via_well_metadata.json",
+      "bytes": 854,
+      "sha256": "4558f869ed806728b1c36795ce8d0e6a13499d8bbbdbaaca81da31aa856c5e42",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/embedding_summary.json",
+      "relative_to_original": "common_files/06_vc/Morgan/embedding_summary.json",
+      "bytes": 590,
+      "sha256": "06518441233e413cfa6d50b9c20c68b125e4bbe9706b1229a87bf26cebfe652f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/index2morgan_307.pkl",
+      "relative_to_original": "common_files/06_vc/Morgan/index2morgan_307.pkl",
+      "bytes": 637569,
+      "sha256": "7fe10a588826f2a13c01b6b4e0e7c3ae0ae7a73d0f576704974b0cbec1a51ceb",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 307,
+        "example_value_type": "ndarray",
+        "example_value_shape": [
+          2048
+        ]
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/invalid_smiles.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/invalid_smiles.csv",
+      "bytes": 7,
+      "sha256": "de78a019fbe0ce2718043bf314b27f9b903b5192869c63e4601cde761b0c966b",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/morgan2index_307.pkl",
+      "relative_to_original": "common_files/06_vc/Morgan/morgan2index_307.pkl",
+      "bytes": 1260166,
+      "sha256": "6d68748d7a1a64bf41a2ae65c194d807e7754a98e10d46e8b3948211b0b29a83",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 307,
+        "example_value_type": "list",
+        "example_value_length": 1
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/morgan_embeddings_307.npy",
+      "relative_to_original": "common_files/06_vc/Morgan/morgan_embeddings_307.npy",
+      "bytes": 628864,
+      "sha256": "d00176417b4fa032c371c38ea7720b47df5a096f6bc5f5ee4850db6f3f6dff62",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/smiles2index_307.pkl",
+      "relative_to_original": "common_files/06_vc/Morgan/smiles2index_307.pkl",
+      "bytes": 17354,
+      "sha256": "2336b723c3b9d1585a6b37ca9f25ba16ab01d0109af783836214c82cd121b56a",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 307,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/smiles2morgan_307.pkl",
+      "relative_to_original": "common_files/06_vc/Morgan/smiles2morgan_307.pkl",
+      "bytes": 653577,
+      "sha256": "8b87af3257a0802f9b075046e9e8ca1e69f73af35fc3b19a6bc2c6b258c0a5c9",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 307,
+        "example_value_type": "ndarray",
+        "example_value_shape": [
+          2048
+        ]
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/smiles_embedding_mapping.csv",
+      "relative_to_original": "common_files/06_vc/Morgan/smiles_embedding_mapping.csv",
+      "bytes": 32147,
+      "sha256": "38b6c375b85415199924b0cf1ea276d6f241762b01def80a662ca23f9d00fa5c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/Morgan/smiles_morgan_embeddings.npz",
+      "relative_to_original": "common_files/06_vc/Morgan/smiles_morgan_embeddings.npz",
+      "bytes": 43766,
+      "sha256": "11d48dda06feccc12efc4d5c42128012bf99dcdbdfbda6bdea24dfef0a655442",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_1000_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_1000_test.pkl",
+      "bytes": 109729,
+      "sha256": "a8b2d82a8d113bfc361c18aeae75f02394720a2e71e1ba4acc74ed03545a6a2a",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 12854
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_1000_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_1000_train.pkl",
+      "bytes": 8237,
+      "sha256": "df08e77080cfbe83ca9f869a23ca37abaf0440d1ebcc01deef43fe104a529c9d",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 1001
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_100_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_100_test.pkl",
+      "bytes": 117141,
+      "sha256": "bf3b6d3d07e84206a81ba717bdae96f80541b1dc92fad446a9478c41153196be",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 13754
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_100_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_100_train.pkl",
+      "bytes": 825,
+      "sha256": "5a64ba07761947c21fd9f2621dda2ba62096b7930466d328423203fa40aa9e0b",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 101
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_10_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_10_test.pkl",
+      "bytes": 117852,
+      "sha256": "fe8efc6823c84e7b18dd14aa75cb648ff47286c26a360d9e60608955791a19cc",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 13844
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_10_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_10_train.pkl",
+      "bytes": 114,
+      "sha256": "d726f48d311c87a364cf523aebcf2e6372d4da5fba4f423ae634dab20ef9ad2d",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 11
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_200_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_200_test.pkl",
+      "bytes": 116339,
+      "sha256": "05427a96b264b934ca82654134f55779ae31fc19202d6dadc9ee61ed2b9c2499",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 13654
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_200_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_200_train.pkl",
+      "bytes": 1627,
+      "sha256": "126658a70ef6a2ce326fb2b6f0208735f76d8d9b255e0fc7623521bb5d43fffb",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 201
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_500_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_500_test.pkl",
+      "bytes": 113949,
+      "sha256": "4d9a3432e08d7b66d73e49ffa2592ecd7bfd165b882b98164e38b152aba95212",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 13354
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_500_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_500_train.pkl",
+      "bytes": 4017,
+      "sha256": "e30caf20c7d4c9fa8ef7c945e84c257c127000e72a434c8519ebec796fe9d635",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 501
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_50_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_50_test.pkl",
+      "bytes": 117533,
+      "sha256": "e6d66295454f42b4efdb8944d8c1a97768f8c82d07e8e31377b3711b46444289",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 13804
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_50_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/few_shot/gene_50_train.pkl",
+      "bytes": 433,
+      "sha256": "446938ad30b8288cdc0b2a59542710734c3f0cabb4319b5e347730230d8c582e",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 51
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_13854_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/gene_13854_train.pkl",
+      "bytes": 117935,
+      "sha256": "4f6f21e803e1e0c94b9d361e8b69af25fabf65cef912d74886ea7ec0d61d118c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 13854
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_201_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/gene_201_test.pkl",
+      "bytes": 1752,
+      "sha256": "0e489ece32fc7757bb183f2d99199e7d2854324cafb176bcbf250f6f9dafa7c9",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 201
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_201_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/gene_201_train.pkl",
+      "bytes": 1737,
+      "sha256": "2b62ed21b8bcfb8704c45879c6eb72d1d0f593795334f7be6beecd6db12e1bd1",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 201
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_501_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/gene_501_test.pkl",
+      "bytes": 4241,
+      "sha256": "05baa266c7eee173a6fee21ac1fdd99690fc8447aa99d2073db912945141e388",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 501
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_501_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/gene_501_train.pkl",
+      "bytes": 4294,
+      "sha256": "730423ab1410fc327cc7dc9076e3e617d4efcf7a9ae7336db6e72d3d3b5608d8",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 501
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_5938_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list/gene_5938_test.pkl",
+      "bytes": 50424,
+      "sha256": "b47c7340e736deead06e510dc2d43754beb2a2fe2076f83a8ef0295b7626e345",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 5938
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list_compound_unseen_gene/smiles_214_train.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list_compound_unseen_gene/smiles_214_train.pkl",
+      "bytes": 11498,
+      "sha256": "8f161cc2e3d1e488d3e287e9934c5275d947522c2ea2f3d3d430e849290212ba",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 214
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list_compound_unseen_gene/smiles_94_test.pkl",
+      "relative_to_original": "common_files/06_vc/random_gene_list_compound_unseen_gene/smiles_94_test.pkl",
+      "bytes": 5217,
+      "sha256": "404642ff9e8af733f42063e45aa3606f2041803975d4e65cdd4ed837897996d9",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 94
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/index2morgan_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/index2morgan_577.pkl",
+      "bytes": 1203072,
+      "sha256": "e079bc000a4271ae45e116bd83cbe15950c7a0026f93aa254921ed8ad089ba24",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 577,
+        "example_value_type": "ndarray",
+        "example_value_shape": [
+          2048
+        ]
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/index2smiles_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/index2smiles_577.pkl",
+      "bytes": 32326,
+      "sha256": "14b77ec5881ce2794fe552022e080acf99e2c41cea2cc3dbaa55e17470b31d92",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 577,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/morgan2index_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/morgan2index_577.pkl",
+      "bytes": 1979020,
+      "sha256": "dae53afde19d10c49cf5a1b0fab65319bf4413c2ccda4d485beed78a1bba2567",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 482,
+        "example_value_type": "list",
+        "example_value_length": 2
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/morgan_alignment_summary.json",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/morgan_alignment_summary.json",
+      "bytes": 2501,
+      "sha256": "4618fcd3b70018457eb030fac7c7fd30c4b1e1bff7c1db9b88884da179d7d4d6",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/morgan_embeddings_577.npy",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/morgan_embeddings_577.npy",
+      "bytes": 1181824,
+      "sha256": "296e270d3489dab19ef3b9b9e49156e91da388e1c8751fa41a72cc53601e1d65",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/sanitization_exceptions.json",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/sanitization_exceptions.json",
+      "bytes": 575,
+      "sha256": "ea53aec636113fae18cf0b3bb5846b3f7e766cf238ed29bc182c4ae72f746f8c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/smiles2index_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/smiles2index_577.pkl",
+      "bytes": 32326,
+      "sha256": "b870f7173c6ae506647650da509021f033b7c79b61b06257e89cf3f2e7cb692f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 577,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/smiles2morgan_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/smiles2morgan_577.pkl",
+      "bytes": 1232432,
+      "sha256": "796fd1d8ec77f4be53a4e067d9b33bdbd8a45e74c82b8ae5f4a1b04f9bff0326",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 577,
+        "example_value_type": "ndarray",
+        "example_value_shape": [
+          2048
+        ]
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/smiles_morgan_mapping_577.csv",
+      "relative_to_original": "common_files/06_vc_compound/Morgan/smiles_morgan_mapping_577.csv",
+      "bytes": 72111,
+      "sha256": "676b01eb80f0d45605df33638ae12030d3bb41225ddc469f8dfffddcae0bc59c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Unimol2index_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/Unimol2index_577.pkl",
+      "bytes": 7941003,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/canonical_equivalent_smiles.csv",
+      "relative_to_original": "common_files/06_vc_compound/canonical_equivalent_smiles.csv",
+      "bytes": 17059,
+      "sha256": "cc674e13b092308b055bcafefe34a03a634db6f613fcb8f9f6342a5804f5dbfd",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/index2Unimol.manifest.json",
+      "relative_to_original": "common_files/06_vc_compound/index2Unimol.manifest.json",
+      "bytes": 226838,
+      "sha256": "a6f6b5ecdf6ca5a9a8798312d039dd89f63298c7738d1906a1590d248a5be3c0",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/index2Unimol_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/index2Unimol_577.pkl",
+      "bytes": 3713322,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/index2smiles_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/index2smiles_577.pkl",
+      "bytes": 32326,
+      "sha256": "14b77ec5881ce2794fe552022e080acf99e2c41cea2cc3dbaa55e17470b31d92",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 577,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/mapping_summary.json",
+      "relative_to_original": "common_files/06_vc_compound/mapping_summary.json",
+      "bytes": 2395,
+      "sha256": "53c189b7da1dc6d8f70b007b94e1b39766cc434f57609df0ddda3c642fa1f608",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/original_smiles2index_307.pkl",
+      "relative_to_original": "common_files/06_vc_compound/original_smiles2index_307.pkl",
+      "bytes": 17354,
+      "sha256": "aef006f18cee0cec38ec1f511b9c87fe087289b5fbfd2b1c8a86a8f9b9a286bb",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 307,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/smiles2index_577.pkl",
+      "relative_to_original": "common_files/06_vc_compound/smiles2index_577.pkl",
+      "bytes": 32326,
+      "sha256": "b870f7173c6ae506647650da509021f033b7c79b61b06257e89cf3f2e7cb692f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 577,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/smiles_index_mapping.csv",
+      "relative_to_original": "common_files/06_vc_compound/smiles_index_mapping.csv",
+      "bytes": 72775,
+      "sha256": "cdf945e0fde3a74efdce09506a2f6a4a3f0b291652b2ac378140d8cfc6241957",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/ESM2_layernorm_pca64.npz",
+      "relative_to_original": "common_files/ESM2_files/ESM2_layernorm_pca64.npz",
+      "bytes": 1234590,
+      "sha256": "c438ad7c5b291d050afad531afb1fa9b251b20ad9a3dca4e9feb3bf1a63f1174",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/ESM2_pert_features_with_nontargeting.pkl",
+      "relative_to_original": "common_files/ESM2_files/ESM2_pert_features_with_nontargeting.pkl",
+      "bytes": 411232431,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/Index2ESM2_pert_features_with_nontargeting_19791.pkl",
+      "relative_to_original": "common_files/ESM2_files/Index2ESM2_pert_features_with_nontargeting_19791.pkl",
+      "bytes": 411123296,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/cpg0021_Barcodes.csv",
+      "relative_to_original": "common_files/ESM2_files/cpg0021_Barcodes.csv",
+      "bytes": 11917163,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/gene2index_21611.pkl",
+      "relative_to_original": "common_files/ESM2_files/gene2index_21611.pkl",
+      "bytes": 254123,
+      "sha256": "9c11038253fbc33863a290a6298a91ea32477ec3e7a3c9a8c809ca4a21c2e72f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 21611,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/index2gene_21611.pkl",
+      "relative_to_original": "common_files/ESM2_files/index2gene_21611.pkl",
+      "bytes": 254123,
+      "sha256": "299484408ee8cc63d53d25bd84eca7ba978dc12fb0bd4bc958ac95880d9782aa",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 21611,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/biological/A549_DMEM_hits.xlsx",
+      "relative_to_original": "common_files/biological/A549_DMEM_hits.xlsx",
+      "bytes": 90341,
+      "sha256": "84085eaa94815203f77a8406bc78f3a9b9eaedeb223319664b2fc5aff6e36c68",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/biological/HeLa_DMEM_hits.xlsx",
+      "relative_to_original": "common_files/biological/HeLa_DMEM_hits.xlsx",
+      "bytes": 109089,
+      "sha256": "aca967dd804f4abbb679e03f02ccf8e7e996d6c8fec13a769d1aca17ba387110",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/biological/HeLa_HPLM_hits.xlsx",
+      "relative_to_original": "common_files/biological/HeLa_HPLM_hits.xlsx",
+      "bytes": 104191,
+      "sha256": "9a4ce1660c36ab1e1e30479381f757fab1c933b4c7298b0bf906bfb39e878d83",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cell_number/cpg0021_HeLa.pkl",
+      "relative_to_original": "common_files/cell_number/cpg0021_HeLa.pkl",
+      "bytes": 219482,
+      "sha256": "34b9ee1a05bb4569b367c35b412d39ef5d7ac5eb5eda355ee2a8833a1432d84b",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "Counter",
+        "entries": 20422,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/JUMP-Target-2-Compound-Plate.csv",
+      "relative_to_original": "common_files/cpg0016/JUMP-Target-2-Compound-Plate.csv",
+      "bytes": 16917,
+      "sha256": "15eb0fdbfeb42c589c9505c8e39bec1eeb08d57e1275ff56741e573f5b1f842b",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/JUMP-Target-2_compound_metadata.tsv",
+      "relative_to_original": "common_files/cpg0016/JUMP-Target-2_compound_metadata.tsv",
+      "bytes": 94603,
+      "sha256": "2705d1074d947526f2d80fdee3f07e860de1bba52fca575db266d1af529d4023",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/JUMP-Target-2_compound_platemap.tsv",
+      "relative_to_original": "common_files/cpg0016/JUMP-Target-2_compound_platemap.tsv",
+      "bytes": 10915,
+      "sha256": "60ac7533b23d2bf94a06f4e1e85ae9f7f6c8c819ca1dc393c46638eab1da0b56",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/compound.csv",
+      "relative_to_original": "common_files/cpg0016/compound.csv",
+      "bytes": 25238924,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/cpg0016-jump_draft.csv",
+      "relative_to_original": "common_files/cpg0016/cpg0016-jump_draft.csv",
+      "bytes": 18819165508,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/crispr.csv",
+      "relative_to_original": "common_files/cpg0016/crispr.csv",
+      "bytes": 212618,
+      "sha256": "6d5450ce921add53b797510af6d2a9e209bd6672633b78d5d3d5e4dcc37d5801",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/orf.csv",
+      "relative_to_original": "common_files/cpg0016/orf.csv",
+      "bytes": 2107619,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/cpg0016/well_new.csv",
+      "relative_to_original": "common_files/cpg0016/well_new.csv",
+      "bytes": 45409003,
+      "sha256": null,
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_intersect_feature_60.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_intersect_feature_60.pkl",
+      "bytes": 1767,
+      "sha256": "c6f11fdf2cc2d98edbc01dc5ba7cc58fdcb8ebdf11e06cf2dc9349aad5ecc770",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 60
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_A549/cpg0000_A549_all_union_feature_2967.pkl",
+      "bytes": 125377,
+      "sha256": "a6b0fcc819be3c036eb9990ffe74cc594378a07e0d1d1b4a2e7b7ac913dd0e1e",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 2967
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_intersect_feature_74.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_intersect_feature_74.pkl",
+      "bytes": 2259,
+      "sha256": "b7623a7741b54114aafeecd481faf1f96aa687dcdb6cec9c252debe65c9325a6",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 74
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_U2OS/cpg0000_U2OS_all_union_feature_2705.pkl",
+      "bytes": 112785,
+      "sha256": "7d6416275c26f0e54a5fd28562d89898d84c2559eca7867cb26b31584b0fa138",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 2705
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_compound/vocab_intersect_feature_2319.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_compound/vocab_intersect_feature_2319.pkl",
+      "bytes": 95566,
+      "sha256": "896a215823b522c5526164f3294b14d1b0f1f2612e75a33d246ff1be3fd82534",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 2319
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_compound/vocab_union_feature_3341.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_compound/vocab_union_feature_3341.pkl",
+      "bytes": 142163,
+      "sha256": "3d69da748a56e31d550a940385e78c31e3e11c377b178a7b13d6b37c05a3a6dd",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 3341
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_three_type/vocab_intersect_feature_2321.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_three_type/vocab_intersect_feature_2321.pkl",
+      "bytes": 95590,
+      "sha256": "94b4ba9db6c72e03675f3628a3ab4b2da452488d3201b6f04944000b98b62b3c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 2321
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_three_type/vocab_union_feature_3344.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0000_three_type/vocab_union_feature_3344.pkl",
+      "bytes": 142244,
+      "sha256": "5430dfd6837f43a13271788a96cf34f36b7d56e03e6d1f49ef65c90358257079",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 3344
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0016_batch_effect/vocab_intersect_feature_3505.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0016_batch_effect/vocab_intersect_feature_3505.pkl",
+      "bytes": 149104,
+      "sha256": "ba5e31059ddc3e372c6943c005abe215359c27e5b36d5ded91a7d65d72a61754",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 3505
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0016_batch_effect/vocab_union_feature_3505.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0016_batch_effect/vocab_union_feature_3505.pkl",
+      "bytes": 149104,
+      "sha256": "ba5e31059ddc3e372c6943c005abe215359c27e5b36d5ded91a7d65d72a61754",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "set",
+        "entries": 3505
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_intersect_feature_483.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_intersect_feature_483.pkl",
+      "bytes": 20632,
+      "sha256": "17522ed6f54fc7a9cf95c62a0d30aedf3dd8be32dfea6bc2216a0b68d1bf585c",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 483
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_union_feature_1382.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_union_feature_1382.pkl",
+      "bytes": 59489,
+      "sha256": "80b446059bf11e031947b1caf5ac9744acff2f1315c3aa53c90c704e9471f237",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 1382
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0021_HeLa/cpg0021_HeLa_intersect_feature_462.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0021_HeLa/cpg0021_HeLa_intersect_feature_462.pkl",
+      "bytes": 20392,
+      "sha256": "8525eebd2400cd5bcc775a8a6a548a4804121325759499d45fba5c9a2163780e",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 462
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0021_HeLa/cpg0021_HeLa_union_feature_1615.pkl",
+      "relative_to_original": "common_files/feature_intersection_union/cpg0021_HeLa/cpg0021_HeLa_union_feature_1615.pkl",
+      "bytes": 70484,
+      "sha256": "9f3ad9d41696a41eb5ab6e0b80c39160b090ff1108886229a18b618714e6be57",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 1615
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl",
+      "relative_to_original": "common_files/feature_vocab/feature2index_vocabulary_7366.pkl",
+      "bytes": 346833,
+      "sha256": "cf54e00c8bc99339af40c326a63c45e40878409b3d4ce9d5423e6e1f1ff67205",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 7366,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature_names_all.csv",
+      "relative_to_original": "common_files/feature_vocab/feature_names_all.csv",
+      "bytes": 310193,
+      "sha256": "34172337999498abf5245eeaf590d41915cc1dacb91248c067e2eb31afb77404",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": null
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/index2feature_vocabulary_7366.pkl",
+      "relative_to_original": "common_files/feature_vocab/index2feature_vocabulary_7366.pkl",
+      "bytes": 346833,
+      "sha256": "53bfbb4cc8089bb2f6a3c968a20f4dedb1c3dfca3df9a15d0b036f58c784a932",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 7366,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_A549_Compound/cpg0000_A549_Compound_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_A549_Compound/cpg0000_A549_Compound_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "c7b784651dee7cd0afd93952c6dd207e4ad7de09fc50bd8f5a2e645da9cae726",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_A549_Compound/cpg0000_A549_Compound_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_A549_Compound/cpg0000_A549_Compound_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "b85dd320da1432b7001266ecb53d46dd55c727ee0df077b99c8a90ea19784ee3",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_A549_Crispr/cpg0000_A549_Crispr_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_A549_Crispr/cpg0000_A549_Crispr_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "24e571eaec1757fe287ec2897996613127c26a334d081983619a809e002c538a",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_A549_Crispr/cpg0000_A549_Crispr_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_A549_Crispr/cpg0000_A549_Crispr_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "4586a6f7105c0b9a9c3d5c522a370447d4bd57877656ac465c3ad21eeb14c7fe",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_A549_Orf/cpg0000_A549_Orf_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_A549_Orf/cpg0000_A549_Orf_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "662dc511c0ed6fb77daf9a66ea3163d02f44bdb05bb22abe894d3f2cb0666760",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_A549_Orf/cpg0000_A549_Orf_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_A549_Orf/cpg0000_A549_Orf_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "47a2f2fc80c9b919ee12729a7a3a11ab94e3d29c38269bc3e2351f0392a5455e",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_U2OS_Compound/cpg0000_U2OS_Compound_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_U2OS_Compound/cpg0000_U2OS_Compound_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "4df98c82e58ba2c0aa307b8dde5d2f7c576abbdafa49f1ab3129de76396bafab",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_U2OS_Compound/cpg0000_U2OS_Compound_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_U2OS_Compound/cpg0000_U2OS_Compound_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "ab0e4f4b8326473913555d2698b329aa3b82e75b655bc5a82a729e8166d4d0dd",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "9946936255247b02ad589509d3e1963dfadc10867f058cd1333944cb1e8223a2",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_U2OS_Crispr/cpg0000_U2OS_Crispr_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "42863de08e87109e08009a8a6a4e007cbb057a61c6d59d9e7ffb01f9499442ac",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_U2OS_Orf/cpg0000_U2OS_Orf_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_U2OS_Orf/cpg0000_U2OS_Orf_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "bd13d7067c1bb4d44c485f3f1730149f0316322184bb238960df2fd3bba0a1f3",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_U2OS_Orf/cpg0000_U2OS_Orf_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_U2OS_Orf/cpg0000_U2OS_Orf_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "005904d18202b5e3c5f3c7b67c0daa47176f516378d75fe116e21ca1eaaae2f7",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_three_type/cpg0000_three_type_index2label_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_three_type/cpg0000_three_type_index2label_161.pkl",
+      "bytes": 1613,
+      "sha256": "62d8a87abc4f328fba200843973ec5ea9db9f89a5ce6e664efc039c50290c2a7",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_three_type/cpg0000_three_type_label2index_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_three_type/cpg0000_three_type_label2index_161.pkl",
+      "bytes": 1613,
+      "sha256": "f1d98723830c145f354f3d33e305b1e3eb32b47963af2b9b5ba739f70bea8b79",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 161,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_three_type_Metadata_Broad_Sample/cpg0000_three_type_index2label_816.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_three_type_Metadata_Broad_Sample/cpg0000_three_type_index2label_816.pkl",
+      "bytes": 19228,
+      "sha256": "7852107a8b342dbd0d3d4f108d4098a79cfd8ff573fe7543341bb18901f00cb6",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 816,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000/cpg0000_three_type_Metadata_Broad_Sample/cpg0000_three_type_label2index_816.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000/cpg0000_three_type_Metadata_Broad_Sample/cpg0000_three_type_label2index_816.pkl",
+      "bytes": 19228,
+      "sha256": "13e0ebcbc04cb2aeca35351e907cbf9bf61b25bf8536883092f34f4eb390daa0",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 816,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0000_A549_Crispr_gene_list_161.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0000_A549_Crispr_gene_list_161.pkl",
+      "bytes": 1291,
+      "sha256": "85790c69c96ac141651ad69cd8b0bc89a0c5c8bc00fb5ba6157fe47ffb3b40bc",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "list",
+        "entries": 161
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0016/cpg0016_batch_effect/cpg0016_batch_effect_index2label_302.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0016/cpg0016_batch_effect/cpg0016_batch_effect_index2label_302.pkl",
+      "bytes": 5800,
+      "sha256": "e8a4c6eac94be59a05bb39e382fc4d85f3129078ea8ef6e6ca81c3166be7d54a",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 302,
+        "example_value_type": "str"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0016/cpg0016_batch_effect/cpg0016_batch_effect_label2index_302.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0016/cpg0016_batch_effect/cpg0016_batch_effect_label2index_302.pkl",
+      "bytes": 5800,
+      "sha256": "5a4801f274d16dec9cec20ca80ef659e2ace1ef55ce5dd135bbecac1924a28a9",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 302,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0021/gene2index_21611.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0021/gene2index_21611.pkl",
+      "bytes": 254123,
+      "sha256": "9c11038253fbc33863a290a6298a91ea32477ec3e7a3c9a8c809ca4a21c2e72f",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 21611,
+        "example_value_type": "int"
+      }
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0021/index2gene_21611.pkl",
+      "relative_to_original": "common_files/label_vocab/cpg0021/index2gene_21611.pkl",
+      "bytes": 254123,
+      "sha256": "299484408ee8cc63d53d25bd84eca7ba978dc12fb0bd4bc958ac95880d9782aa",
+      "source": "existing local project resource; upstream provenance not independently verified",
+      "details": {
+        "python_type": "dict",
+        "entries": 21611,
+        "example_value_type": "str"
+      }
+    }
+  ]
+}

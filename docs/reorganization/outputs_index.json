@@ -1,0 +1,37 @@
+[
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/result",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc/result",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc/test_anndata",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/result",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/test_anndata",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/09_paper_plot_code/result",
+    "exists": true,
+    "policy": "historical outputs retained in original project; read-only source for new experiments"
+  }
+]

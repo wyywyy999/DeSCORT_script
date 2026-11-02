@@ -1,0 +1,10 @@
+# Copy to configs/local/paths.sh, replace paths, then: source configs/local/paths.sh
+export DESCORT_DATA_ROOT="/absolute/path/to/data"
+export DESCORT_MODEL_ROOT="/absolute/path/to/models"
+export DESCORT_OUTPUT_ROOT="/absolute/path/to/new/outputs"
+export DESCORT_LABEL_VOCAB="/absolute/path/to/label2index.pkl"
+export DESCORT_FEATURE_VOCAB="/absolute/path/to/feature2index.pkl"
+export DESCORT_FEATURE_SET="/absolute/path/to/selected_features.pkl"
+export DESCORT_CONDITION_BY_NAME="/absolute/path/to/gene2esm2.pkl"
+export DESCORT_TRAIN_PERTURBATIONS="/absolute/path/to/train_genes.pkl"
+export DESCORT_TEST_PERTURBATIONS="/absolute/path/to/test_genes.pkl"

@@ -1,0 +1,57 @@
+[
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc/MLP",
+    "exists": true,
+    "entry_scripts": [
+      "inference_linear.py",
+      "train_linear.py"
+    ]
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc/Rigde_model",
+    "exists": true,
+    "entry_scripts": []
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/MLP",
+    "exists": true,
+    "entry_scripts": [
+      "common.py",
+      "inference_linear.py",
+      "train_linear.py"
+    ]
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/Ridge",
+    "exists": true,
+    "entry_scripts": [
+      "compare_no_pca.py"
+    ]
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/GEARS",
+    "exists": true,
+    "entry_scripts": [
+      "evaluate.py",
+      "prepare_data.py",
+      "run_model.py"
+    ]
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/STATE",
+    "exists": true,
+    "entry_scripts": [
+      "evaluate.py",
+      "prepare_data.py",
+      "run_model.py"
+    ]
+  },
+  {
+    "original_path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/delta_transfer",
+    "exists": true,
+    "entry_scripts": [
+      "run_delta_transfer.py",
+      "run_prepared_transfer.py"
+    ]
+  }
+]
