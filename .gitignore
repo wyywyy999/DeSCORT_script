@@ -11,6 +11,16 @@ archive/*.tar.gz
 other_model/
 common_files/
 result/
+!/result/
+/result/**
+!/result/**/
+!/result/**/*.md
+!/result/**/*.json
+!/result/**/*.png
+!/result/**/*.jpg
+!/result/**/*.jpeg
+!/result/**/*.svg
+!/result/**/*.pdf
 results/
 logs/
 test_anndata/
