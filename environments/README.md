@@ -4,7 +4,7 @@
 
 ```bash
 conda env create -f environments/environment.yml
-conda activate descort-organized
+conda activate descort
 python -m pip install -e '.[train,preprocess,vc,analysis]'
 ```
 
