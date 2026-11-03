@@ -4,26 +4,132 @@
 
 ![DeSCORT 模型架构](assets/workflow.png)
 
-这是按照 [整理框架草稿](DeSCORT_repository_framework_draft.md) 建立的**独立整理副本**。原项目位于 `../..`；原始代码、数据、模型与结果保持原位。整理与验证范围见 [整理说明](docs/reorganization/README.md)。
+源代码与任务教程见 [GitHub 仓库](https://github.com/wyywyy999/DeSCORT_script)，当前测试包为 [TestPyPI 上的 descort 0.1.1](https://test.pypi.org/project/descort/0.1.1/)。
 
 ## 安装
 
-在本目录执行，使用项目已有的 DeSCORT 环境或 Python ≥ 3.9 环境：
+下面按“创建环境 → 安装 PyTorch → 按需安装 DeepSpeed → 安装 DeSCORT → 检查安装”的顺序操作。完成前置步骤后，在 TestPyPI 和 GitHub 两种安装方式中选择一种即可。
+
+当前代码在 Linux 上验证，要求 **Python ≥ 3.9**。已使用的核心版本为 Python **3.9.15**、PyTorch **2.7.0**、Transformers **4.51.3**；使用 GPU 训练时，还需要兼容的 NVIDIA 驱动。
+
+### Step 1：创建 Python 环境
+
+建议使用独立的 Conda 环境。以下以 Python 3.9.15 为例：
 
 ```bash
-python -m pip install -e '.[train,preprocess,vc,analysis]'
-python -c "import descort; print(descort.__version__)"
+conda create -n DeSCORT python=3.9.15 pip -y
+conda activate DeSCORT
+python -m pip install --upgrade pip setuptools wheel
 ```
 
-GPU 训练先准备匹配本机 CUDA 的 PyTorch；DeepSpeed 单独安装 `.[distributed]`。批次校正的 R/TensorFlow 等后端单独管理，见 [安装文档](docs/installation.md)。本次实际验证使用已有 Python 3.9.15 / PyTorch 2.7.0 / Transformers 4.51.3 环境，版本记录见 [environments](environments/README.md)。
+如果已经配置好 `DeSCORT` 环境，直接执行 `conda activate DeSCORT`，按需跳过已经完成的安装步骤。
 
-## 最小可运行示例
+### Step 2：安装 PyTorch
+
+根据机器的 NVIDIA 驱动支持情况选择 PyTorch 的 CUDA 构建。以下是 PyTorch **2.7.0** 的安装示例，**选择其中一种执行**；完整平台支持与命令见 [PyTorch 官方安装说明](https://pytorch.org/get-started/previous-versions/)。
+
+CUDA 11.8：
 
 ```bash
-python examples/minimal_embedding.py --output-dir outputs/minimal_embedding
+python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu118
 ```
 
-该示例生成 3 行合成 parquet、一个随机初始化的小模型，并通过正式 embedding 入口保存形态表征；在 CPU 上检查输出形状、有限值和元数据。**它验证软件链路，不代表训练后的模型效果。** 再次运行请选择新的空输出目录。
+CUDA 12.6：
+
+```bash
+python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu126
+```
+
+CUDA 12.8：
+
+```bash
+python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+```
+
+仅使用 CPU：
+
+```bash
+python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+安装后检查版本及 GPU 是否可用：
+
+```bash
+python -c "import torch; print('PyTorch:', torch.__version__); print('CUDA build:', torch.version.cuda); print('GPU available:', torch.cuda.is_available())"
+```
+
+CPU 版本的 `GPU available` 为 `False` 是正常的；GPU 训练环境需要能检测到可用 GPU。
+
+### Step 3：安装 DeepSpeed（分布式训练时使用）
+
+使用教程中以 `deepspeed` 启动的预训练或微调脚本时，需要先安装 DeepSpeed。以下使用本项目已使用的 **0.18.0** 版本：
+
+```bash
+python -m pip install deepspeed==0.18.0
+ds_report
+```
+
+DeepSpeed 的部分 C++/CUDA 算子会在使用时编译，需要对应的编译工具链。若使用 CUDA 算子，应核对本机 CUDA Toolkit 与 PyTorch 的 CUDA 构建版本；详情见 [DeepSpeed 官方安装说明](https://www.deepspeed.ai/tutorials/advanced-install/)。运行单卡常规推理或 CPU 分析可以跳过本步骤。仓库中的分布式训练配置位于 [configs/deepspeed/zero2.json](configs/deepspeed/zero2.json)。
+
+### Step 4：安装 DeSCORT
+
+#### 方式一：通过包索引安装（当前使用 TestPyPI）
+
+目前 `descort==0.1.1` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。TestPyPI 的依赖包不完整，因此下面的命令同时使用正式 PyPI 解析依赖；用法见 [TestPyPI 官方说明](https://packaging.python.org/en/latest/guides/using-testpypi/)。
+
+```bash
+python -m pip install \
+  --index-url https://test.pypi.org/simple/ \
+  --extra-index-url https://pypi.org/simple/ \
+  descort==0.1.1
+```
+
+从 0.1.1 起，默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写方括号中的依赖组。DeepSpeed 已在步骤 3 单独处理。
+
+如果使用的是依赖已经准备好的环境，只安装测试包本身，可执行：
+
+```bash
+python -m pip install \
+  --index-url https://test.pypi.org/simple/ \
+  --no-deps descort==0.1.1
+```
+
+`--no-deps` 会跳过依赖安装，仅适用于已经具备所需依赖的环境。上述包索引安装提供 Python 包；若要运行仓库中的完整教程和 Bash 脚本，使用下面的 GitHub 方式获取源码。模型权重、词表及实验数据仍需按任务准备。
+
+#### 方式二：从 GitHub 克隆并安装
+
+先准备 Git，再克隆仓库并在仓库根目录安装：
+
+```bash
+git clone https://github.com/wyywyy999/DeSCORT_script.git
+cd DeSCORT_script
+python -m pip install .
+```
+
+源码 0.1.1 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
+
+需要修改源码并持续开发时，将上面的安装命令换成可编辑安装：
+
+```bash
+python -m pip install -e .
+```
+
+`.` 表示当前仓库；`-e` 让环境关联当前源码目录。修改源码后重新启动 Python 程序即可使用修改后的代码，不必每次重新安装。如果当前环境的依赖已经准备好，只需关联源码，可以执行 `python -m pip install -e . --no-deps`。
+
+### Step 5：检查安装
+
+两种安装方式都可以使用同一组检查命令：
+
+```bash
+python -c "import descort; from descort import DeSCORTConfig, DeSCORTForContrastiveLM; print('DeSCORT:', descort.__version__); print('Package path:', descort.__file__)"
+python -m pip show descort
+```
+
+需要确认 DeepSpeed 环境时，另行运行 `ds_report`。批次校正中的 R、scIB、DESC/TensorFlow 等后端按对应任务准备，见 [安装文档](docs/installation.md)。
+
+`environments/environment.yml` 和 `environments/requirement.txt` 记录了原服务器的完整环境，其中包含额外工具及已知版本约束冲突，并不是上面两种安装方式的必经步骤；本节通过项目声明的依赖安装 DeSCORT。
+
+## 加载已有模型
 
 真实模型的基本用法：
 
@@ -51,12 +157,10 @@ model.eval()
 
 每个主任务提供 `run.sh SCRIPT.py [参数...]`；数据路径和训练参数仍由 Bash/命令行显式指定。详见 [教程总览](tutorials/README.md)。
 
-## 配置、资源与复现
+## 文档、结果图与复现
 
-- [路径与运行配置](configs/README.md)：可复制到 `configs/local/`，先 `--dry-run` 查看完整命令。
-- [资源清单](resources/README.md)：原项目资源只读复用；不复制大型 embedding、数据与权重。
 - [输入格式](docs/data_format.md)、[模型与代码对应](docs/model_architecture.md)、[复现约定](docs/reproducibility.md)。
-- [基线索引](benchmarks/README.md) 保留各方法原适配位置与环境说明，不把第三方仓库一起打包。
-- 测试：`python -m unittest discover -s tests -v`。
+- [环境记录](environments/README.md) 与 [完整环境依赖清单](environments/requirement.txt)。
+- [教程结果图](result/README.md)：按任务与示例数据集集中保存预览图和来源说明。
 
-包版本 `0.1.0` 是本地整理版本，尚不表示已向 PyPI 发布。论文 DOI、作者引用信息、公开权重下载地址和许可证尚未在提供的项目材料中确认，因此不生成虚构的 `CITATION.cff` 或许可证文件。参考组织方式来自本地 DeSCOPE 与 Cellist；DeSCORT 模型实现保持自身代码。
+当前测试发布版本为 `0.1.1`，发布地址为 TestPyPI。论文 DOI、作者引用信息、公开权重下载地址和许可证尚未在提供的项目材料中确认，因此不生成虚构的 `CITATION.cff` 或许可证文件。参考组织方式来自本地 DeSCOPE 与 Cellist；DeSCORT 模型实现保持自身代码。

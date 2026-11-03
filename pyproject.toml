@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "descort"
-version = "0.1.0"
+version = "0.1.1"
 description = "Cell Painting morphology representation and perturbation prediction"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -16,17 +16,31 @@ dependencies = [
     "datasets>=4,<5",
     "pyarrow>=19",
     "tqdm",
+    "accelerate>=1.6",
+    "tensorboard",
+    "safetensors>=0.5",
+    "pycytominer>=1.3",
+    "anndata>=0.10,<0.12",
+    "scipy>=1.13",
+    "scikit-learn>=1.6",
+    "threadpoolctl",
+    "scanpy>=1.10,<1.12",
+    "matplotlib>=3.6",
+    "seaborn>=0.13",
+    "joblib",
+    "copairs",
+    "duckdb",
+    "umap-learn",
+    "gseapy",
+    "statsmodels",
 ]
 
 [project.optional-dependencies]
-train = ["accelerate>=1.6", "tensorboard", "safetensors>=0.5"]
-preprocess = ["pycytominer>=1.3"]
-vc = ["anndata>=0.10,<0.12", "scipy>=1.13", "scikit-learn>=1.6", "threadpoolctl"]
-analysis = [
-    "anndata>=0.10,<0.12", "scanpy>=1.10,<1.12", "scipy>=1.13",
-    "scikit-learn>=1.6", "matplotlib>=3.6", "seaborn>=0.13", "joblib",
-    "copairs", "duckdb", "umap-learn", "gseapy", "statsmodels", "threadpoolctl",
-]
+# Compatibility with installation commands for 0.1.0; now included by default.
+train = []
+preprocess = []
+vc = []
+analysis = []
 distributed = ["deepspeed>=0.18,<0.19"]
 
 [tool.setuptools.packages.find]
