@@ -4,7 +4,7 @@
 
 ![DeSCORT 模型架构](assets/workflow.png)
 
-源代码与任务教程见 [GitHub 仓库](https://github.com/wyywyy999/DeSCORT_script)，当前测试包为 [TestPyPI 上的 descort 0.1.1](https://test.pypi.org/project/descort/0.1.1/)。
+源代码与任务教程见 [GitHub 仓库](https://github.com/wyywyy999/DeSCORT_script)，当前测试包为 [TestPyPI 上的 descort 0.1.2](https://test.pypi.org/project/descort/0.1.2/)。
 
 ## 安装
 
@@ -14,15 +14,13 @@
 
 ### Step 1：创建 Python 环境
 
-建议使用独立的 Conda 环境。以下以 Python 3.9.15 为例：
+建议使用独立的 Conda 环境。以下以 Python 3.9 为例：
 
 ```bash
-conda create -n DeSCORT python=3.9.15 pip -y
+conda create -n DeSCORT python=3.9 pip -y
 conda activate DeSCORT
 python -m pip install --upgrade pip setuptools wheel
 ```
-
-如果已经配置好 `DeSCORT` 环境，直接执行 `conda activate DeSCORT`，按需跳过已经完成的安装步骤。
 
 ### Step 2：安装 PyTorch
 
@@ -75,13 +73,13 @@ DeepSpeed 的部分 C++/CUDA 算子会在使用时编译，需要对应的编译
 
 #### 方式一：通过包索引安装（当前使用 TestPyPI）
 
-目前 `descort==0.1.1` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。TestPyPI 的依赖包不完整，因此下面的命令同时使用正式 PyPI 解析依赖；用法见 [TestPyPI 官方说明](https://packaging.python.org/en/latest/guides/using-testpypi/)。
+目前 `descort==0.1.2` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。TestPyPI 的依赖包不完整，因此下面的命令同时使用正式 PyPI 解析依赖；用法见 [TestPyPI 官方说明](https://packaging.python.org/en/latest/guides/using-testpypi/)。
 
 ```bash
 python -m pip install \
   --index-url https://test.pypi.org/simple/ \
   --extra-index-url https://pypi.org/simple/ \
-  descort==0.1.1
+  descort==0.1.2
 ```
 
 从 0.1.1 起，默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写方括号中的依赖组。DeepSpeed 已在步骤 3 单独处理。
@@ -91,7 +89,7 @@ python -m pip install \
 ```bash
 python -m pip install \
   --index-url https://test.pypi.org/simple/ \
-  --no-deps descort==0.1.1
+  --no-deps descort==0.1.2
 ```
 
 `--no-deps` 会跳过依赖安装，仅适用于已经具备所需依赖的环境。上述包索引安装提供 Python 包；若要运行仓库中的完整教程和 Bash 脚本，使用下面的 GitHub 方式获取源码。模型权重、词表及实验数据仍需按任务准备。
@@ -106,7 +104,7 @@ cd DeSCORT_script
 python -m pip install .
 ```
 
-源码 0.1.1 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
+源码 0.1.2 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
 
 需要修改源码并持续开发时，将上面的安装命令换成可编辑安装：
 
@@ -163,4 +161,4 @@ model.eval()
 - [环境记录](environments/README.md) 与 [完整环境依赖清单](environments/requirement.txt)。
 - [教程结果图](result/README.md)：按任务与示例数据集集中保存预览图和来源说明。
 
-当前测试发布版本为 `0.1.1`，发布地址为 TestPyPI。论文 DOI、作者引用信息、公开权重下载地址和许可证尚未在提供的项目材料中确认，因此不生成虚构的 `CITATION.cff` 或许可证文件。参考组织方式来自本地 DeSCOPE 与 Cellist；DeSCORT 模型实现保持自身代码。
+当前测试发布版本为 `0.1.2`，发布地址为 TestPyPI。论文 DOI、作者引用信息、公开权重下载地址和许可证尚未在提供的项目材料中确认，因此不生成虚构的 `CITATION.cff` 或许可证文件。参考组织方式来自本地 DeSCOPE 与 Cellist；DeSCORT 模型实现保持自身代码。
