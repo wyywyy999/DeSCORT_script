@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/DeSCORT_logo_300dpi.svg" alt="DeSCORT logo" width="270">
+</p>
+
 # DeSCORT: Decoding Morphological Signatures of Cellular Responses to Perturbations
 
 ![DeSCORT 模型架构](assets/workflow.png)

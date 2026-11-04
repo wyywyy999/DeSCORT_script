@@ -16,17 +16,29 @@ IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".svg", ".gif", ".webp"}
 
 class ImageTag(HTMLParser):
     def handle_starttag(self, tag, attrs):
-        self.attrs = dict(attrs)
+        if tag == "p":
+            self.alignment = dict(attrs).get("align")
+        elif tag == "img":
+            self.attrs = dict(attrs)
 
 
-def sphinx_image(match):
+def sphinx_image(match, source):
     """Register HTML images with Sphinx so local files are copied to HTML output."""
     tag = ImageTag()
     tag.feed(match.group(0))
     attrs = tag.attrs
     if "src" not in attrs:
         return match.group(0)
+    if not urlsplit(attrs["src"]).scheme:
+        image = (source.parent / unquote(attrs["src"])).resolve()
+        if image.is_file() and ROOT in image.parents:
+            output = DEST / image.relative_to(ROOT)
+            output.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(image, output)
     options = []
+    alignment = attrs.get("align") or getattr(tag, "alignment", None)
+    if alignment in {"left", "center", "right"}:
+        options.append(f":align: {alignment}")
     if attrs.get("alt"):
         options.append(f":alt: {attrs['alt']}")
     if attrs.get("width"):
@@ -79,7 +91,10 @@ def prepare():
                          flags=re.MULTILINE | re.DOTALL)
         for i in range(0, len(parts), 2):
             parts[i] = link_pattern.sub(lambda match: rewrite(source, match), parts[i])
-            parts[i] = re.sub(r"<img\b[^>]*>", sphinx_image, parts[i], flags=re.IGNORECASE)
+            parts[i] = re.sub(r'<p\s+align=["\']center["\']\s*>\s*<img\b[^>]*>\s*</p>',
+                              lambda match: sphinx_image(match, source), parts[i], flags=re.IGNORECASE)
+            parts[i] = re.sub(r"<img\b[^>]*>", lambda match: sphinx_image(match, source),
+                              parts[i], flags=re.IGNORECASE)
         output = DEST / source.relative_to(ROOT)
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text("".join(parts))
