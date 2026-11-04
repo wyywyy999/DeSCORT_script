@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # ============================================================================
 # combined_dataset.sh
@@ -15,7 +11,7 @@ cd "$SCRIPT_DIR"
 # Input / output paths
 # -------------------------------
 base_dir="/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_cpg0021_A549_161"
-save_path="${SAVE_PATH:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/02_pretrain/save_path}"
+save_path="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/02_pretrain/save_path"
 
 # -------------------------------
 # Search settings

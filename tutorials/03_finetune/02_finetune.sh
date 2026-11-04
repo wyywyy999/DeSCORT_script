@@ -91,7 +91,7 @@ TRAINPARAMS="
     --remove_unused_columns=False "
 
 RADOM_PORT=$(shuf -i 1024-65535 -n 1)
-echo "使用的端口号: $RADOM_PORT"
+echo "Master port: $RADOM_PORT"
 
 
 # python 02_finetune.py $MODELPARAMS $DATAPARAMS $FINETUNEPARAMS $TRAINPARAMS

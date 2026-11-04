@@ -5,9 +5,9 @@ RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
 cd "$SCRIPT_DIR"
 
 # ============================================================================
-# 01_calculate_emb.sh
+# 03_run_calculate_emb.sh
 #
-# Launch 01_calculate_emb.py with argparse parameters.
+# Launch 03_calculate_emb.py with argparse parameters.
 # Edit the variables below to match your data / environment.
 # ============================================================================
 
@@ -124,7 +124,7 @@ if [ -n "$need_plate_list" ]; then
     args+=(--need_plate_list $need_plate_list)
 fi
 
-# 添加布尔标志
+# Add boolean flags.
 if [ "$do_mlm" = true ]; then
     args+=(--do_mlm)
 fi
@@ -133,5 +133,5 @@ if [ "$sampling" = true ]; then
     args+=(--sampling)
 fi
 
-# 执行
+# Run the embedding extraction entry.
 python 03_calculate_emb.py "${args[@]}" "$@"

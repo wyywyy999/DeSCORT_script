@@ -14,24 +14,24 @@ from tqdm import tqdm
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="合并多个扰动类型目录下的 train_merged_data 数据集。"
+        description="Merge train_merged_data datasets from multiple perturbation-type directories."
     )
 
     parser.add_argument(
         "--base_dir", required=True,
-        help="根目录，包含多个扰动类型子目录（如 Compound, Crispr, Orf 等）。"
+        help="Root directory containing perturbation-type subdirectories (e.g., Compound, Crispr, Orf)."
     )
     parser.add_argument(
         "--save_path", required=True,
-        help="合并后数据集的保存路径。"
+        help="Output path for the merged dataset."
     )
     parser.add_argument(
         "--subdir_name", default="train_merged_data",
-        help="在每个扰动目录下查找的子目录名称。（default: %(default)s）"
+        help="Subdirectory name to search for within each perturbation directory (default: %(default)s)."
     )
     parser.add_argument(
         "--exclude", nargs="*", default=["all_data"],
-        help="需要排除的目录名列表。（default: %(default)s）"
+        help="Directory names to exclude (default: %(default)s)."
     )
 
     return parser.parse_args()
@@ -44,14 +44,14 @@ def main():
     save_path = Path(args.save_path)
     os.makedirs(save_path, exist_ok=True)
 
-    # 查找所有扰动类型子目录
+    # Find all perturbation-type subdirectories.
     pert_dirs = sorted(
         [d for d in base_dir.iterdir()
          if d.is_dir() and d.name not in args.exclude]
     )
-    print(f"发现 {len(pert_dirs)} 个扰动类型目录: {[d.name for d in pert_dirs]}")
+    print(f"Found {len(pert_dirs)} perturbation-type directories: {[d.name for d in pert_dirs]}")
 
-    # 遍历每个扰动类型，加载指定子目录
+    # Iterate over perturbation types and load the specified subdirectory.
     all_datasets = []
     for pert_dir in pert_dirs:
         direct_path = pert_dir / args.subdir_name
@@ -61,12 +61,12 @@ def main():
             all_datasets.append(ds)
             continue
 
-        # 如果子目录不在当前层级，尝试在时间点子目录下查找
+        # If the subdirectory is not at the current level, search the timepoint subdirectories.
         timepoint_dirs = sorted([d for d in pert_dir.iterdir() if d.is_dir()])
         if not timepoint_dirs:
-            print(f"  ⚠️ {pert_dir.name}: 无子目录")
+            print(f"  ⚠️ {pert_dir.name}: No subdirectories found")
             continue
-        for tp_dir in tqdm(timepoint_dirs, desc=f"加载 {pert_dir.name}"):
+        for tp_dir in tqdm(timepoint_dirs, desc=f"Loading {pert_dir.name}"):
             train_path = tp_dir / args.subdir_name
             if train_path.exists():
                 print(f"    ✓ {pert_dir.name}/{tp_dir.name}/{args.subdir_name}")
@@ -74,16 +74,16 @@ def main():
                 all_datasets.append(ds)
 
     if not all_datasets:
-        raise ValueError("没有找到任何有效数据集")
+        raise ValueError("No valid datasets were found")
 
-    print(f"\n合并 {len(all_datasets)} 个数据集...")
+    print(f"\nMerging {len(all_datasets)} datasets...")
     merged_dataset = concatenate_datasets(all_datasets)
 
-    print(f"保存到 {save_path}")
+    print(f"Saving to {save_path}")
     merged_dataset.save_to_disk(str(save_path))
 
-    print(f"✅ 完成! 总样本数: {len(merged_dataset):,d}")
-    print(f"特征: {merged_dataset.features}")
+    print(f"✅ Done! Total samples: {len(merged_dataset):,d}")
+    print(f"Features: {merged_dataset.features}")
 
 
 if __name__ == "__main__":

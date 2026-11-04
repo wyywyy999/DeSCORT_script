@@ -41,8 +41,8 @@ SOURCE_DATA_PATHS='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersecti
 # -------------------------------
 # Output directories
 # -------------------------------
-train_output_dir="${TRAIN_OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/03_finetune/train_output_dir}"
-train_save_dir="${TRAIN_SAVE_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/03_finetune/train_save_dir}"
+train_output_dir="${TRAIN_OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/03_finetune/train_tmp_data}"
+train_save_dir="${TRAIN_SAVE_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/03_finetune/train_merged_data}"
 
 # test_output_dir="/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_tmp_data"
 # test_save_dir="/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021_HeLa_HPLM/test_merged_data"

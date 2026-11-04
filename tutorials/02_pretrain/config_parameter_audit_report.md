@@ -1,4 +1,4 @@
-> 原实验历史审查记录，保留供追溯；本次整理未重新验证其中全部结论。链接已指向新副本。
+> Historical audit record from the original experiment, retained for traceability. Not all conclusions were revalidated during repository reorganization. Links point to the reorganized repository.
 
 # DeSCORT Config Parameter Audit Report
 

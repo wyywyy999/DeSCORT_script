@@ -2,40 +2,53 @@
 
 This directory contains the complete **data preprocessing pipeline** for Cell Painting data used in the DeSCORT framework. The pipeline takes raw CSV/Parquet files and produces cleaned, normalized, feature-selected data ready for downstream pretraining and fine-tuning.
 
+## Typical Workflow
+
+Run the parameterized examples above in order from this tutorial directory:
+
+1. CSV to Parquet
+2. Preprocess Data
+3. Build Label Vocabulary
+4. Feature Intersection & Union
+5. Extract Union Feature Data
+
+
 ## Pipeline Overview
 
-```
-Raw CSV files
-     │
-     ▼
-┌─────────────────────────┐
-│  01_csv2parquet         │  CSV → Parquet conversion
-└────────────┬────────────┘
-             │
-             ▼
-┌─────────────────────────┐
-│  02_preprocess_data     │  Aggregation → Normalization → Clip → Feature selection
-└────────────┬────────────┘
-             │
-             ├──────────────────────────────────┐
-             ▼                                  ▼
-┌─────────────────────────┐  ┌─────────────────────────────────┐
-│  03_make_label_vocab    │  │  04_select_intersection_union    │
-│  Build label vocabulary │  │  _feature                       │
-│  (feature2index /       │  │  Compute shared & union feature  │
-│   index2feature)        │  │  sets across all plates          │
-└─────────────────────────┘  └────────────┬────────────────────┘
-                                          │
-                                          ▼
-                             ┌─────────────────────────┐
-                             │  05_get_union_feature   │
-                             │  _data                  │
-                             │  Filter to union        │
-                             │  features + save        │
-                             └─────────────────────────┘
+```text
+                                  Raw CSV files
+                                        │
+                                        ▼
+                   ┌─────────────────────────────────────────┐
+                   │              01_csv2parquet             │
+                   │         CSV → Parquet conversion        │
+                   └────────────────────┬────────────────────┘
+                                        │
+                                        ▼
+                   ┌─────────────────────────────────────────┐
+                   │            02_preprocess_data           │
+                   │    Aggregation → Normalization → Clip   │
+                   │           → Feature selection           │
+                   └────────────────────┬────────────────────┘
+                                        │
+                  ┌─────────────────────┴─────────────────────┐
+                  │                                           │
+                  ▼                                           ▼
+┌───────────────────────────────────┐    ┌─────────────────────────────────────────┐
+│        03_make_label_vocab        │    │   04_select_intersection_union_feature  │
+│       Build label vocabulary      │    │      Compute shared & union feature     │
+│    (label2index / index2label)    │    │          sets across all plates         │
+│                                   │    │                                         │
+└───────────────────────────────────┘    └────────────────────┬────────────────────┘
+                                                              │
+                                                              ▼
+                                         ┌─────────────────────────────────────────┐
+                                         │        05_get_union_feature_data        │
+                                         │     Filter to union features + save     │
+                                         └─────────────────────────────────────────┘
 ```
 
-Before running the Python examples below, enter the tutorial directory:
+Before running the Bash scripts below, activate your DeSCORT environment and enter the tutorial directory:
 
 ```bash
 cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data
@@ -43,7 +56,7 @@ cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutori
 
 ## Step-by-Step Guide
 
-### Step 1 — CSV to Parquet (`01_csv2parquet.py`)
+### Step 1 — CSV to Parquet (`01_csv2parquet.sh`)
 
 Converts raw Cell Painting CSV feature files into the more efficient Parquet format.
 
@@ -58,15 +71,16 @@ Converts raw Cell Painting CSV feature files into the more efficient Parquet for
 **Example:**
 
 ```bash
-python 01_csv2parquet.py \
-    --csv_dir /path/to/csv_raw_data \
-    --out_dir /path/to/raw_data \
-    --pattern "*.csv"
+bash 01_csv2parquet.sh \
+  --csv_dir /absolute/path/csv_raw_data \
+  --out_dir /absolute/path/raw_data \
+  --pattern "*.csv" \
+  --log_file /absolute/path/logs/csv2parquet.log
 ```
 
 ***
 
-### Step 2 — Preprocess Data (`02_preprocess_data.py`)
+### Step 2 — Preprocess Data (`02_preprocess_data.sh`)
 
 The core preprocessing step. For each plate/Parquet file, it runs a pipeline of:
 
@@ -94,25 +108,26 @@ The core preprocessing step. For each plate/Parquet file, it runs a pipeline of:
 **Example:**
 
 ```bash
-python 02_preprocess_data.py \
-    --source_data_paths /path/to/raw_data \
-    --clip_output_path /path/to/normalization_clip_data \
-    --normalization_select_feature_output_path /path/to/normalization_select_feature_data \
-    --data_level sc \
-    --need_columns Metadata_Foci_Barcode_MatchedTo_GeneCode Metadata_Foci_Barcode_MatchedTo_Barcode \
-    --normalize_method mad_robustize \
-    --normalize_samples_query "Metadata_Foci_Barcode_MatchedTo_GeneCode == 'nontargeting'" \
-    --clip_lower_percentile 1 \
-    --clip_upper_percentile 99 \
-    --feature_select_operations variance_threshold correlation_threshold drop_na_columns blocklist \
-    --corr_threshold 0.9 \
-    --na_cutoff 0.05 \
-    --do_map_channel_names
+bash 02_preprocess_data.sh \
+  --source_data_paths /absolute/path/raw_data \
+  --clip_output_path /absolute/path/normalization_clip_data \
+  --normalization_select_feature_output_path /absolute/path/normalization_select_feature_data \
+  --data_level sc \
+  --need_columns Metadata_Foci_Barcode_MatchedTo_GeneCode Metadata_Foci_Barcode_MatchedTo_Barcode Metadata_Foci_well Metadata_Foci_plate \
+  --normalize_method mad_robustize \
+  --normalize_samples_query "Metadata_Foci_Barcode_MatchedTo_GeneCode == 'nontargeting'" \
+  --clip_lower_percentile 1 \
+  --clip_upper_percentile 99 \
+  --feature_select_operations variance_threshold correlation_threshold drop_na_columns blocklist \
+  --corr_threshold 0.9 \
+  --na_cutoff 0.05 \
+  --do_map_channel_names \
+  --log_file /absolute/path/logs/preprocess_data.log
 ```
 
 ***
 
-### Step 3 — Build Label Vocabulary (`03_make_label_vocab.py`)
+### Step 3 — Build Label Vocabulary (`03_make_label_vocab.sh`)
 
 Collects unique label values from a specified metadata column across all Parquet files and builds a bidirectional vocabulary (`label2index` and `index2label`) saved as pickle files.
 
@@ -133,16 +148,17 @@ Collects unique label values from a specified metadata column across all Parquet
 **Example:**
 
 ```bash
-python 03_make_label_vocab.py \
-    --source_data_paths /path/to/processed_data \
-    --label_column Metadata_JCP2022 \
-    --output_dir /path/to/label_vocab \
-    --output_prefix cpg0016_vocab
+bash 03_make_label_vocab.sh \
+  --source_data_paths /absolute/path/data1 /absolute/path/data2 \
+  --label_column Metadata_Foci_Barcode_MatchedTo_GeneCode \
+  --output_dir /absolute/path/label_vocab \
+  --output_prefix my_dataset \
+  --log_file /absolute/path/logs/make_label_vocab.log
 ```
 
 ***
 
-### Step 4 — Feature Intersection & Union (`04_select_intersection_union_feature.py`)
+### Step 4 — Feature Intersection & Union (`04_select_intersection_union_feature.sh`)
 
 Computes the **intersection** (features shared across ALL plates) and the **union** (features present in ANY plate) of feature columns. Optionally filters by a pre-existing feature vocabulary to retain only known features.
 
@@ -163,16 +179,17 @@ Computes the **intersection** (features shared across ALL plates) and the **unio
 **Example:**
 
 ```bash
-python 04_select_intersection_union_feature.py \
-    --source_data_paths /path/to/processed_data \
-    --vocab_file /path/to/feature2index_vocabulary_7366.pkl \
-    --output_dir /path/to/feature_intersection_union \
-    --output_prefix vocab
+bash 04_select_intersection_union_feature.sh \
+  --source_data_paths /absolute/path/normalization_select_feature_data \
+  --vocab_file /absolute/path/feature2index_vocabulary_7366.pkl \
+  --output_dir /absolute/path/feature_intersection_union \
+  --output_prefix my_dataset \
+  --log_file /absolute/path/logs/select_features.log
 ```
 
 ***
 
-### Step 5 — Extract Union Feature Data (`05_get_union_feature_data.py`)
+### Step 5 — Extract Union Feature Data (`05_get_union_feature_data.sh`)
 
 Filters each Parquet file to retain only the features present in a given union feature set (from Step 4), separates metadata and feature columns, and saves the filtered data. Batch subdirectory structure is preserved.
 
@@ -187,35 +204,13 @@ Filters each Parquet file to retain only the features present in a given union f
 **Example:**
 
 ```bash
-python 05_get_union_feature_data.py \
-    --source_data_paths /path/to/normalization_clip_data \
-    --feature_list_pkl /path/to/union_feature_2705.pkl \
-    --output_path /path/to/normalization_clip_data_select_feature
+bash 05_get_union_feature_data.sh \
+  --source_data_paths /absolute/path/normalization_clip_data \
+  --feature_list_pkl /absolute/path/feature_intersection_union/my_dataset_union_feature_N.pkl \
+  --output_path /absolute/path/normalization_clip_data_select_feature \
+  --log_file /absolute/path/logs/get_union_feature_data.log
 ```
 
-
-## Typical Workflow
-
-For a new dataset, run the steps in order:
-
-```bash
-# 1. Convert CSV to Parquet
-bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/01_csv2parquet.sh
-
-# 2. Preprocess (aggregate, normalize, clip, feature select)
-bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/02_preprocess_data.sh
-
-# 3. Build label vocabulary
-bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/03_make_label_vocab.sh
-
-# 4. Compute feature intersection & union
-bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/04_select_intersection_union_feature.sh
-
-# 5. Extract union feature data
-bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/05_get_union_feature_data.sh
-```
-
-Each `.sh` script contains pre-configured paths and parameters — edit them to point to your own data before running.
 
 
 ## Output Directory Structure

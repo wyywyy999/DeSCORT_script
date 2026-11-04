@@ -164,7 +164,7 @@
   },
   {
     "path": "tutorials/01_preprocess_data/05_get_union_feature_data.sh",
-    "sha256": "89077b5891dd68094eccdbea213cd12c5018a0341c5b65dc552f73faf2430e92"
+    "sha256": "0b89c436bbf0578ceb9d1ed9c0a24dbcc580d25441b78eff1c842781afc3bdd7"
   },
   {
     "path": "tutorials/01_preprocess_data/run.sh",
@@ -184,27 +184,30 @@
   },
   {
     "path": "tutorials/02_pretrain/01_process_data.sh",
-    "sha256": "750c469e2808040c9a2c3244b89729321cfa582243f4e222402b212ece5131f8"
+    "sha256": "1911a004db7903ec7e05bcb7e67cfe1483aa2475f3a9318fa0b99186357f0986"
   },
   {
     "path": "tutorials/02_pretrain/02_combined_dataset.py",
-    "sha256": "2db47c0cd97302890ca459896d45b784274e8bc33902ea74376bf3ddf49580bf",
+    "sha256": "cb2f30cf71004a131eb19da0fe5050a60539202eb9f467fd808b456cb8448818",
     "functions": [
-      "parse_args",
-      "main"
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "datasets",
+      "os",
       "pathlib",
+      "sys",
       "tqdm"
     ]
   },
   {
     "path": "tutorials/02_pretrain/02_combined_dataset.sh",
-    "sha256": "e66753be760fd212e1499e099ab81ba6ba1af07b3cdc6d1a9e9cf3c7750ddca0"
+    "sha256": "4faba95311873a84a83ec79b2215bab85b3fd6afd1f11b1f0977ed21bb9f038d"
   },
   {
-    "path": "tutorials/02_pretrain/02_pretrain_model.py",
+    "path": "tutorials/02_pretrain/03_pretrain_model.py",
     "sha256": "c3c22f3bb668585b7d52f57ed1412707819b5009adfbd448684bf053dfebfa64",
     "functions": [
       "main"
@@ -216,13 +219,46 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.training",
+      "logging",
+      "os",
       "pathlib",
+      "pickle",
+      "sys",
       "transformers"
     ]
   },
   {
-    "path": "tutorials/02_pretrain/pretrain_model.sh",
-    "sha256": "c3836b12219ae99099c9acd76cf8624f715999f5ed856bcc4b2409112da87c1c"
+    "path": "tutorials/02_pretrain/03_pretrain_model.sh",
+    "sha256": "e4486a15ee39f6909ab1e76500b324b647a96a2a0fa51bcb0dfe68925a002b0a"
+  },
+  {
+    "path": "tutorials/02_pretrain/04_run_emb.py",
+    "sha256": "7e4e5f24bc444a469e08aa1374fc774b405d86a62b8ddf126c6a2ebe73af4a4d",
+    "functions": [
+      "main",
+      "parse_args"
+    ],
+    "imports": [
+      "argparse",
+      "datasets",
+      "descort.data.collator",
+      "descort.data.dataset",
+      "descort.model.modeling_descort",
+      "descort.preprocess.preprocess",
+      "logging",
+      "numpy",
+      "os",
+      "pandas",
+      "pathlib",
+      "pickle",
+      "sys",
+      "torch",
+      "tqdm"
+    ]
+  },
+  {
+    "path": "tutorials/02_pretrain/04_run_emb.sh",
+    "sha256": "7c8176b2f7b7c483c34e9aeb7374bccf9cfdcf9707f02c6b7dfa1b16da333046"
   },
   {
     "path": "tutorials/02_pretrain/run.sh",
@@ -242,7 +278,7 @@
   },
   {
     "path": "tutorials/03_finetune/01_process_data.sh",
-    "sha256": "6cc80aa4641e8078241da5f7e9b0720625430d8375684b052955d4ad1516423c"
+    "sha256": "0855606aa1ca5c43fe0f6862461209888a43d3fdddc9a613f6180e6d6b6e5b45"
   },
   {
     "path": "tutorials/03_finetune/02_finetune.py",
@@ -263,20 +299,36 @@
   },
   {
     "path": "tutorials/03_finetune/02_finetune.sh",
-    "sha256": "215b5705c071e2aef9b3f2d4960008628b3f6e433a43f6f9d3028dfa0591a4ca"
+    "sha256": "442c92e0e16088a9363c3335d7f470ff1f97470cb35c074ce846a841b2c7224b"
   },
   {
     "path": "tutorials/03_finetune/03_calculate_emb.py",
-    "sha256": "08df4049d8b29a5ddd74df734d15a4d3854bb7aaba2eab31b7ad5c3a947d266f",
-    "functions": [],
+    "sha256": "e57e47cd0e724bc2f86a02c266a794591a520388c4f99b2909db509b37b45c5e",
+    "functions": [
+      "main",
+      "parse_args"
+    ],
     "imports": [
-      "descort.embedding.extract",
-      "pathlib"
+      "argparse",
+      "datasets",
+      "descort.data.collator",
+      "descort.data.dataset",
+      "descort.model.modeling_descort",
+      "descort.preprocess.preprocess",
+      "logging",
+      "numpy",
+      "os",
+      "pandas",
+      "pathlib",
+      "pickle",
+      "sys",
+      "torch",
+      "tqdm"
     ]
   },
   {
     "path": "tutorials/03_finetune/03_run_calculate_emb.sh",
-    "sha256": "9452750d9fc3718ed24558211a066057969227c0d9347452dafeab18bd0c7a0f"
+    "sha256": "334c47c56d879b0438ddb1bfeb5c3dbdabc59c1b5fcded95ed1093193cc7549a"
   },
   {
     "path": "tutorials/03_finetune/run.sh",

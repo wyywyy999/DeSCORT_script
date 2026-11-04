@@ -1,11 +1,11 @@
-# 表征微调与 embedding
+# Representation Fine-tuning and Embedding Extraction
 
-输入输出：基础模型、任务 parquet → 微调模型、embedding parquet。
+Input and output: a pretrained model and task-specific Parquet files → a fine-tuned model and embedding Parquet files.
 
-依次运行 `01_process_data.py` → `02_finetune.py` → `03_calculate_emb.py`。提取入口复用 `descort.embedding.extract`，支持 CPU。使用真实检查点时显式给出所有词表与所选特征，避免把扰动预测模型误作表征模型。
+Run `01_process_data.py` → `02_finetune.py` → `03_calculate_emb.py` in order. The embedding extraction entry contains its own `parse_args()` and `main()` functions and supports CPU execution. When using an existing checkpoint, explicitly provide all vocabularies and the selected feature list. Use a representation model checkpoint for embedding extraction rather than a perturbation-prediction model.
 
 ```bash
 bash tutorials/03_finetune/run.sh --help
 ```
 
-从任意工作目录执行时，可使用本入口的绝对路径。参数应以当前脚本 `--help` 为准；历史实验 Bash 中的服务器路径需要按本机配置调整。
+To run the wrapper from any working directory, use its absolute path. Refer to each script's `--help` output for supported arguments. Update server-specific paths in the experiment Bash scripts to match your environment.

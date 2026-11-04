@@ -1,19 +1,8 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/all_data_clip'
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/cpg0021_A549/train_merged_data'
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/cpg0021_HeLa/train_merged_data'
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/cpg0000_A549/train_merged_data'
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data_union/all_data_clip_cpg0000'
-train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0021/all_data'
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_data/all_data_clip_cpg0000'
-# train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_clip_Zscore/cpg0021_A549/train_merged_data'
-# train_dataset_path='/fse/DC/CP_data/feature_data/all_merged_data_select_feature_intersection/normaliztion_data_chunk/A549/A549_merged_data'
-output_dir="${OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/02_pretrain/output_dir}"
-deepspeed_config="$PROJECT_ROOT/configs/deepspeed/zero2.json"
+
+train_dataset_path='/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/data/02_pretrain/train_merged_data'
+output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/output_model/pretrain"
+deepspeed_config="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/configs/deepspeed/zero2.json"
 
 
 
@@ -91,13 +80,13 @@ TRAINPARAMS="
     --remove_unused_columns=False "
 
 RADOM_PORT=$(shuf -i 1024-65535 -n 1)
-echo "使用的端口号: $RADOM_PORT"
+echo "Master port: $RADOM_PORT"
 
 
-# python 02_pretrain_model.py $MODELPARAMS $DATAPARAMS $TRAINPARAMS
+# python 03_pretrain_model.py $MODELPARAMS $DATAPARAMS $TRAINPARAMS
 
 # # deepspeed
-deepspeed --include=localhost:1,2,3 --master_port=$RADOM_PORT 02_pretrain_model.py \
+deepspeed --include=localhost:1,2,4,6 --master_port=$RADOM_PORT 03_pretrain_model.py \
     --deepspeed=$deepspeed_config \
     $MODELPARAMS \
     $DATAPARAMS \
