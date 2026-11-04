@@ -4,7 +4,7 @@
 
 ![DeSCORT 模型架构](assets/workflow.png)
 
-源代码与任务教程见 [GitHub 仓库](https://github.com/wyywyy999/DeSCORT_script)，当前测试包为 [TestPyPI 上的 descort 0.1.2](https://test.pypi.org/project/descort/0.1.2/)。
+源代码与任务教程见 [GitHub 仓库](https://github.com/wyywyy999/DeSCORT_script)，当前测试包为 [TestPyPI 上的 descort 0.1.3](https://test.pypi.org/project/descort/0.1.3/)。
 
 ## 安装
 
@@ -73,23 +73,37 @@ DeepSpeed 的部分 C++/CUDA 算子会在使用时编译，需要对应的编译
 
 #### 方式一：通过包索引安装（当前使用 TestPyPI）
 
-目前 `descort==0.1.2` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。TestPyPI 的依赖包不完整，因此下面的命令同时使用正式 PyPI 解析依赖；用法见 [TestPyPI 官方说明](https://packaging.python.org/en/latest/guides/using-testpypi/)。
+目前 `descort==0.1.3` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。先只从 TestPyPI 下载 DeSCORT 的 wheel，再从正式 PyPI 安装依赖。pip 同时使用多个索引时不会按主、备用顺序选择依赖，而会在所有索引中选择满足约束的候选版本；此前的双索引命令可能选到测试站上的同名依赖，例如 `python-dateutil==3.9.0`。参见 [pip 官方说明](https://pip.pypa.io/en/stable/cli/pip_install/#finding-packages)。
 
 ```bash
-python -m pip install \
+python -m pip download --no-deps --only-binary=:all: \
   --index-url https://test.pypi.org/simple/ \
-  --extra-index-url https://pypi.org/simple/ \
-  descort==0.1.2
+  --dest ./descort_download \
+  descort==0.1.3
+
+python -m pip install \
+  --index-url https://pypi.org/simple/ \
+  ./descort_download/descort-0.1.3-py3-none-any.whl \
+  'python-dateutil==2.9.0.post0'
 ```
 
-从 0.1.1 起，默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写方括号中的依赖组。DeepSpeed 已在步骤 3 单独处理。
+从 0.1.1 起，默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写方括号中的依赖组。DeepSpeed 已在步骤 3 单独处理。0.1.3 增加 `python-dateutil>=2.9.0.post0,<3` 约束，避免选中与 botocore 冲突的 3.x 版本。
+
+如果已按旧命令安装并出现 `botocore` 与 `python-dateutil` 冲突，先在同一个 DeSCORT 环境中执行：
+
+```bash
+python -m pip install --index-url https://pypi.org/simple/ 'python-dateutil==2.9.0.post0'
+python -m pip check
+```
+
+若 `pip check` 仍列出冲突，需要根据完整输出进一步处理。NumPy 从 2.x 降为 1.26.4 符合本项目 `numpy>=1.23,<2` 的约束，不是这里的报错原因。环境快照与发布依赖的区别和已核实冲突见 [依赖核查报告](environments/dependency-audit-0.1.2.md)。
 
 如果使用的是依赖已经准备好的环境，只安装测试包本身，可执行：
 
 ```bash
 python -m pip install \
   --index-url https://test.pypi.org/simple/ \
-  --no-deps descort==0.1.2
+  --no-deps descort==0.1.3
 ```
 
 `--no-deps` 会跳过依赖安装，仅适用于已经具备所需依赖的环境。上述包索引安装提供 Python 包；若要运行仓库中的完整教程和 Bash 脚本，使用下面的 GitHub 方式获取源码。模型权重、词表及实验数据仍需按任务准备。
@@ -104,7 +118,7 @@ cd DeSCORT_script
 python -m pip install .
 ```
 
-源码 0.1.2 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
+源码 0.1.3 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
 
 需要修改源码并持续开发时，将上面的安装命令换成可编辑安装：
 
@@ -161,4 +175,4 @@ model.eval()
 - [环境记录](environments/README.md) 与 [完整环境依赖清单](environments/requirement.txt)。
 - [教程结果图](result/README.md)：按任务与示例数据集集中保存预览图和来源说明。
 
-当前测试发布版本为 `0.1.2`，发布地址为 TestPyPI。论文 DOI、作者引用信息、公开权重下载地址和许可证尚未在提供的项目材料中确认，因此不生成虚构的 `CITATION.cff` 或许可证文件。参考组织方式来自本地 DeSCOPE 与 Cellist；DeSCORT 模型实现保持自身代码。
+当前测试发布版本为 `0.1.3`，发布地址为 TestPyPI。论文 DOI、作者引用信息、公开权重下载地址和许可证尚未在提供的项目材料中确认，因此不生成虚构的 `CITATION.cff` 或许可证文件。参考组织方式来自本地 DeSCOPE 与 Cellist；DeSCORT 模型实现保持自身代码。
