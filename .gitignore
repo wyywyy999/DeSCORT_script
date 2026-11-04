@@ -41,3 +41,7 @@ wandb/
 *.npy
 *.npz
 .DS_Store
+
+# Generated documentation
+/docs/_generated/
+/docs/_build/

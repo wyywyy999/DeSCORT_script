@@ -1,0 +1,4 @@
+# Documentation only; do not install the model or GPU dependencies.
+Sphinx==7.4.7
+myst-parser==3.0.1
+sphinx-rtd-theme==3.0.2
