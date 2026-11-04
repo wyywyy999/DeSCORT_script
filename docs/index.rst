@@ -19,8 +19,8 @@ and model checkpoints must be prepared separately as described in each tutorial.
    :maxdepth: 2
    :caption: Tutorials
 
-   00 Download <_generated/tutorials/00_download/README>
-   01 Preprocessing <_generated/tutorials/01_preprocess_data/README>
+   00 Cell Painting Gallery downloads <_generated/tutorials/00_download/README>
+   01 Preprocessing and vocabularies <_generated/tutorials/01_preprocess_data/README>
    02 Pretraining <_generated/tutorials/02_pretrain/README>
    03 Fine-tuning and embeddings <_generated/tutorials/03_finetune/README>
    04 mAP evaluation <_generated/tutorials/04_mAP/README>
