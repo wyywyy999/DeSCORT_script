@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # ============================================================================
 # 01_csv2parquet.sh
@@ -14,8 +10,8 @@ cd "$SCRIPT_DIR"
 # -------------------------------
 # Input / output paths
 # -------------------------------
-csv_dir="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/csv_raw_data"
-out_dir="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/raw_data"
+csv_dir="/fse/DC/CP_data/feature_data/github_code_test/raw_data/csv_raw_data"
+out_dir="/fse/DC/CP_data/feature_data/github_code_test/raw_data/raw_data"
 
 # -------------------------------
 # Search settings

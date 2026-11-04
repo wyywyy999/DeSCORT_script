@@ -1,11 +1,36 @@
 # 数据下载
 
-输入输出：原始数据源 → 本地原始文件。
+本目录沿用原项目 `tutorials/00_download` 的四个下载脚本及数据源；原来的 `os.system()` 已替换为参数列表形式的 `subprocess.run(..., check=True)`。下载逻辑全部位于教程目录，不依赖 `descort` 包，也不放入模型代码。
 
-`01_01_download_A549_cpg0021.py`、`01_02_download_HeLa_cpg0021.py`、`01_03_download_cpg0000.py`、`01_04_download_cpg0016.py`。新脚本保留原数据源，要求显式 `--output-dir`，可先 `--dry-run` 查看下载命令；cpg0000 还需 `--metadata-csv`，默认与原活动代码一样下载 Compound 和 ORF，`--perturbation-types crispr` 可显式选择 CRISPR。目录拼写 `Compoud` 为兼容原文件结构保留。下载依赖本机 wget / AWS CLI，本次未启动下载。
+输入输出：Cell Painting Gallery 数据源 → 本地原始文件。
+
+| 脚本 | 数据 | 执行前需要核对的配置 |
+|---|---|---|
+| [01_01_download_A549_cpg0021.py](01_01_download_A549_cpg0021.py) | cpg0021 A549 | `path` 保存目录、`Plate_Num`；默认 A/B/C/D/E/F/G/H/N |
+| [01_02_download_HeLa_cpg0021.py](01_02_download_HeLa_cpg0021.py) | cpg0021 HeLa | `path` 保存目录、`Plate_Num`；默认 B/D/F/H/J/K/L/N |
+| [01_03_download_cpg0000.py](01_03_download_cpg0000.py) | cpg0000 JUMP Pilot | 元数据 CSV 路径、ESM2 pickle 路径、A549/U2OS 保存目录及启用的下载调用 |
+| [01_04_download_cpg0016.py](01_04_download_cpg0016.py) | cpg0016 JUMP | `source_list`、循环内 `save_dir`；实际下载 source 以脚本列表为准 |
+
+脚本沿用原服务器的绝对路径，使用前请直接修改本目录脚本中的配置。cpg0000 默认下载 A549/U2OS 的 Compound 和 ORF，CRISPR 下载调用保留注释；`Compoud` 的历史目录拼写保持不变。该脚本仍会读取原来的 ESM2 pickle，即使当前下载筛选没有使用它，也需准备该文件或自行调整脚本。
+
+Python 依赖为 `requests`、`pandas`、`tqdm`；系统命令需要 `wget`（cpg0021）或 AWS CLI 的 `aws`（cpg0000/cpg0016）。四个原脚本不提供 `--output-dir`、`--metadata-csv`、`--dry-run` 或 Python `--help` 参数，路径和筛选配置均在脚本内设置。
+
+从仓库根目录运行所需脚本，例如：
 
 ```bash
-bash tutorials/00_download/run.sh --help
+python tutorials/00_download/01_01_download_A549_cpg0021.py
 ```
 
-从任意工作目录执行时，可使用本入口的绝对路径。参数应以当前脚本 `--help` 为准；历史实验 Bash 中的服务器路径需要按本机配置调整。
+也可以使用教程启动脚本：
+
+```bash
+# 只显示入口列表，不会开始下载。
+bash tutorials/00_download/run.sh --help
+
+# 核对并修改路径后，执行所需的数据下载。
+bash tutorials/00_download/run.sh 01_03_download_cpg0000.py
+```
+
+执行 Python 脚本会实际启动下载；下载结果不包含后续归一化、词表、模型权重或 embedding，预处理步骤见 [01_preprocess_data](../01_preprocess_data/README.md)。
+
+A549/HeLa 的 wget 下载失败后等待 3 秒重试一次，再次失败将报错退出；cpg0000 会打印失败的 plate 并继续后续下载；cpg0016 保留已有的成功/失败 source 汇总。

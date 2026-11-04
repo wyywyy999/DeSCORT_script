@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # ============================================================================
 # 02_preprocess_data.sh
@@ -14,21 +10,18 @@ cd "$SCRIPT_DIR"
 # -------------------------------
 # Source data paths
 # -------------------------------
-source_data_paths="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/raw_data"
-# source_data_paths="/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/raw_data"
+source_data_paths="/fse/DC/CP_data/feature_data/github_code_test/raw_data/raw_data"
 
 # -------------------------------
 # Output paths
 # -------------------------------
-base_output="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/paper_code_test/well_level_new"
-# base_output="/fse/DC/CP_data/feature_data/20210422_6W_CP257/raw_data/well_level_new"
 
 # Intermediate outputs are NOT saved by default. Set the corresponding
 # do_save_* flag to true and provide the path to keep them.
-# median_output_path="${base_output}/median_data"
-# normalization_output_path="${base_output}/normalization_data"
-normalization_select_feature_output_path="${base_output}/normalization_select_feature_data"
-clip_output_path="${base_output}/normalization_clip_data"
+median_output_path="/fse/DC/CP_data/feature_data/github_code_test/raw_data/well_level_new/median_data"
+normalization_output_path="/fse/DC/CP_data/feature_data/github_code_test/raw_data/well_level_new/normalization_data"
+normalization_select_feature_output_path="/fse/DC/CP_data/feature_data/github_code_test/raw_data/well_level_new/normalization_select_feature_data"
+clip_output_path="/fse/DC/CP_data/feature_data/github_code_test/raw_data/well_level_new/normalization_clip_data"
 
 # -------------------------------
 # Save intermediate outputs
@@ -39,8 +32,6 @@ do_save_normalization=false
 # -------------------------------
 # Data filtering
 # -------------------------------
-# need_plate_list="CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H CP186N"
-# need_plate_list="CP257A CP257B CP257D CP257F CP257H CP257J CP257K CP257L CP257N"
 need_plate_list=""
 
 # -------------------------------
@@ -76,7 +67,7 @@ corr_threshold=0.9
 # -------------------------------
 # Logging
 # -------------------------------
-log_file="$PROJECT_ROOT/tutorials/01_preprocess_data/preprocess_data.log"
+log_file="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/preprocess_data.log"
 log_level="INFO"
 
 # ============================================================================

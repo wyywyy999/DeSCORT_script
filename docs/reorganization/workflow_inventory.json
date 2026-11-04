@@ -1,140 +1,174 @@
 [
   {
     "path": "tutorials/00_download/01_01_download_A549_cpg0021.py",
-    "sha256": "bb6403f105695eb3f4a87a412cb1f4082eb8e0e7a922affe4f770cbd89112fdb",
-    "functions": [
-      "main"
-    ],
+    "sha256": "3ace669a3450c259f68a2e7eabcc98d4419b8e7a6da4ff804bbb375de345bfe4",
+    "functions": [],
     "imports": [
-      "descort.data.download",
-      "pathlib"
+      "random",
+      "requests",
+      "subprocess",
+      "time"
     ]
   },
   {
     "path": "tutorials/00_download/01_02_download_HeLa_cpg0021.py",
-    "sha256": "519ceebc954763c91c0b487bc674adbdfa7568a811ab60db8e69e1f6123693ea",
-    "functions": [
-      "main"
-    ],
+    "sha256": "0f6f4531c9b52628b77598ff4f6cad1a3d9ded1bf4b3f8b66eb197841ffb6ce0",
+    "functions": [],
     "imports": [
-      "descort.data.download",
-      "pathlib"
+      "requests",
+      "subprocess",
+      "time"
     ]
   },
   {
     "path": "tutorials/00_download/01_03_download_cpg0000.py",
-    "sha256": "7e691eb0debb2f282e69ea5c1b79a03e76f47ef5ce85b13ad8876894984f64f7",
+    "sha256": "2e94ab971ccdf70bd75ee173f929f349431ac9c83987211df6db3af75dbde117",
     "functions": [
+      "download_data_aws",
       "main"
     ],
     "imports": [
-      "descort.data.download",
-      "pathlib"
+      "os",
+      "pandas",
+      "pickle",
+      "subprocess",
+      "tqdm"
     ]
   },
   {
     "path": "tutorials/00_download/01_04_download_cpg0016.py",
-    "sha256": "b70bb603ff5824dbcec9440bfc70612c7cae120a1c0c60707ca6e519f13db0b5",
-    "functions": [
-      "main"
-    ],
+    "sha256": "77cd0abe1db387e595eb5d68dc6f87b4ce1413cfa51a835db8631652c75ad1f2",
+    "functions": [],
     "imports": [
-      "descort.data.download",
-      "pathlib"
+      "os",
+      "subprocess"
     ]
   },
   {
     "path": "tutorials/00_download/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
+    "sha256": "5a7612b58f9e6750e4fb519654a5fd66121a44b26b1333c68d8829c8dd578158"
   },
   {
     "path": "tutorials/01_preprocess_data/01_csv2parquet.py",
-    "sha256": "00fadbf566540776716caba2e260311aa1e72b837babda26a795a7bd1de22611",
+    "sha256": "f02ff08becb78e4e39c6713bdbd0ed1e804d86256283701f9eb53c7c88ff64b4",
     "functions": [
-      "parse_args",
-      "main"
+      "_absolute_path",
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.preprocess.preprocess",
+      "logging",
+      "os",
       "pathlib",
+      "sys",
       "tqdm"
     ]
   },
   {
     "path": "tutorials/01_preprocess_data/01_csv2parquet.sh",
-    "sha256": "0f380e7fd36538c3d1f988bfedf3890f5775f0499315c7bd8bbcbe47d2659ea7"
+    "sha256": "c34fecd3e5db33d9d48d289e1dd3ec8187c733d67f6ce90f2ec3a274786f6334"
   },
   {
     "path": "tutorials/01_preprocess_data/02_preprocess_data.py",
-    "sha256": "55535184e5c082274c34997dcd43cff169daf47cffa07921a7757bddbee26223",
+    "sha256": "fca1e59976f554441170bc84de89d5a925af06a90b466605d6322b8add63b208",
     "functions": [
-      "parse_args",
-      "main"
+      "_absolute_path",
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.preprocess.preprocess",
+      "logging",
+      "os",
+      "pandas",
       "pathlib",
+      "sys",
+      "tempfile",
       "tqdm"
     ]
   },
   {
     "path": "tutorials/01_preprocess_data/02_preprocess_data.sh",
-    "sha256": "6898cb6b28a90016524f45f02fe830e32445da9165dad518915e745be2d2f834"
+    "sha256": "888ff040928cbd57cb6313b04ff306bed9359baf95e93670ac0332f54bcfe4c0"
   },
   {
     "path": "tutorials/01_preprocess_data/03_make_label_vocab.py",
-    "sha256": "f63424a5be6ce10b9703558c27cbaa987677e95d2ca838efa00b25bb9b2be153",
+    "sha256": "cd3edcfbbe3b20367d2e41673327a9190519085398053bb6915ea26a3ad94ddc",
     "functions": [
-      "parse_args",
-      "main"
+      "_absolute_path",
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.preprocess.preprocess",
+      "logging",
+      "os",
+      "pandas",
       "pathlib",
+      "pickle",
+      "sys",
       "tqdm"
     ]
   },
   {
     "path": "tutorials/01_preprocess_data/03_make_label_vocab.sh",
-    "sha256": "d76c906437d4c1f161dacfbf2b49e3d69b4bb4f47a029b742c72927413de6e77"
+    "sha256": "1f6bbadd9dbbbafb8dfc9a236478201c73de63cd0ab18bff1bc60fa9d068581f"
   },
   {
     "path": "tutorials/01_preprocess_data/04_select_intersection_union_feature.py",
-    "sha256": "d96e0bb7af6604974fcdf9d00cdba54bd605fdce35a9b557127bfdbd71482a8c",
+    "sha256": "9d4875f87c0bad9ff42a4191dd8bb3734799e115a25d2fc2d75695516c6a4131",
     "functions": [
-      "parse_args",
-      "main"
+      "_absolute_path",
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.preprocess.preprocess",
+      "logging",
+      "os",
+      "pandas",
       "pathlib",
+      "pickle",
+      "sys",
       "tqdm"
     ]
   },
   {
     "path": "tutorials/01_preprocess_data/04_select_intersection_union_feature.sh",
-    "sha256": "c7f8adbdd98b0ea60bd1c628b835fafda79ff927121d9ad501517dbed6cbe14f"
+    "sha256": "bf4406c0615e8acca912b88cc0ae643e37821af11885041fcffa50caf3636d9f"
   },
   {
     "path": "tutorials/01_preprocess_data/05_get_union_feature_data.py",
-    "sha256": "6ad425c6acb218412b0a326160a0568dfc8725b3cbf2bf81a7734cd1101a5525",
+    "sha256": "635347646e6a5d8e8d9de0ff3be8187f6652d991ef65e101b6f40adfd865dbf9",
     "functions": [
-      "parse_args",
-      "main"
+      "_absolute_path",
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.preprocess.preprocess",
+      "logging",
+      "os",
+      "pandas",
       "pathlib",
+      "pickle",
+      "sys",
       "tqdm"
     ]
   },
   {
     "path": "tutorials/01_preprocess_data/05_get_union_feature_data.sh",
-    "sha256": "ed001fd7c81bc84b23357268220d1aeee699f64b466ddf4dbdb87f9a3765b57e"
+    "sha256": "89077b5891dd68094eccdbea213cd12c5018a0341c5b65dc552f73faf2430e92"
   },
   {
     "path": "tutorials/01_preprocess_data/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
+    "sha256": "a71fa8c9fb7a2fcaee559216451ae00df9f9df6dba61b18b06b6579aa0f46127"
   },
   {
     "path": "tutorials/02_pretrain/01_process_data.py",

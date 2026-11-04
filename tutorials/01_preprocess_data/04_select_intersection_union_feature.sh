@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # ============================================================================
 # 04_select_intersection_union_feature.sh
@@ -17,31 +13,33 @@ cd "$SCRIPT_DIR"
 # cpg0016 source_4
 # source_data_paths="/fse/DC/CP_data/feature_data/cpg0016_jump/source_4/MAD_feature_select_clip_data"
 # A549 + U2OS JUMP pilot (all types)
-source_data_paths='/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data_select_feature /fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data_select_feature'
+source_data_paths=(
+    /fse/DC/CP_data/feature_data/github_code_test/raw_data/well_level_new/normalization_select_feature_data
+)
 
 # -------------------------------
 # Vocabulary (optional)
 # -------------------------------
-vocab_file="/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl"
+vocab_file="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl"
 # vocab_file=""  # set to empty to skip vocab filtering
 
 # -------------------------------
 # Output
 # -------------------------------
-output_dir="${OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/01_preprocess_data/output_dir}"
-output_prefix="vocab"
+output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/common_files/intersection_union_feature"
+output_prefix="github_code_test"
 
 # -------------------------------
 # Logging
 # -------------------------------
-log_file="$PROJECT_ROOT/tutorials/01_preprocess_data/select_features.log"
+log_file="/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/common_files/intersection_union_feature/select_features.log"
 log_level="INFO"
 
 # ============================================================================
 # Build argument list
 # ============================================================================
 ARGS=(
-    --source_data_paths $source_data_paths
+    --source_data_paths "${source_data_paths[@]}"
     --output_dir "$output_dir"
     --output_prefix "$output_prefix"
     --log_file "$log_file"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-HERE="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+HERE="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data"
 if [[ $# -eq 0 || "$1" == "--help" ]]; then
     echo "Usage: bash $0 SCRIPT.py [arguments...]"
     echo "Scripts:"

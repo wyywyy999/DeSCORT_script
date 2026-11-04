@@ -1,7 +1,7 @@
 # Support both an installed package and direct execution from this checkout.
 from pathlib import Path as _Path
 import sys as _sys
-_SOURCE = _Path(__file__).resolve().parents[2] / "src"
+_SOURCE = _Path("/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/src")
 if str(_SOURCE) not in _sys.path:
     _sys.path.insert(0, str(_SOURCE))
 
@@ -16,30 +16,19 @@ from tqdm import tqdm
 from descort.preprocess.preprocess import find_files, process_csv_to_parquet, setup_logging
 
 
-def parse_args():
-    parser = argparse.ArgumentParser(
-        description="批量将 CSV 文件转换为 Parquet 格式。"
-    )
+def _absolute_path(value):
+    """Expand user paths and resolve CLI paths to absolute paths."""
+    return str(_Path(value).expanduser().resolve())
 
-    parser.add_argument(
-        "--csv_dir", required=True,
-        help="输入目录，包含 CSV 文件。"
-    )
-    parser.add_argument(
-        "--out_dir", required=True,
-        help="输出目录，保存转换后的 Parquet 文件。"
-    )
-    parser.add_argument(
-        "--pattern", default="*.csv",
-        help="文件匹配模式。（default: %(default)s）"
-    )
-    parser.add_argument(
-        "--log_file", default=None,
-        help="日志文件路径。不指定则只输出到控制台。"
-    )
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="Batch-convert CSV files to Parquet format.")
+    parser.add_argument("--csv_dir", type=_absolute_path, required=True, help="Input directory containing CSV files.")
+    parser.add_argument("--out_dir", type=_absolute_path, required=True, help="Output directory for the converted Parquet files.")
+    parser.add_argument("--pattern", default="*.csv", help="File matching pattern (default: %(default)s).")
+    parser.add_argument("--log_file", type=_absolute_path, default=None, help="Log file path. If omitted, log to the console only.")
 
     return parser.parse_args()
-
 
 def main():
     args = parse_args()

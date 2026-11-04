@@ -1,11 +1,13 @@
-# 预处理与词表
+# Preprocessing and Vocabularies
 
-输入输出：原始 CSV / parquet → 聚合、归一化、裁剪特征与词表。
+Input and output: raw CSV / Parquet files → aggregated, normalized, and clipped features and vocabularies.
 
-依次参考 `01_csv2parquet.py` → `02_preprocess_data.py` → `03_make_label_vocab.py` → `04_select_intersection_union_feature.py` → `05_get_union_feature_data.py`。先完成特征预处理，再开展下游任务。词表与特征集的生成辅助脚本在 resources 的来源索引中记录。
+Follow the scripts in order: `01_csv2parquet.py` → `02_preprocess_data.py` → `03_make_label_vocab.py` → `04_select_intersection_union_feature.py` → `05_get_union_feature_data.py`. Complete feature preprocessing before proceeding to downstream tasks. Supplementary scripts for generating vocabularies and feature sets are documented in the resources provenance index.
 
 ```bash
-bash tutorials/01_preprocess_data/run.sh --help
+bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/run.sh --help
 ```
 
-从任意工作目录执行时，可使用本入口的绝对路径。参数应以当前脚本 `--help` 为准；历史实验 Bash 中的服务器路径需要按本机配置调整。
+To run from any working directory, use the absolute path to this entry point. Refer to each script's `--help` output for the supported arguments. Update server paths in the historical experiment Bash scripts to match your local configuration.
+
+Input, output, source-code, and log paths use absolute paths for the current server. Enter the tutorial directory before running the numbered Bash scripts; they launch Python using only the script filename (for example, `python 01_csv2parquet.py`) and do not change the working directory. CLI file and directory arguments are resolved to absolute paths. Edit the configured paths when moving this tutorial. The `python` command uses the active environment.

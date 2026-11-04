@@ -35,6 +35,12 @@ Raw CSV files
                              └─────────────────────────┘
 ```
 
+Before running the Python examples below, enter the tutorial directory:
+
+```bash
+cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data
+```
+
 ## Step-by-Step Guide
 
 ### Step 1 — CSV to Parquet (`01_csv2parquet.py`)
@@ -43,10 +49,10 @@ Converts raw Cell Painting CSV feature files into the more efficient Parquet for
 
 **Key arguments:**
 
-| Argument | Description |
-|---|---|
-| `--csv_dir` | Input directory containing CSV files |
-| `--out_dir` | Output directory for Parquet files |
+| Argument    | Description                              |
+| ----------- | ---------------------------------------- |
+| `--csv_dir` | Input directory containing CSV files     |
+| `--out_dir` | Output directory for Parquet files       |
 | `--pattern` | File matching pattern (default: `*.csv`) |
 
 **Example:**
@@ -58,7 +64,7 @@ python 01_csv2parquet.py \
     --pattern "*.csv"
 ```
 
----
+***
 
 ### Step 2 — Preprocess Data (`02_preprocess_data.py`)
 
@@ -71,19 +77,19 @@ The core preprocessing step. For each plate/Parquet file, it runs a pipeline of:
 
 **Key arguments:**
 
-| Argument | Description |
-|---|---|
-| `--source_data_paths` | One or more directories of Parquet files |
-| `--data_level` | `well` or `sc` (single-cell) aggregation level |
-| `--normalize_method` | Normalization method (default: `mad_robustize`) |
-| `--normalize_samples_query` | Pandas query to select control samples for normalization |
-| `--clip_lower_percentile` | Lower percentile for clipping (default: 1) |
-| `--clip_upper_percentile` | Upper percentile for clipping (default: 99) |
+| Argument                      | Description                                                                               |
+| ----------------------------- | ----------------------------------------------------------------------------------------- |
+| `--source_data_paths`         | One or more directories of Parquet files                                                  |
+| `--data_level`                | `well` or `sc` (single-cell) aggregation level                                            |
+| `--normalize_method`          | Normalization method (default: `mad_robustize`)                                           |
+| `--normalize_samples_query`   | Pandas query to select control samples for normalization                                  |
+| `--clip_lower_percentile`     | Lower percentile for clipping (default: 1)                                                |
+| `--clip_upper_percentile`     | Upper percentile for clipping (default: 99)                                               |
 | `--feature_select_operations` | Operations: `variance_threshold`, `correlation_threshold`, `drop_na_columns`, `blocklist` |
-| `--corr_threshold` | Correlation threshold for feature removal (default: 0.9) |
-| `--na_cutoff` | Maximum NA fraction before dropping a column (default: 0.05) |
-| `--need_columns` | Columns used as aggregation strata (metadata columns) |
-| `--do_map_channel_names` | Map legacy channel names (DAPI→DNA, Phalloidin→AGP, ConA→ER, Mito→Mito) |
+| `--corr_threshold`            | Correlation threshold for feature removal (default: 0.9)                                  |
+| `--na_cutoff`                 | Maximum NA fraction before dropping a column (default: 0.05)                              |
+| `--need_columns`              | Columns used as aggregation strata (metadata columns)                                     |
+| `--do_map_channel_names`      | Map legacy channel names (DAPI→DNA, Phalloidin→AGP, ConA→ER, Mito→Mito)                   |
 
 **Example:**
 
@@ -104,7 +110,7 @@ python 02_preprocess_data.py \
     --do_map_channel_names
 ```
 
----
+***
 
 ### Step 3 — Build Label Vocabulary (`03_make_label_vocab.py`)
 
@@ -112,17 +118,17 @@ Collects unique label values from a specified metadata column across all Parquet
 
 **Key arguments:**
 
-| Argument | Description |
-|---|---|
-| `--source_data_paths` | One or more directories of Parquet files |
-| `--label_column` | Metadata column used as the label key (default: `Metadata_Broad_Sample`) |
-| `--output_dir` | Directory to save vocabulary pickle files |
-| `--output_prefix` | Prefix for output filenames |
+| Argument              | Description                                                              |
+| --------------------- | ------------------------------------------------------------------------ |
+| `--source_data_paths` | One or more directories of Parquet files                                 |
+| `--label_column`      | Metadata column used as the label key (default: `Metadata_Broad_Sample`) |
+| `--output_dir`        | Directory to save vocabulary pickle files                                |
+| `--output_prefix`     | Prefix for output filenames                                              |
 
 **Output:**
 
-- `{prefix}_label2index_{N}.pkl` — maps label → integer index
-- `{prefix}_index2label_{N}.pkl` — maps integer index → label
+* `{prefix}_label2index_{N}.pkl` — maps label → integer index
+* `{prefix}_index2label_{N}.pkl` — maps integer index → label
 
 **Example:**
 
@@ -134,7 +140,7 @@ python 03_make_label_vocab.py \
     --output_prefix cpg0016_vocab
 ```
 
----
+***
 
 ### Step 4 — Feature Intersection & Union (`04_select_intersection_union_feature.py`)
 
@@ -142,17 +148,17 @@ Computes the **intersection** (features shared across ALL plates) and the **unio
 
 **Key arguments:**
 
-| Argument | Description |
-|---|---|
-| `--source_data_paths` | One or more directories of Parquet files |
-| `--vocab_file` | Optional pickle file containing a `feature2index` dict for filtering |
-| `--output_dir` | Directory to save output pickle files |
-| `--output_prefix` | Prefix for output filenames |
+| Argument              | Description                                                          |
+| --------------------- | -------------------------------------------------------------------- |
+| `--source_data_paths` | One or more directories of Parquet files                             |
+| `--vocab_file`        | Optional pickle file containing a `feature2index` dict for filtering |
+| `--output_dir`        | Directory to save output pickle files                                |
+| `--output_prefix`     | Prefix for output filenames                                          |
 
 **Output:**
 
-- `{prefix}_union_feature_{N}.pkl` — set of all feature columns across plates
-- `{prefix}_intersect_feature_{N}.pkl` — set of feature columns shared by all plates
+* `{prefix}_union_feature_{N}.pkl` — set of all feature columns across plates
+* `{prefix}_intersect_feature_{N}.pkl` — set of feature columns shared by all plates
 
 **Example:**
 
@@ -164,7 +170,7 @@ python 04_select_intersection_union_feature.py \
     --output_prefix vocab
 ```
 
----
+***
 
 ### Step 5 — Extract Union Feature Data (`05_get_union_feature_data.py`)
 
@@ -172,11 +178,11 @@ Filters each Parquet file to retain only the features present in a given union f
 
 **Key arguments:**
 
-| Argument | Description |
-|---|---|
-| `--source_data_paths` | One or more directories of Parquet files |
-| `--feature_list_pkl` | Path to the union/intersection feature set pickle file (from Step 4) |
-| `--output_path` | Directory to save filtered Parquet files |
+| Argument              | Description                                                          |
+| --------------------- | -------------------------------------------------------------------- |
+| `--source_data_paths` | One or more directories of Parquet files                             |
+| `--feature_list_pkl`  | Path to the union/intersection feature set pickle file (from Step 4) |
+| `--output_path`       | Directory to save filtered Parquet files                             |
 
 **Example:**
 
@@ -187,24 +193,6 @@ python 05_get_union_feature_data.py \
     --output_path /path/to/normalization_clip_data_select_feature
 ```
 
----
-
-## Supplementary: Feature Vocabulary (`make_feature_vocab/`)
-
-This subdirectory contains scripts for building the **feature vocabulary** and preparing **ESM2 protein embeddings** used as prior knowledge for the model:
-
-| Script | Purpose |
-|---|---|
-| `01_make_feature_vocabulary.py` | Builds `feature2index` / `index2feature` vocabulary from a feature name list, with a `PAD` token prepended (index 0) |
-| `02_ESM2_emb_add_control.py` | Loads ESM2 protein embeddings, adds a zero-vector control token `nontargeting`, and builds gene-level index mappings |
-
-**Outputs:**
-
-- `feature2index_vocabulary_{N}.pkl` / `index2feature_vocabulary_{N}.pkl` — feature vocabulary
-- `Index2ESM2_pert_features_with_nontargeting_{N}.pkl` — per-gene ESM2 embeddings with control
-- `gene2index_{N}.pkl` / `index2gene_{N}.pkl` — gene-level vocabulary
-
----
 
 ## Typical Workflow
 
@@ -212,30 +200,23 @@ For a new dataset, run the steps in order:
 
 ```bash
 # 1. Convert CSV to Parquet
-bash 01_csv2parquet.sh
+bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/01_csv2parquet.sh
 
 # 2. Preprocess (aggregate, normalize, clip, feature select)
-bash 02_preprocess_data.sh
+bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/02_preprocess_data.sh
 
 # 3. Build label vocabulary
-bash 03_make_label_vocab.sh
+bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/03_make_label_vocab.sh
 
 # 4. Compute feature intersection & union
-bash 04_select_intersection_union_feature.sh
+bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/04_select_intersection_union_feature.sh
 
 # 5. Extract union feature data
-bash 05_get_union_feature_data.sh
+bash /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data/05_get_union_feature_data.sh
 ```
 
 Each `.sh` script contains pre-configured paths and parameters — edit them to point to your own data before running.
 
-## Dependencies
-
-- Python ≥ 3.8
-- `pandas`, `pyarrow` (Parquet I/O)
-- `tqdm` (progress bars)
-- `torch` (for ESM2 embeddings, Step 5 supplementary)
-- DeSCORT core library (`src.descort.preprocess`)
 
 ## Output Directory Structure
 
@@ -256,15 +237,3 @@ output/
     └── {batch_name}/
         └── {plate_name}.parquet
 ```
-
-## Next Steps
-
-After preprocessing, proceed to:
-
-- [02_pretrain](../02_pretrain/) — Pretrain the DeSCORT model on the processed data
-- [03_finetune](../03_finetune/) — Fine-tune on downstream tasks
-- [04_mAP](../04_mAP/) — Evaluate mean Average Precision
-
-## License
-
-See the [DeSCORT license](../../LICENSE) for details.

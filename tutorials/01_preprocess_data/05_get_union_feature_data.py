@@ -1,7 +1,7 @@
 # Support both an installed package and direct execution from this checkout.
 from pathlib import Path as _Path
 import sys as _sys
-_SOURCE = _Path(__file__).resolve().parents[2] / "src"
+_SOURCE = _Path("/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/src")
 if str(_SOURCE) not in _sys.path:
     _sys.path.insert(0, str(_SOURCE))
 
@@ -17,6 +17,11 @@ from tqdm import tqdm
 from descort.preprocess.preprocess import find_files, setup_logging
 
 
+def _absolute_path(value):
+    """Expand user paths and resolve CLI paths to absolute paths."""
+    return str(_Path(value).expanduser().resolve())
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Filter parquet files to keep only features present in "
@@ -25,27 +30,27 @@ def parse_args():
 
     # ---- Source data ----
     parser.add_argument(
-        "--source_data_paths", nargs="+", required=True,
+        "--source_data_paths", type=_absolute_path, nargs="+", required=True,
         help="One or more directories containing parquet files."
     )
 
     # ---- Feature list ----
     parser.add_argument(
-        "--feature_list_pkl", required=True,
+        "--feature_list_pkl", type=_absolute_path, required=True,
         help="Path to a pickle file containing the union/intersection feature "
              "set (e.g. from 04_select_intersection_union_feature.py)."
     )
 
     # ---- Output ----
     parser.add_argument(
-        "--output_path", required=True,
+        "--output_path", type=_absolute_path, required=True,
         help="Directory to save the filtered parquet files. "
              "Batch subdirectory structure is preserved."
     )
 
     # ---- Logging ----
     parser.add_argument(
-        "--log_file", default=None,
+        "--log_file", type=_absolute_path, default=None,
         help="Path to log file. If not provided, logs go to stdout only."
     )
     parser.add_argument(
