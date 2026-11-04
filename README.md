@@ -113,8 +113,8 @@ model.eval()
 
 | 任务 | 入口 | 输入 → 输出 |
 |---|---|---|
-| Cell Painting 数据下载 | [下载教程](tutorials/00_download/README.md) · [在线文档](https://descort-script.readthedocs.io/en/latest/_generated/tutorials/00_download/README.html) | Cell Painting Gallery（cpg0021、cpg0000、cpg0016）→ 原始特征文件 |
-| 数据预处理与词表 | [预处理教程](tutorials/01_preprocess_data/README.md) · [在线文档](https://descort-script.readthedocs.io/en/latest/_generated/tutorials/01_preprocess_data/README.html) | CSV / Parquet → 聚合、归一化及裁剪数据、标签词表、特征交并集与筛选数据 |
+| Cell Painting 数据下载 | [00_download](tutorials/00_download/README.md) | Cell Painting Gallery（cpg0021、cpg0000、cpg0016）→ 原始特征文件 |
+| 数据预处理与词表 | [01_preprocess_data](tutorials/01_preprocess_data/README.md) | CSV / Parquet → 聚合、归一化及裁剪数据、标签词表、特征交并集与筛选数据 |
 | 预训练 | [02_pretrain](tutorials/02_pretrain/README.md) | parquet → Arrow dataset → 基础模型 |
 | 表征微调与 embedding | [03_finetune](tutorials/03_finetune/README.md) | 基础模型、标注数据 → 表征模型与 embedding |
 | mAP | [04_mAP](tutorials/04_mAP/README.md) | embedding → 检索指标 |
