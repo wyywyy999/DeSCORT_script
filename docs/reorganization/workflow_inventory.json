@@ -305,7 +305,7 @@
   },
   {
     "path": "tutorials/05_batch_effect/01_batch_method.py",
-    "sha256": "973ae4174a2f21da4fe3a03c41804772bc969804de082012ae8cfe92dee418c2",
+    "sha256": "8a649cbfe9b0b16c64d502b5b86646ac0007abf5c13e498f9105d2a0460f4d00",
     "functions": [
       "main"
     ],

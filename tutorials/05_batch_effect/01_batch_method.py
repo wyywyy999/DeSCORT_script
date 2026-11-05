@@ -20,7 +20,7 @@ def main():
     parser.add_argument("--save-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/")
     parser.add_argument("--batch-key", default="Metadata_Source")
     args = parser.parse_args()
-    
+
     for key in ["OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "OMP_NUM_THREADS"]:
         os.environ[key] = "64"
     data_path, save_path, batch_key = args.data_path, args.save_path, args.batch_key

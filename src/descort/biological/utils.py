@@ -17,7 +17,7 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 
 PROJECT = Path(__file__).resolve().parents[3]
-_ORIGINAL = PROJECT.parents[1]
+_ORIGINAL = PROJECT.parents[1] if len(PROJECT.parents) > 1 else PROJECT
 _LOCAL_LAYOUT = (_ORIGINAL / "src/descort").is_dir()
 WORKSPACE = Path(os.environ.get("DESCORT_WORKSPACE_ROOT", str(_ORIGINAL.parent if _LOCAL_LAYOUT else PROJECT.parent)))
 RESOURCE_ROOT = Path(os.environ.get("DESCORT_RESOURCE_ROOT", str(_ORIGINAL / "common_files" if _LOCAL_LAYOUT else PROJECT / "resources")))
