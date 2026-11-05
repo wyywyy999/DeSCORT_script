@@ -36,26 +36,21 @@ def main():
 )
 
     data_mapping_dict = {
-        # 'MAD':'X',
-        # 'DeSCORT':'X',
-        # 'DeSCORTlayernorm50epochs':'X',
-        # 'DeSCORTlayernorm':'X',
-        # 'DeSCORT10epochs3505':'X',
-        # 'DeSCORT10epochs1024':'X',
+        'MAD':'X',
+        'DeSCORT':'X',
         # BBKNN only corrects a neighbor graph; its X/X_pca remain the MAD input.
         # Use the UMAP obtained from the corrected BBKNN graph so the existing
         # embedding-based scIB, direct-LISI and mAP code evaluates its output.
         'Bbknn':'X_umap',
-        # 'Seuratcca':'X',
-        # 'Seuratrpca':'X',
-        # 'Mnn':'X',
-        # 'Combat':'X',
-        # 'Sphering':'X',
-        # 'Raw':'X',
-        # 'Fast':'X',
-        # 'Scanorama':'X_scanorama',
-        # 'Harmony':'X_pca_harmony',
-        # 'Desc':'X_Embeded_z1.0',
+        'Seuratcca':'X',
+        'Seuratrpca':'X',
+        'Mnn':'X',
+        'Combat':'X',
+        'Sphering':'X',
+        'Raw':'X',
+        'Fast':'X',
+        'Scanorama':'X_scanorama',
+        'Harmony':'X_pca_harmony',
         
     }
 

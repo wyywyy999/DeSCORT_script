@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../../../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 set -euo pipefail
 
@@ -18,13 +14,13 @@ set -euo pipefail
 # -------------------------------
 experiment_name="${EXPERIMENT_NAME:-A549_214_compound_20epochs_Morgan_cell_line_transfer}"
 default_train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit"
-train_dataset_path="${TRAIN_DATASET_PATH:-$default_train_dataset_path}"
-output_dir="${OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_cell_line_transfer_Compound/output_dir}"
-deepspeed_config="$PROJECT_ROOT/configs/deepspeed/zero2.json"
+train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit"
+output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_cell_line_transfer_Compound/output_dir"
+deepspeed_config="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/configs/deepspeed/zero2.json"
 default_pretrained_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
-pretrianed_model_path="${PRETRAINED_MODEL_PATH:-$default_pretrained_model_path}"
-index2esm2_pkl="$RESOURCE_ROOT/06_vc_compound/Morgan/index2morgan_577.pkl"
-# index2esm2_pkl="$RESOURCE_ROOT/06_vc_compound/index2Unimol_577.pkl"
+pretrianed_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
+index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/index2morgan_577.pkl"
+# index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/index2Unimol_577.pkl"
 
 # Dataset column used to construct same-gene batches.
 gene_column="Perturb_Gene"
@@ -138,14 +134,13 @@ TRAINPARAMS=(
     --remove_unused_columns False
 )
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 RANDOM_PORT="$(shuf -i 1024-65535 -n 1)"
 echo "使用的端口号: $RANDOM_PORT"
 
 "$deepspeed_bin" \
     --include="localhost:$gpu_ids" \
     --master_port="$RANDOM_PORT" \
-    "$SCRIPT_DIR/02_finetune.py" \
+    "02_finetune.py" \
     --deepspeed "$deepspeed_config" \
     "${MODELPARAMS[@]}" \
     "${DATAPARAMS[@]}" \

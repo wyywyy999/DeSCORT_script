@@ -111,7 +111,7 @@ def parse_args():
     )
     parser.add_argument(
         "--sampling", action="store_true", default=False,
-        help="Whether to use sampling in the collator. (default: %(default)s)"
+        help="Enable random feature sampling when a profile exceeds max_length. (default: %(default)s)"
     )
 
     # ---- Logging ----

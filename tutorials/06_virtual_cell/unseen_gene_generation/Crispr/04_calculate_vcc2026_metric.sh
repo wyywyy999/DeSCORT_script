@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../../../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 set -euo pipefail
 
 # Metric options match the notebook; paths follow 03_run_inference.sh.
 MODEL_NAME="${MODEL_NAME:-${EXPERIMENT_NAME:-HeLa_DMEM_50genes_unseen_gene_generation_50epochs}}"
-# Match 03_run_inference.sh; INFERENCE_OUTPUT_DIR/DATA_DIR refer to H5AD inputs.
-DATA_DIR="${DATA_DIR:-${INFERENCE_OUTPUT_DIR:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/${MODEL_NAME}}}"
-GROUND_TRUTH_PATH="${GROUND_TRUTH_PATH:-${DATA_DIR}/${GROUND_TRUTH_FILENAME:-ground_truth.h5ad}}"
-PREDICTION_PATH="${PREDICTION_PATH:-${DATA_DIR}/${PREDICTION_FILENAME:-${MODEL_NAME}_pred_data.h5ad}}"
-BASELINE_PATH="${BASELINE_PATH-${DATA_DIR}/${MEAN_BASELINE_FILENAME:-perturb_mean_data.h5ad}}"
-OUTDIR="${OUTDIR:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/result/${MODEL_NAME}}"
-CACHE_DIR="${CACHE_DIR:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/result/de_cache}"
-PYTHON_BIN="${PYTHON_BIN:-python}"
-METRIC_SCRIPT="${METRIC_SCRIPT:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.py}"
+# H5AD input paths match the inference filenames configured below.
+DATA_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/HeLa_DMEM_50genes_unseen_gene_generation_50epochs"
+GROUND_TRUTH_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/HeLa_DMEM_50genes_unseen_gene_generation_50epochs/ground_truth.h5ad"
+PREDICTION_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/HeLa_DMEM_50genes_unseen_gene_generation_50epochs/HeLa_DMEM_50genes_unseen_gene_generation_50epochs_pred_data.h5ad"
+BASELINE_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/HeLa_DMEM_50genes_unseen_gene_generation_50epochs/perturb_mean_data.h5ad"
+OUTDIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/result/HeLa_DMEM_50genes_unseen_gene_generation_50epochs"
+CACHE_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/result/de_cache"
+METRIC_SCRIPT=04_calculate_vcc2026_metric.py
 
 PERT_COL="${PERT_COL:-Perturb_Gene}"
 CONTROL_NAME="${CONTROL_NAME:-nontargeting}"
@@ -31,7 +26,7 @@ BLAS_THREADS="${BLAS_THREADS:-4}"
 SCIPY_CHECKS="${SCIPY_CHECKS:-100}"
 REUSE_CACHE="${REUSE_CACHE:-true}"
 SHOW_PROGRESS="${SHOW_PROGRESS:-true}"
-# Set RUN_BASELINE=false or BASELINE_PATH="" to skip baseline evaluation.
+# Set RUN_BASELINE=false, or edit BASELINE_PATH="", to skip baseline evaluation.
 RUN_BASELINE="${RUN_BASELINE:-true}"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-$BLAS_THREADS}"
 export MKL_NUM_THREADS="${MKL_NUM_THREADS:-$BLAS_THREADS}"
@@ -64,4 +59,4 @@ if [[ -n "$GROUND_TRUTH_LAYER" ]]; then PARAMS+=(--ground_truth_layer "$GROUND_T
 if [[ -n "$PREDICTION_LAYER" ]]; then PARAMS+=(--prediction_layer "$PREDICTION_LAYER"); fi
 if [[ -n "$BASELINE_LAYER" ]]; then PARAMS+=(--baseline_layer "$BASELINE_LAYER"); fi
 
-exec "$PYTHON_BIN" -u "$METRIC_SCRIPT" "${PARAMS[@]}" "$@"
+exec python -u "$METRIC_SCRIPT" "${PARAMS[@]}" "$@"

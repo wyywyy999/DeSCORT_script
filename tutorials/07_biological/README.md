@@ -1,229 +1,224 @@
-# A549 DMEM：从形态表征到生物学解释
+# 07 — Biological Interpretation of Morphological Representations
 
-本教程以 **cpg0021 A549 DMEM** 为例，演示如何比较 DeSCORT 表征与原始形态特征，并完成通路可视化、CORUM/STRING 验证、无监督聚类、差异形态特征分析和富集绘图。教程按照“数据准备 → 分步命令 → 输出说明 → 结果预览”组织。
+## Pipeline Overview
 
-这里从已经完成预处理和 embedding 提取的 parquet 开始。若尚未生成输入，请先完成 [预处理](../01_preprocess_data/README.md) 和 [表征提取](../03_finetune/README.md)。本例使用当前目录中的 A549 Bash 脚本；HeLa 的专用脚本不在本例范围内。
-
-| 步骤 | 入口 | 主要用途 |
-|---|---|---|
-| 1 | [01_umap_analysis.sh](01_umap_analysis.sh) | 基因表征聚合、PCA/UMAP、通路距离和近邻示例 |
-| 2 | [02_CORUM_STRING.sh](02_CORUM_STRING.sh) | 比较已知复合体与相互作用基因对的相似性 |
-| 3 | [03_de_cluster.sh](03_de_cluster.sh) | 表征聚类、差异形态特征、通路/复合体富集 |
-| 4 | [04_cluster_enrichment.sh](04_cluster_enrichment.sh) | 从步骤 3 的富集表绘制指定簇的气泡图 |
-
-> 文中的预览图复制自已有的 A549 分析结果，用于说明输出形式，并非本次编写文档时重新运行得到。图像来源及校验值见 [图片来源清单](../../result/07_biological/A549_DMEM/manifest.json)。重新运行时，结果还取决于输入数据、注释版本和软件环境。
-
-## Step 0　准备环境与 A549 输入
-
-### 0.1 安装环境
-
-在整理后的仓库根目录运行：
-
-```bash
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT
-
-# 若使用本机已有环境，先执行：conda activate DeSCORT
-python -m pip install -e '.[analysis]'
-python -m pip install openpyxl
+```text
+           DeSCORT embedding + normalized morphology Parquet files
+                                  │
+                                  ▼
+              ┌───────────────────────────────────────┐
+              │           01_umap_analysis            │
+              │ Aggregate gene profiles, PCA/UMAP     │
+              │ Compare pathways and query neighbors  │
+              └───────────────────┬───────────────────┘
+                                  │
+                                  ▼
+              ┌───────────────────────────────────────┐
+              │            02_CORUM_STRING            │
+              │ Validate known complexes and          │
+              │ interaction pairs in both spaces      │
+              └───────────────────┬───────────────────┘
+                                  │
+                                  ▼
+              ┌───────────────────────────────────────┐
+              │             03_de_cluster             │
+              │ Cluster gene representations          │
+              │ Analyze morphology and enrichment     │
+              └───────────────────┬───────────────────┘
+                                  │
+                                  ▼
+              ┌───────────────────────────────────────┐
+              │         04_cluster_enrichment         │
+              │ Plot selected clusters using          │
+              │ raw or adjusted enrichment P values   │
+              └───────────────────┬───────────────────┘
+                                  │
+                                  ▼
+                       Analysis tables and figures
 ```
 
-`openpyxl` 用于读取本例的 Excel hit 表。后续分析使用 CPU；A549 脚本默认设置 8 个线程，DuckDB 内存上限为 `24GB`。该内存参数不是整个 Python 进程的总内存上限。
+Steps 1–3 analyze the profile inputs for different purposes; Step 2 does not consume Step 1's PCA coordinates. Step 4 reads the enrichment table produced by Step 3.
 
-### 0.2 输入文件与格式
+## Before You Start
 
-| 输入 | 本例要求 |
+Complete [data preprocessing](../01_preprocess_data/README.md), then extract DeSCORT embeddings with `04_run_emb.sh` in [pretraining](../02_pretrain/README.md) or `03_run_emb.sh` in [fine-tuning](../03_finetune/README.md). Set the biological analysis `--model-input` to the directory containing those embedding Parquet files and `--original-input` to the corresponding normalized morphology files.
+
+This tutorial uses **cpg0021 A549 DMEM** as the example. Both inputs must preserve the gene and guide metadata needed for aggregation. It compares DeSCORT representations with original morphological features; it does not load a model or generate embeddings.
+
+Activate the environment and enter this tutorial directory:
+
+```bash
+conda activate DeSCORT
+cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/07_biological
+bash 01_umap_analysis.sh --help
+bash 02_CORUM_STRING.sh --help
+bash 03_de_cluster.sh --help
+bash 04_cluster_enrichment.sh --help
+```
+
+Follow the [installation instructions](../../docs/installation.md) for the base environment. Reading the Excel hit list additionally requires `openpyxl`. These analyses run on CPU; the Bash presets use 8 threads and a DuckDB memory limit of `24GB`, which is not a limit on total Python process memory.
+
+Replace every `/absolute/path/...` placeholder below with your actual absolute path. The examples override the experiment-specific input and output presets explicitly. External datasets and annotation resources are not included in the Python package.
+
+### Required inputs
+
+| Input | A549 example requirements |
 |---|---|
-| DeSCORT embedding | 9 个 plate 的 parquet，包含 `emb_0` 到 `emb_255` |
-| 原始形态特征 | 相同 plate 的归一化 parquet；按所选特征表读取数值列 |
-| 基因与 guide 元数据 | 两类 parquet 均含 `Metadata_Foci_Barcode_MatchedTo_GeneCode` 和 `Metadata_Foci_Barcode_MatchedTo_Barcode` |
-| Hit 表 | `A549_DMEM_hits.xlsx`，基因名称列为 `Gene` |
-| 所选形态特征 | `cpg0021_A549_union_feature_1382.pkl`，候选特征名称列表 |
-| 手工通路注释 | `annotated_gene_sets.json` |
-| GO/KEGG 基因集 | 本例使用已有 `gene_sets_used.json`，固定离线注释版本 |
-| CORUM | 制表符分隔表；默认成员列为 `subunits(Gene name)`，名称需与基因符号一致 |
-| STRING | CSV，包含 `protein1`、`protein2`、`combined_score`；前两列需使用与输入一致的基因名称 |
+| DeSCORT embedding Parquet | `emb_0` through `emb_255` and gene/guide metadata |
+| Normalized morphology Parquet | Matching plates and gene/guide metadata, with numerical morphology features |
+| Gene column | `Metadata_Foci_Barcode_MatchedTo_GeneCode` |
+| Guide column | `Metadata_Foci_Barcode_MatchedTo_Barcode` |
+| Negative-control label | `nontargeting` |
+| Hit list | `A549_DMEM_hits.xlsx`, with gene names in column `Gene` |
+| Morphology feature list | `cpg0021_A549_union_feature_1382.pkl`; candidate feature names |
+| Manual annotations | `annotated_gene_sets.json` |
+| Full pathway JSON | Offline `database → pathway → gene list` mapping, such as a previous `gene_sets_used.json` |
+| CORUM table | Tab-separated complex membership, including `subunits(Gene name)` |
+| STRING table | CSV containing `protein1`, `protein2`, and `combined_score`, using matching gene symbols |
 
-本例选择 `CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H CP186N`，对照标签为 `nontargeting`。输入目录应直接包含这些 plate 的 parquet；当前生物学入口不会递归查找子目录。
+The example uses plates `CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H CP186N`. Input directories must directly contain the selected Parquet files: these biological entries do not recursively search subdirectories. Passing `--plates` without values removes the plate-name filter.
 
-### 0.3 统一配置输入和新输出目录
+Ensure the hit-list file exists. An empty or nonexistent hit file means using all available valid non-control genes, which changes the analysis cohort.
 
-下面是当前服务器上的实际路径。若在其他机器运行，请将这些路径替换为自己的数据位置。数据、注释和权重没有随 GitHub 仓库一起发布。
+The preview images below come from existing A549 analyses, not a new run of these commands. Their source records are in the [image manifest](../../result/07_biological/A549_DMEM/manifest.json). Their cluster IDs and selected terms describe those historical results.
 
-在**同一个 Bash 会话**中依次执行本文命令，使后续步骤沿用这组环境变量：
+## Step 1 — Analyze Gene Profiles, Pathway UMAPs, and Neighbors
+
+The workflow averages profiles within gene/guide groups, then takes the median across guides for each gene. It performs PCA separately for DeSCORT and original morphology, retaining 95% variance. Pathway compactness is measured using distances in PCA space; UMAP provides the two-dimensional visualization.
+
+### Key arguments and presets
+
+| Argument | Supplied Bash preset / meaning |
+|---|---|
+| `--model-input`, `--original-input` | Embedding and normalized morphology directories |
+| `--output-dir` | Independent output directory for this step |
+| `--hit-file`, `--hit-column` | Hit list and column `Gene` |
+| `--original-features-pkl` | Candidate original morphology features |
+| `--annotated-gene-sets` | Manual pathway annotations |
+| `--gene-sets-json` | Offline full pathway mapping; otherwise libraries are fetched/cached through Enrichr |
+| `--gene-column`, `--guide-column` | Metadata columns used for gene-level aggregation |
+| `--plates` | The nine A549 plates listed above |
+| `--model-feature-prefix`, `--model-feature-dim` | `emb_` and 256 |
+| `--pca-variance` | 0.95 |
+| `--umap-n-neighbors`, `--umap-min-dist`, `--umap-metric` | 10, 0.05, and `cosine` |
+| `--distance-metric` | `cosine` for pathway distances |
+| `--min-go-kegg-genes`, `--max-go-kegg-genes` | 5 and 200 selected genes per GO/KEGG pathway |
+| `--min-annotated-genes` | 2 |
+| `--query-gene`, `--query-top-n` | Bash enables `PSMA1 ATP6V0C`, with 20 neighbors |
+| `--seed`, `--threads`, `--memory-limit` | 42, 8, and `24GB` |
+| `--stage` | `all`, `model`, `original`, `compare`, `check`, `combined-plot`, or `query` |
+
+### Example
 
 ```bash
-export REPO_ROOT="$PWD"
-export CP_WORKSPACE="/fse/home/wangyongyan/Project/CellPainting"
-export ORIGINAL_PROJECT="$CP_WORKSPACE/DeSCORT"
-export TUTORIAL_DIR="$REPO_ROOT/tutorials/07_biological"
-export PYTHON_BIN="python"
-
-export MODEL_INPUT="$CP_WORKSPACE/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
-export ORIGINAL_INPUT="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data"
-export HIT_FILE="$ORIGINAL_PROJECT/common_files/biological/A549_DMEM_hits.xlsx"
-export ORIGINAL_FEATURES_PKL="$ORIGINAL_PROJECT/common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_union_feature_1382.pkl"
-export ANNOTATED_GENE_SETS="$CP_WORKSPACE/LLLM/annotated_gene_sets.json"
-export CORUM_FILE="$CP_WORKSPACE/LLLM/common_files/CORUM_humanComplexes.txt"
-export STRING_FILE="$CP_WORKSPACE/LLLM/common_files/STRING_data.csv"
-
-# 已有 A549 运行保存的完整基因集；用于离线执行步骤 1。
-export GENE_SETS_JSON="$ORIGINAL_PROJECT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/gene_sets_used.json"
-
-# 本例的所有新结果集中写入这里。
-export EXAMPLE_OUTPUT="$REPO_ROOT/outputs/07_biological/A549_DMEM"
-mkdir -p "$EXAMPLE_OUTPUT"
+bash 01_umap_analysis.sh \
+  --model-input /absolute/path/embeddings/A549_DMEM \
+  --original-input /absolute/path/normalized_profiles/A549_DMEM \
+  --output-dir /absolute/path/biological/A549_DMEM/01_umap \
+  --hit-file /absolute/path/annotations/A549_DMEM_hits.xlsx \
+  --hit-column Gene \
+  --original-features-pkl /absolute/path/selected_features/cpg0021_A549_union_feature_1382.pkl \
+  --annotated-gene-sets /absolute/path/annotations/annotated_gene_sets.json \
+  --gene-sets-json /absolute/path/annotations/gene_sets_used.json \
+  --corum-file /absolute/path/annotations/CORUM_humanComplexes.txt \
+  --string-file /absolute/path/annotations/STRING_data.csv \
+  --dataset-name A549_DMEM \
+  --plates CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H CP186N \
+  --pca-variance 0.95 \
+  --query-gene PSMA1 ATP6V0C \
+  --query-top-n 20 \
+  --stage all
 ```
 
-检查路径和 plate 文件是否齐全：
+Use `--stage check` with the same paths before a full run. It inspects profile schemas and manual-annotation existence, but does not validate the complete offline pathway JSON. Use a fixed annotation snapshot when reproducing an experiment.
+
+### Output
+
+| File relative to `01_umap/` | Contents |
+|---|---|
+| `gene_sets_used.json` | Full pathway mapping used by the run |
+| `model/results/hit_gene_profiles.parquet` | Selected valid DeSCORT gene profiles |
+| `original/results/hit_gene_profiles.parquet` | Selected valid original morphology gene profiles |
+| `model/results/global_hit_gene_UMAP.csv` | DeSCORT gene-level UMAP coordinates |
+| `model/results/pathway_distance_df_model.csv` | DeSCORT pathway distances and members |
+| `comparison/all_strict_pathways.csv` | Paired pathways with gene-set consistency information |
+| `comparison/top_strict_pathways.csv` | Pathway subset selected for comparison |
+
+![Existing A549 DeSCORT pathway UMAP](../../result/07_biological/A549_DMEM/pathway_umap.png)
+
+For nearest-neighbor analysis only, rerun the example with `--stage query`. To redraw saved combined pathway UMAPs after a completed run, use `--stage combined-plot` and the same output directory. The Python entry skips neighbor analysis if no query gene is supplied, whereas the Bash preset already supplies two genes.
+
+## Step 2 — Validate CORUM Complexes and STRING Interactions
+
+This step selects valid hit genes common to both representations, fits PCA separately, L2-normalizes gene vectors, and calculates cosine similarities with a nonedge-background correction. Its intermediate representation is specific to this analysis.
+
+### Key arguments and presets
+
+| Argument | Supplied Bash preset / meaning |
+|---|---|
+| `--model-input`, `--original-input`, `--hit-file` | Same experiment inputs and hit list as Step 1 |
+| `--original-features-pkl` | Candidate morphology features |
+| `--corum-file`, `--string-file` | Complex-membership and interaction tables |
+| `--output-dir` | CORUM/STRING output directory |
+| `--pca-variance` | 0.95 |
+| `--corum-min-coverage` | 0.333; coverage criterion for CORUM complexes |
+| `--string-low-score`, `--string-high-score` | 300 and 700; score thresholds used by the analysis |
+| `--string-chunk-size`, `--pair-chunk-size` | 500000 and 50000 |
+| `--seed`, `--threads`, `--memory-limit` | 20260918, 8, and `24GB` |
+| `--stage` | Includes `all`, `check`, `corum-plot`, and `string-plot` |
+
+### Example
 
 ```bash
-"$PYTHON_BIN" - <<'PY'
-import os
+bash 02_CORUM_STRING.sh \
+  --model-input /absolute/path/embeddings/A549_DMEM \
+  --original-input /absolute/path/normalized_profiles/A549_DMEM \
+  --output-dir /absolute/path/biological/A549_DMEM/02_CORUM_STRING \
+  --hit-file /absolute/path/annotations/A549_DMEM_hits.xlsx \
+  --original-features-pkl /absolute/path/selected_features/cpg0021_A549_union_feature_1382.pkl \
+  --corum-file /absolute/path/annotations/CORUM_humanComplexes.txt \
+  --string-file /absolute/path/annotations/STRING_data.csv \
+  --dataset-name A549_DMEM \
+  --plates CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H CP186N \
+  --pca-variance 0.95 \
+  --corum-min-coverage 0.333 \
+  --string-low-score 300 \
+  --string-high-score 700 \
+  --stage all
+```
+
+Use `--stage check` with these paths before calculation. Use `--stage corum-plot` or `--stage string-plot` to redraw figures from existing result tables in the same output directory.
+
+### Output
+
+| File relative to `02_CORUM_STRING/` | Contents |
+|---|---|
+| `results/common_selected_genes.csv` | Genes used in both representations |
+| `results/input_qc.json` | Input and processing records |
+| `results/CORUM_background_corrected.csv` | Background-corrected CORUM similarities |
+| `results/STRING_background_corrected.csv` | Background-corrected STRING similarities |
+| `results/metrics.csv` | Evaluation metrics |
+| `results/paired_change_summary.csv` | Summary of paired representation comparisons |
+| `figures/CORUM_background_corrected_distribution.png` | CORUM similarity distribution |
+| `figures/STRING_similarity_quantiles_line.png` | STRING similarity-bin curves |
+
+![Existing A549 CORUM similarity distribution](../../result/07_biological/A549_DMEM/corum_similarity.png)
+
+## Step 3 — Cluster Representations and Analyze Differential Morphology
+
+Clustering uses DeSCORT PCA representations without pathway labels as inputs. Original morphology explains feature differences between those clusters. The workflow also computes biological-pair support, pathway/complex enrichment, and nearest-neighbor tables, with an original-feature clustering comparison.
+
+### Prepare a pathway membership snapshot
+
+The cluster workflow needs a CSV containing `database`, `pathway`, and `genes`. To use the same full annotations as Step 1, convert that run's `gene_sets_used.json`:
+
+```python
 from pathlib import Path
-
-plates = ['CP186A', 'CP186B', 'CP186C', 'CP186D', 'CP186E',
-          'CP186F', 'CP186G', 'CP186H', 'CP186N']
-for name in ['MODEL_INPUT', 'ORIGINAL_INPUT']:
-    folder = Path(os.environ[name])
-    files = sorted(folder.glob('*.parquet'))
-    for plate in plates:
-        matched = [p for p in files if plate in p.name]
-        if len(matched) != 1:
-            raise ValueError(f'{name}: {plate} 应对应 1 个文件，实际找到 {len(matched)} 个')
-    print(f'{name}: 9 个 plate 文件已找到')
-
-for name in ['HIT_FILE', 'ORIGINAL_FEATURES_PKL', 'ANNOTATED_GENE_SETS',
-             'CORUM_FILE', 'STRING_FILE', 'GENE_SETS_JSON']:
-    path = Path(os.environ[name])
-    if not path.is_file():
-        raise FileNotFoundError(f'{name}: {path}')
-    print(f'{name}: OK')
-PY
-```
-
-本例要求 hit 表实际存在。底层脚本在 hit 文件为空或不存在时会改用所有可用的非对照基因；不要把这种运行误认为相同的 A549 hit 分析。
-
-## Step 1　基因表征、通路 UMAP 与近邻分析
-
-### 1.1 检查输入
-
-```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/01_umap" \
-bash "$TUTORIAL_DIR/01_umap_analysis.sh" --stage check
-```
-
-检查包括 parquet 中的基因/guide 元数据、数值特征列及手工通路注释文件。`--stage check` 不计算 PCA/UMAP；它也不验证完整 GO/KEGG 基因集内容。
-
-### 1.2 运行 A549 分析
-
-```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/01_umap" \
-bash "$TUTORIAL_DIR/01_umap_analysis.sh" \
-    --stage all \
-    --gene-sets-json "$GENE_SETS_JSON" \
-    --query-gene PSMA1 ATP6V0C \
-    --query-top-n 20
-```
-
-脚本先按基因和 guide 对各行取均值，再在同一基因的 guide 之间取中位数，并移除无效数据；随后在 DeSCORT 与原始形态空间分别进行保留 95% 方差的 PCA，再计算 UMAP。通路内距离使用 PCA 表征上的余弦距离；UMAP 坐标用于二维展示。
-
-本例沿用 A549 Bash 参数：UMAP `n_neighbors=10`、`min_dist=0.05`、`metric=cosine`、随机种子 `42`。GO/KEGG 使用 5–200 个入选基因的通路；手工注释通路至少含 2 个入选基因。通路比较采用脚本的基因集合一致性检查，具体记录在比较结果表中。
-
-当前 A549 `.sh` 已经启用 `PSMA1` 和 `ATP6V0C` 查询，上述命令将它们显式写出。Python 入口自身在未指定查询基因时跳过 figure 7；这与 A549 Bash 的预设不同。
-
-主要输出相对于 `$EXAMPLE_OUTPUT/01_umap`：
-
-| 文件 | 含义 |
-|---|---|
-| `gene_sets_used.json` | 本次实际使用的完整基因集，供步骤 3 生成注释快照 |
-| `model/results/hit_gene_profiles.parquet` | DeSCORT 的有效入选基因表征 |
-| `original/results/hit_gene_profiles.parquet` | 原始形态的有效入选基因表征 |
-| `model/results/global_hit_gene_UMAP.csv` | DeSCORT 基因 UMAP 坐标 |
-| `model/results/pathway_distance_df_model.csv` | DeSCORT 通路内距离及基因成员 |
-| `comparison/all_strict_pathways.csv` | 满足比较条件的通路配对结果 |
-| `comparison/top_strict_pathways.csv` | 按当前参数选择的通路比较子集 |
-
-预览：已有 A549 DeSCORT 表征中的通路叠加图。每个点代表一个入选基因，颜色标记展示的通路成员。
-
-![A549 DeSCORT 通路叠加 UMAP](../../result/07_biological/A549_DMEM/pathway_umap.png)
-
-### 1.3 单独运行查询或重绘
-
-只运行近邻示例时，仍使用同一组输入：
-
-```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/01_umap" \
-bash "$TUTORIAL_DIR/01_umap_analysis.sh" \
-    --stage query --gene-sets-json "$GENE_SETS_JSON" \
-    --query-gene PSMA1 ATP6V0C --query-top-n 20
-```
-
-`query` 会从当前输入/基因表征重新组织近邻计算，不要求先运行聚类脚本。若只想重绘已保存的通路组合 UMAP，在完成 1.2 后使用：
-
-```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/01_umap" \
-bash "$TUTORIAL_DIR/01_umap_analysis.sh" --stage combined-plot
-```
-
-## Step 2　CORUM/STRING 生物学关系验证
-
-这一阶段先选取两种表征共同包含的有效 hit 基因，再分别拟合 PCA、执行行向量 L2 归一化，并计算基因对的余弦相似性与非关联背景校正。它与步骤 1、步骤 3 的处理顺序各有用途，不能直接混用其中间表示。
-
-```bash
-# 先检查输入及 CORUM/STRING 文件。
-OUTPUT_DIR="$EXAMPLE_OUTPUT/02_CORUM_STRING" \
-bash "$TUTORIAL_DIR/02_CORUM_STRING.sh" --stage check
-
-# 使用同一组 A549 输入、hit 表和特征集合进行计算。
-OUTPUT_DIR="$EXAMPLE_OUTPUT/02_CORUM_STRING" \
-bash "$TUTORIAL_DIR/02_CORUM_STRING.sh" --stage all
-```
-
-本例沿用 A549 设置：PCA 保留 95% 方差，CORUM 成员覆盖率参数为 `0.333`，STRING 低/高分阈值参数为 `300` / `700`，随机种子为 `20260918`。具体阈值的边界判断以实现为准。
-
-主要输出相对于 `$EXAMPLE_OUTPUT/02_CORUM_STRING`：
-
-| 文件 | 含义 |
-|---|---|
-| `results/common_selected_genes.csv` | 两种表征共同使用的有效基因 |
-| `results/input_qc.json` | 输入、基因筛选及处理顺序记录 |
-| `results/CORUM_background_corrected.csv` | CORUM 基因对的背景校正相似性 |
-| `results/STRING_background_corrected.csv` | STRING 基因对的背景校正相似性 |
-| `results/metrics.csv` | 计算得到的评价指标 |
-| `results/paired_change_summary.csv` | 基因对配对比较摘要 |
-| `figures/CORUM_background_corrected_distribution.png` | CORUM 相似性分布图 |
-| `figures/STRING_similarity_quantiles_line.png` | STRING 相似性分段曲线图 |
-
-预览：已有 A549 结果中，DeSCORT 与原始形态特征的 CORUM 背景校正相似性分布。
-
-![A549 CORUM 背景校正相似性分布](../../result/07_biological/A549_DMEM/corum_similarity.png)
-
-若只需从本次已保存的基因对表重新绘图：
-
-```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/02_CORUM_STRING" \
-bash "$TUTORIAL_DIR/02_CORUM_STRING.sh" --stage corum-plot
-
-OUTPUT_DIR="$EXAMPLE_OUTPUT/02_CORUM_STRING" \
-bash "$TUTORIAL_DIR/02_CORUM_STRING.sh" --stage string-plot
-```
-
-## Step 3　表征聚类、差异形态与通路富集
-
-### 3.1 从本次基因集生成聚类所需的注释快照
-
-`03_de_cluster.sh` 的历史默认 `PATHWAY_SNAPSHOT` 指向另一个旧结果目录。本例将步骤 1 保存的**完整基因集**转换为三列 CSV，然后显式传给聚类脚本，使本次流程使用同一套通路注释。
-
-```bash
-export PATHWAY_SNAPSHOT="$EXAMPLE_OUTPUT/annotations/pathway_membership.csv"
-
-"$PYTHON_BIN" - <<'PY'
 import json
-import os
-from pathlib import Path
 import pandas as pd
 
-source = Path(os.environ['EXAMPLE_OUTPUT']) / '01_umap/gene_sets_used.json'
+source = Path("/absolute/path/biological/A549_DMEM/01_umap/gene_sets_used.json")
+output = Path("/absolute/path/biological/A549_DMEM/annotations/pathway_membership.csv")
 sets = json.loads(source.read_text())
 rows = []
 for database, pathways in sets.items():
@@ -231,116 +226,154 @@ for database, pathways in sets.items():
         members = list(dict.fromkeys(str(g).strip() for g in genes
                                     if g is not None and str(g).strip()))
         if members:
-            rows.append({'database': database, 'pathway': pathway,
-                         'genes': ';'.join(members)})
-snapshot = Path(os.environ['PATHWAY_SNAPSHOT'])
-snapshot.parent.mkdir(parents=True, exist_ok=True)
-pd.DataFrame(rows, columns=['database', 'pathway', 'genes']).to_csv(snapshot, index=False)
-print(f'已保存 {len(rows)} 个通路/基因集：{snapshot}')
-PY
+            rows.append({"database": database, "pathway": pathway,
+                         "genes": ";".join(members)})
+output.parent.mkdir(parents=True, exist_ok=True)
+pd.DataFrame(rows, columns=["database", "pathway", "genes"]).to_csv(output, index=False)
+print(output)
 ```
 
-这里生成的是成员注释表，没有生成或伪造通路距离。聚类入口只要求 `database`、`pathway`、`genes` 三列，忽略快照中的距离和排名列。若要严格复用某次历史实验的注释范围，应将 `PATHWAY_SNAPSHOT` 改为该次实验的原始快照；不要把两者视为必然数值相同。
+This creates membership annotations, not pathway distances. The cluster workflow ignores distance/rank columns if present. To reproduce a historical experiment exactly, supply its original snapshot; a newly generated annotation scope can differ.
 
-### 3.2 检查并运行 10 簇 A549 示例
+### Key arguments and presets
 
-```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/03_de_cluster" \
-bash "$TUTORIAL_DIR/03_de_cluster.sh" --stage check
-
-OUTPUT_DIR="$EXAMPLE_OUTPUT/03_de_cluster" \
-bash "$TUTORIAL_DIR/03_de_cluster.sh" --stage all --n-clusters 10
-```
-
-该脚本在 DeSCORT 的 PCA 表征上进行无监督 KMeans 聚类，再用原始形态特征解释各簇的差异，并计算通路/复合体富集和生物学关系支持。聚类不使用通路标签作为输入；二维 UMAP 用于展示聚类结果。
-
-本例沿用 A549 参数：`n_clusters=10`、`stability_seeds=5`、`kmeans_n_init=20`、随机种子 `20260926`，差异形态特征筛选阈值为 `de_fdr=0.05`、`min_cohens_d=0.5`、`min_mean_difference=0.2`。具体效应量和检验口径以结果表及源码为准。
-
-主要输出相对于 `$EXAMPLE_OUTPUT/03_de_cluster`：
-
-| 文件 | 含义 |
+| Argument | Supplied Bash preset / meaning |
 |---|---|
-| `results/gene_cluster_assignment.csv` | 基因与 DeSCORT/Original 簇的对应关系 |
-| `results/cluster_differential_features.csv` | 按 DeSCORT 簇计算的原始形态特征差异 |
-| `results/cluster_pathway_complex_enrichment.csv` | 两种表征的通路/复合体富集结果，步骤 4 的输入 |
-| `results/cluster_top_biological_terms.csv` | 各簇、各数据库排名靠前的条目 |
-| `results/biological_pair_support.csv` | 生物学基因对支持结果 |
-| `results/analysis_summary.json` | 本次分析摘要 |
-| `figures/figure1_unsupervised_clusters.png` | DeSCORT 聚类的 UMAP 展示 |
-| `figures/figure3_differential_feature_heatmap_clustered.png` | 差异形态特征热图 |
+| `--model-input`, `--original-input`, `--hit-file` | Matched representation inputs and hit list |
+| `--pathway-snapshot` | Membership CSV prepared above; specify explicitly for this run |
+| `--selected-pathways-json` | List of `[database, pathway]` pairs; supplied JSON must remain available |
+| `--corum-file`, `--string-file` | Biological relation resources |
+| `--output-dir` | Cluster-analysis output directory |
+| `--n-clusters` | 10; override for another experiment |
+| `--stability-seeds`, `--kmeans-n-init` | 5 and 20 |
+| `--de-fdr` | 0.05 |
+| `--min-cohens-d`, `--min-mean-difference` | 0.5 and 0.2 |
+| `--pair-permutations`, `--cluster-permutations` | 200 and 200 |
+| `--case-random-repeats`, `--pathway-random-repeats` | 10000 and 10000 |
+| `--seed`, `--umap-seed` | 20260926 and 42 |
+| `--stage` | `all`, `check`, `plot`, or `query` |
 
-预览：已有 A549 10 簇结果。编号对应该次运行的簇，不能据此预设不同数据或参数下的簇编号含义。
-
-![A549 DeSCORT 无监督聚类](../../result/07_biological/A549_DMEM/embedding_clusters.png)
-
-## Step 4　指定簇的富集气泡图
-
-本例与当前 A549 Bash 预设一致，选择簇 `2 3 4`，每簇最多展示 10 个条目。首先确认这些编号存在于本次结果：
-
-```bash
-export ENRICHMENT_FILE="$EXAMPLE_OUTPUT/03_de_cluster/results/cluster_pathway_complex_enrichment.csv"
-
-"$PYTHON_BIN" - <<'PY'
-import os
-import pandas as pd
-
-table = pd.read_csv(os.environ['ENRICHMENT_FILE'])
-ids = sorted(table.loc[table.representation == 'DeSCORT', 'cluster'].unique())
-print('本次 DeSCORT 可用簇编号：', ids)
-PY
-```
-
-然后运行绘图：
+### Example
 
 ```bash
-OUTPUT_DIR="$EXAMPLE_OUTPUT/04_cluster_enrichment" \
-CLUSTER="2 3 4" \
-bash "$TUTORIAL_DIR/04_cluster_enrichment.sh" --top-n 10 --fdr 0.05
+bash 03_de_cluster.sh \
+  --model-input /absolute/path/embeddings/A549_DMEM \
+  --original-input /absolute/path/normalized_profiles/A549_DMEM \
+  --output-dir /absolute/path/biological/A549_DMEM/03_de_cluster \
+  --hit-file /absolute/path/annotations/A549_DMEM_hits.xlsx \
+  --original-features-pkl /absolute/path/selected_features/cpg0021_A549_union_feature_1382.pkl \
+  --corum-file /absolute/path/annotations/CORUM_humanComplexes.txt \
+  --string-file /absolute/path/annotations/STRING_data.csv \
+  --pathway-snapshot /absolute/path/biological/A549_DMEM/annotations/pathway_membership.csv \
+  --selected-pathways-json /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/07_biological/03_de_cluster_selected_pathways.json \
+  --dataset-name A549_DMEM \
+  --plates CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H CP186N \
+  --n-clusters 10 \
+  --de-fdr 0.05 \
+  --min-cohens-d 0.5 \
+  --min-mean-difference 0.2 \
+  --stage all
 ```
 
-当前实现有两种不同的筛选口径：
+Use `--stage check` first. After a completed run, `--stage plot` redraws cached figures, while `--stage query --query-gene PSMA1 ATP6V0C` exports query tables from the saved neighbor table. Cluster IDs depend on the data and settings; do not transfer their biological interpretation between runs without checking membership.
 
-- `results/cluster*_DeSCORT_enrichment_significant.csv` 使用输入表中已有的、按数据库校正的 BH 值 `p_adj_BH_within_database < 0.05`。
-- 气泡图先筛选 **原始 `p_value < 0.05`**，按原始 P 值从小到大排序，最多绘制 10 项。横轴为 `GeneRatio = overlap_n / cluster_size`，点面积表示 `Count = overlap_n`，颜色表示 `−log10(原始 P 值)`。因此图中的条目不保证全部通过 BH 校正后的 0.05 阈值。
+### Output
 
-本阶段读取步骤 3 的结果，不重新聚类或重新计算 FDR。若某簇没有原始 P 值通过筛选的条目，程序跳过该簇气泡图。
-
-主要输出相对于 `$EXAMPLE_OUTPUT/04_cluster_enrichment`：
-
-| 文件 | 含义 |
+| File relative to `03_de_cluster/` | Contents |
 |---|---|
-| `results/cluster3_DeSCORT_enrichment_significant.csv` | 簇 3 的 BH 显著条目 |
-| `results/cluster3_analysis_summary.json` | 簇 3 的筛选与展示计数 |
-| `figures/figure_cluster3_enrichment_bubble.png` | 簇 3 的富集气泡图 |
-| `figures/figure_cluster3_enrichment_bubble_data.csv` | 原始 P 值通过筛选的候选条目，`plotted` 标识最终展示项 |
+| `results/gene_cluster_assignment.csv` | Gene assignments for DeSCORT and original-feature clustering |
+| `results/cluster_differential_features.csv` | Differential morphology features for DeSCORT clusters |
+| `results/cluster_pathway_complex_enrichment.csv` | Enrichment table used by Step 4 |
+| `results/cluster_top_biological_terms.csv` | Leading biological terms per cluster/database |
+| `results/biological_pair_support.csv` | Biological-pair support results |
+| `results/analysis_summary.json` | Analysis summary |
+| `figures/figure1_unsupervised_clusters.png` | Cluster UMAP |
+| `figures/figure3_differential_feature_heatmap_clustered.png` | Differential morphology heatmap |
 
-预览：已有 A549 簇 3 的富集气泡图。该图的簇编号和条目属于图片来源中的历史运行。
+![Existing A549 DeSCORT clusters](../../result/07_biological/A549_DMEM/embedding_clusters.png)
 
-<img src="../../result/07_biological/A549_DMEM/cluster3_enrichment.png" alt="已有 A549 簇 3 的富集气泡图" width="600">
+## Step 4 — Plot Enrichment for Selected Clusters
 
-## Step 5　读取结果与记录复现信息
+This step reads Step 3's enrichment table. It does not rerun clustering or recalculate BH correction. The Bash preset selects clusters `2 3 4`; verify that these IDs exist in your own DeSCORT results.
 
-在完成步骤 1–4 后，可汇总查看结果：
+### Key arguments
+
+| Argument | Meaning |
+|---|---|
+| `--enrichment-file` | `cluster_pathway_complex_enrichment.csv` from Step 3 |
+| `--output-dir` | Root directory for enrichment figures and selected tables |
+| `--cluster` | One or more DeSCORT cluster IDs |
+| `--top-n` | Maximum plotted terms per cluster; preset 10 |
+| `--fdr` | Threshold for existing database-wise BH-adjusted values; preset 0.05 |
+| `--p-value-mode` | `raw` by default, or `adjusted` |
+| `--figure-formats`, `--png-dpi` | Presets `pdf svg png` and 400 |
+
+### Choose the plotting mode
+
+| Mode | Plot selection and ranking | Bubble color | Output subdirectories |
+|---|---|---|---|
+| `raw` | Raw `p_value < 0.05`, ascending raw P | `−log10(p_value)` | `results/`, `figures/`, `qa/` |
+| `adjusted` | Existing `p_adj_BH_within_database < --fdr`, ascending adjusted P | `−log10(p.adjust)` | `results_p.adjust/`, `figures_p.adjust/`, `qa_p.adjust/` |
+
+In both modes, the exported `cluster*_DeSCORT_enrichment_significant.csv` uses the existing BH-adjusted values and `--fdr`. Thus, in raw mode, plotted terms and BH-significant exported terms need not be the same. `GeneRatio = overlap_n / cluster_size`, and bubble area represents `Count = overlap_n`.
+
+### Example
+
+Plot raw-P-ranked enrichment:
 
 ```bash
-"$PYTHON_BIN" - <<'PY'
-import json
-import os
-from pathlib import Path
-import pandas as pd
-
-root = Path(os.environ['EXAMPLE_OUTPUT'])
-print('CORUM/STRING 指标：')
-print(pd.read_csv(root / '02_CORUM_STRING/results/metrics.csv').to_string(index=False))
-print('\n各 DeSCORT 簇的基因数：')
-assignment = pd.read_csv(root / '03_de_cluster/results/gene_cluster_assignment.csv')
-print(assignment.groupby('embedding_cluster').size().to_string())
-print('\n富集绘图摘要：')
-summary = json.loads((root / '04_cluster_enrichment/results/analysis_summary.json').read_text())
-print(json.dumps(summary, ensure_ascii=False, indent=2))
-PY
+bash 04_cluster_enrichment.sh \
+  --enrichment-file /absolute/path/biological/A549_DMEM/03_de_cluster/results/cluster_pathway_complex_enrichment.csv \
+  --output-dir /absolute/path/biological/A549_DMEM/04_cluster_enrichment \
+  --cluster 2 3 4 \
+  --top-n 10 \
+  --fdr 0.05 \
+  --p-value-mode raw \
+  --figure-formats pdf svg png \
+  --png-dpi 400
 ```
 
-保留各步骤的 `*_parameters.json`、输入检查记录、`gene_sets_used.json`、生成的 `pathway_membership.csv` 和软件环境版本。通路 UMAP、CORUM/STRING、聚类分别记录自己的有效基因与处理过程；比较前应检查对应的 QC 表，不假定所有步骤最终使用完全相同的基因数。
+Run the same command with `--p-value-mode adjusted` for adjusted-P filtering, ranking, and coloring. The directory suffix keeps both modes' results separate. If a cluster has no eligible terms, raw mode skips its bubble plot; adjusted mode exports a figure stating that no significant enrichment was found.
 
-更多格式与环境说明见 [输入格式](../../docs/data_format.md)、[安装说明](../../docs/installation.md) 和 [复现约定](../../docs/reproducibility.md)。
+### Output
+
+For raw mode, paths relative to `04_cluster_enrichment/` include:
+
+| File | Contents |
+|---|---|
+| `results/cluster3_DeSCORT_enrichment_significant.csv` | BH-significant terms for cluster 3 |
+| `results/cluster3_analysis_summary.json` | Selection counts, plotting mode, and ranking details |
+| `results/analysis_summary.json` | Summary for all requested clusters |
+| `figures/figure_cluster3_enrichment_bubble.png` | Cluster 3 bubble plot |
+| `figures/figure_cluster3_enrichment_bubble_data.csv` | Eligible terms; `plotted` marks displayed terms |
+
+Adjusted mode uses the corresponding `_p.adjust` directories and suffixed parameter/log filenames.
+
+<img src="../../result/07_biological/A549_DMEM/cluster3_enrichment.png" alt="Existing A549 cluster 3 enrichment bubble plot" width="600">
+
+## Complete Output Directory and File Contents
+
+The existing A549 DMEM results use this final layout:
+
+```text
+result/
+├── 01_umap_analysis/cpg0021_A549_DMEM/
+│   ├── model/{results,figures}/
+│   ├── original/{results,figures}/
+│   ├── comparison/
+│   ├── library_cache/
+│   └── gene_sets_used.json
+├── 02_CORUM_STRING/cpg0021_A549_DMEM/
+│   ├── results/{model,original}/
+│   ├── figures/
+│   └── qa/
+├── 03_de_cluster/hit_10_cluster/
+│   ├── results/profiles/{model,original}/
+│   ├── figures/
+│   └── qa/
+└── 04_cluster_enrichment/
+    ├── results/, figures/, qa/
+    └── results_p.adjust/, figures_p.adjust/, qa_p.adjust/
+```
+
+See the [complete output file guide](OUTPUT_FILES.md) for each saved table, matrix, annotation file, figure family, log, and QA record, including the correspondence between these historical folders and the output paths in this tutorial. The guide inventories the existing A549 run; external figure-review records and stage-specific redraw files are not all produced by a single `all` run.

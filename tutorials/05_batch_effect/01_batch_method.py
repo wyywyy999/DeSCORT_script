@@ -4,22 +4,23 @@ import sys
 import argparse
 import os
 
+
 _SOURCE = Path(__file__).resolve().parents[2] / "src"
 if str(_SOURCE) not in sys.path:
     sys.path.insert(0, str(_SOURCE))
 
-
+import anndata as ad
+from descort.batch.batch_func import (
+        Sphering_func, bbknn_func, Combat_func, Harmony_func,
+        Scanorama_func, Mnn_func, Desc_func,
+    )
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.h5ad")
     parser.add_argument("--save-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/")
     parser.add_argument("--batch-key", default="Metadata_Source")
     args = parser.parse_args()
-    import anndata as ad
-    from descort.batch.batch_func import (
-        Sphering_func, bbknn_func, Combat_func, Harmony_func,
-        Scanorama_func, Mnn_func, Desc_func,
-    )
+    
     for key in ["OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "OMP_NUM_THREADS"]:
         os.environ[key] = "64"
     data_path, save_path, batch_key = args.data_path, args.save_path, args.batch_key

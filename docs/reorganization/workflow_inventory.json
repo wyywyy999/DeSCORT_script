@@ -45,10 +45,6 @@
     ]
   },
   {
-    "path": "tutorials/00_download/run.sh",
-    "sha256": "5a7612b58f9e6750e4fb519654a5fd66121a44b26b1333c68d8829c8dd578158"
-  },
-  {
     "path": "tutorials/01_preprocess_data/01_csv2parquet.py",
     "sha256": "f02ff08becb78e4e39c6713bdbd0ed1e804d86256283701f9eb53c7c88ff64b4",
     "functions": [
@@ -65,10 +61,6 @@
       "sys",
       "tqdm"
     ]
-  },
-  {
-    "path": "tutorials/01_preprocess_data/01_csv2parquet.sh",
-    "sha256": "c34fecd3e5db33d9d48d289e1dd3ec8187c733d67f6ce90f2ec3a274786f6334"
   },
   {
     "path": "tutorials/01_preprocess_data/02_preprocess_data.py",
@@ -91,10 +83,6 @@
     ]
   },
   {
-    "path": "tutorials/01_preprocess_data/02_preprocess_data.sh",
-    "sha256": "888ff040928cbd57cb6313b04ff306bed9359baf95e93670ac0332f54bcfe4c0"
-  },
-  {
     "path": "tutorials/01_preprocess_data/03_make_label_vocab.py",
     "sha256": "cd3edcfbbe3b20367d2e41673327a9190519085398053bb6915ea26a3ad94ddc",
     "functions": [
@@ -113,10 +101,6 @@
       "sys",
       "tqdm"
     ]
-  },
-  {
-    "path": "tutorials/01_preprocess_data/03_make_label_vocab.sh",
-    "sha256": "1f6bbadd9dbbbafb8dfc9a236478201c73de63cd0ab18bff1bc60fa9d068581f"
   },
   {
     "path": "tutorials/01_preprocess_data/04_select_intersection_union_feature.py",
@@ -139,10 +123,6 @@
     ]
   },
   {
-    "path": "tutorials/01_preprocess_data/04_select_intersection_union_feature.sh",
-    "sha256": "bf4406c0615e8acca912b88cc0ae643e37821af11885041fcffa50caf3636d9f"
-  },
-  {
     "path": "tutorials/01_preprocess_data/05_get_union_feature_data.py",
     "sha256": "635347646e6a5d8e8d9de0ff3be8187f6652d991ef65e101b6f40adfd865dbf9",
     "functions": [
@@ -163,28 +143,20 @@
     ]
   },
   {
-    "path": "tutorials/01_preprocess_data/05_get_union_feature_data.sh",
-    "sha256": "0b89c436bbf0578ceb9d1ed9c0a24dbcc580d25441b78eff1c842781afc3bdd7"
-  },
-  {
-    "path": "tutorials/01_preprocess_data/run.sh",
-    "sha256": "a71fa8c9fb7a2fcaee559216451ae00df9f9df6dba61b18b06b6579aa0f46127"
-  },
-  {
     "path": "tutorials/02_pretrain/01_process_data.py",
     "sha256": "4d796858e365b417d74933aab9ba7c5cc7cb772800355e70b396563f54b1d79d",
     "functions": [
-      "parse_args",
-      "main"
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.data.dataset",
-      "pathlib"
+      "os",
+      "pathlib",
+      "pickle",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/02_pretrain/01_process_data.sh",
-    "sha256": "1911a004db7903ec7e05bcb7e67cfe1483aa2475f3a9318fa0b99186357f0986"
   },
   {
     "path": "tutorials/02_pretrain/02_combined_dataset.py",
@@ -201,10 +173,6 @@
       "sys",
       "tqdm"
     ]
-  },
-  {
-    "path": "tutorials/02_pretrain/02_combined_dataset.sh",
-    "sha256": "4faba95311873a84a83ec79b2215bab85b3fd6afd1f11b1f0977ed21bb9f038d"
   },
   {
     "path": "tutorials/02_pretrain/03_pretrain_model.py",
@@ -226,10 +194,6 @@
       "sys",
       "transformers"
     ]
-  },
-  {
-    "path": "tutorials/02_pretrain/03_pretrain_model.sh",
-    "sha256": "e4486a15ee39f6909ab1e76500b324b647a96a2a0fa51bcb0dfe68925a002b0a"
   },
   {
     "path": "tutorials/02_pretrain/04_run_emb.py",
@@ -257,32 +221,24 @@
     ]
   },
   {
-    "path": "tutorials/02_pretrain/04_run_emb.sh",
-    "sha256": "7c8176b2f7b7c483c34e9aeb7374bccf9cfdcf9707f02c6b7dfa1b16da333046"
-  },
-  {
-    "path": "tutorials/02_pretrain/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
-  },
-  {
     "path": "tutorials/03_finetune/01_process_data.py",
-    "sha256": "8702a8473b6e26b4588277a17fa3ce67f8eed617ede9903ea7132f9c1f796e14",
+    "sha256": "4d796858e365b417d74933aab9ba7c5cc7cb772800355e70b396563f54b1d79d",
     "functions": [
-      "parse_args",
-      "main"
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.data.dataset",
-      "pathlib"
+      "os",
+      "pathlib",
+      "pickle",
+      "sys"
     ]
   },
   {
-    "path": "tutorials/03_finetune/01_process_data.sh",
-    "sha256": "0855606aa1ca5c43fe0f6862461209888a43d3fdddc9a613f6180e6d6b6e5b45"
-  },
-  {
     "path": "tutorials/03_finetune/02_finetune.py",
-    "sha256": "0dbb071e011156aeeb60bae6f387c328873dd3727511c6503bd0ca842d84556f",
+    "sha256": "a5daadaeb5388f4683776036784b86850089ad57a46129d78017772d07cc399c",
     "functions": [
       "main"
     ],
@@ -293,17 +249,16 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.training",
+      "logging",
+      "os",
       "pathlib",
+      "sys",
       "transformers"
     ]
   },
   {
-    "path": "tutorials/03_finetune/02_finetune.sh",
-    "sha256": "442c92e0e16088a9363c3335d7f470ff1f97470cb35c074ce846a841b2c7224b"
-  },
-  {
-    "path": "tutorials/03_finetune/03_calculate_emb.py",
-    "sha256": "e57e47cd0e724bc2f86a02c266a794591a520388c4f99b2909db509b37b45c5e",
+    "path": "tutorials/03_finetune/03_run_emb.py",
+    "sha256": "7e4e5f24bc444a469e08aa1374fc774b405d86a62b8ddf126c6a2ebe73af4a4d",
     "functions": [
       "main",
       "parse_args"
@@ -327,108 +282,60 @@
     ]
   },
   {
-    "path": "tutorials/03_finetune/03_run_calculate_emb.sh",
-    "sha256": "334c47c56d879b0438ddb1bfeb5c3dbdabc59c1b5fcded95ed1093193cc7549a"
-  },
-  {
-    "path": "tutorials/03_finetune/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
-  },
-  {
-    "path": "tutorials/04_mAP/01_calculate_emb.py",
-    "sha256": "08df4049d8b29a5ddd74df734d15a4d3854bb7aaba2eab31b7ad5c3a947d266f",
-    "functions": [],
-    "imports": [
-      "descort.embedding.extract",
-      "pathlib"
-    ]
-  },
-  {
-    "path": "tutorials/04_mAP/01_run_calculate_emb.sh",
-    "sha256": "71285d5aa8bf4f95cc823deaf6101588be10ef606f62463131ae3ddcdbf42118"
-  },
-  {
-    "path": "tutorials/04_mAP/02_calculate_mAP.py",
+    "path": "tutorials/04_mAP/01_run_mAP.py",
     "sha256": "9b8f61c7f3c0cd80248c1f6f567c0c1ca7b11feee5b90fd4b51e3f335eeab897",
     "functions": [
-      "parse_args",
-      "main"
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.mAP.utils",
       "descort.preprocess.preprocess",
       "joblib",
+      "logging",
+      "numpy",
+      "os",
+      "pandas",
       "pathlib",
+      "pickle",
+      "sys",
       "tqdm"
     ]
   },
   {
-    "path": "tutorials/04_mAP/02_run_calculate_mAP.sh",
-    "sha256": "87c2bb6cb272552cf0cb6d6644ac46af205a421faeb9f2f3127dbe6a0aecd0c8"
-  },
-  {
-    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_A549.sh",
-    "sha256": "a8116608eb2ff165bad2549174cb373b386fedc68206b925ecbe60465837b023"
-  },
-  {
-    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_U2OS.sh",
-    "sha256": "f6a3810982e9766afd275758de56bb5c4203e5f7434d863dd1d1859e8a3f8864"
-  },
-  {
-    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_original_A549.sh",
-    "sha256": "53050d3afae891f09130cd19403e8e005b097ca969fa3048c418a9385941ee7c"
-  },
-  {
-    "path": "tutorials/04_mAP/02_run_calculate_mAP_three_type_original_U2OS.sh",
-    "sha256": "36a29d0e3ff16799c78d0ad689d5148c5bc30af617eaf6820c57fbb52fcd5d00"
-  },
-  {
-    "path": "tutorials/04_mAP/03_calculate_mAP_modality.sh",
-    "sha256": "6e8ae39fc173b19b3a264a74fa9a4659fa36261e6fd681b664205d97f773346c"
-  },
-  {
-    "path": "tutorials/04_mAP/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
-  },
-  {
-    "path": "tutorials/05_batch_effect/03_batch_method.py",
-    "sha256": "023148235d6a9957808ce238eca3f07ece90c767354359844d89a153f6e9b858",
+    "path": "tutorials/05_batch_effect/01_batch_method.py",
+    "sha256": "973ae4174a2f21da4fe3a03c41804772bc969804de082012ae8cfe92dee418c2",
     "functions": [
       "main"
     ],
     "imports": [
+      "anndata",
+      "argparse",
       "descort.batch.batch_func",
-      "pathlib"
+      "os",
+      "pathlib",
+      "sys"
     ]
   },
   {
-    "path": "tutorials/05_batch_effect/04_calculate_metrics.py",
-    "sha256": "5bd2e628f69fc6b79480f473a9e9aaa62dd463ab5f8f37f3ac848763c713d80e",
+    "path": "tutorials/05_batch_effect/03_calculate_metrics.py",
+    "sha256": "53d6697acedb82feb3ebb328cf1d512cd4114659c33bf0c61a42367e4543cbc5",
     "functions": [
       "main"
     ],
     "imports": [
+      "argparse",
       "descort.batch.calculate_metrics",
+      "json",
+      "logging",
+      "os",
       "pathlib",
+      "pickle",
+      "scanpy",
+      "sys",
       "tqdm"
     ]
-  },
-  {
-    "path": "tutorials/05_batch_effect/05_remove_descort3505_source4_outlier.py",
-    "sha256": "2f3e1876ae9169067da44dff498266fd742bb7d29828f398350cb2c0002d123a",
-    "functions": [
-      "identify_reference_cluster",
-      "write_filtered_h5ad",
-      "main"
-    ],
-    "imports": [
-      "__future__",
-      "pathlib"
-    ]
-  },
-  {
-    "path": "tutorials/05_batch_effect/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/01_process_data.py",
@@ -441,12 +348,9 @@
       "descort.data.dataset",
       "descort.vc.preprocessing_compound",
       "descort.vc.utils",
-      "pathlib"
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/01_process_data_cell_line_transfer.sh",
-    "sha256": "a1adebff5c3b74465b1065b5f4ae35b96dc9a42c2673c48bc06daf5b40e72b69"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/02_finetune.py",
@@ -462,13 +366,15 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.vc.finetune",
+      "logging",
+      "numpy",
+      "os",
       "pathlib",
+      "pickle",
+      "sys",
+      "torch",
       "transformers"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/02_finetune.sh",
-    "sha256": "b5a5b97087253e834503c2febb4afee07b2f6a677d3a47ee5310dcd02f5e5c8f"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/03_inference.py",
@@ -482,12 +388,12 @@
       "descort.model.modeling_descort",
       "descort.vc.inference_compound",
       "descort.vc.utils",
-      "pathlib"
+      "logging",
+      "numpy",
+      "pathlib",
+      "sys",
+      "torch"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/03_run_inference.sh",
-    "sha256": "fd59237eaa9d6d0fa407d59b2616b7dd8256b579bcb0b10fbd1f18b2ee37d4d6"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/04_calculate_vcc2026_metric.py",
@@ -498,16 +404,14 @@
     "imports": [
       "descort.vc.fast_cp_metrics",
       "descort.vc.metric_cli",
-      "pathlib"
+      "json",
+      "numpy",
+      "os",
+      "pandas",
+      "pathlib",
+      "sys",
+      "warnings"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/04_calculate_vcc2026_metric.sh",
-    "sha256": "2f3daceadafce9d3559eacd74f3f951de9e3884dd024a57ebbb0e0e910a671e9"
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Compound/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data.py",
@@ -520,12 +424,10 @@
       "descort.data.dataset",
       "descort.vc.preprocessing_crispr",
       "descort.vc.utils",
-      "pathlib"
+      "json",
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data_cell_line_transfer.sh",
-    "sha256": "f0ba8f27f28c05c855f38007ec365417c9742fa5a406d0dacf92990d13796def"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/02_finetune.py",
@@ -541,13 +443,15 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.vc.finetune",
+      "logging",
+      "numpy",
+      "os",
       "pathlib",
+      "pickle",
+      "sys",
+      "torch",
       "transformers"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/02_finetune.sh",
-    "sha256": "60a34afdefff901a7a23c3992ba4265b74e83be3f43ff8f5fe70e86f2460a91c"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/03_inference.py",
@@ -561,12 +465,12 @@
       "descort.model.modeling_descort",
       "descort.vc.inference_crispr",
       "descort.vc.utils",
-      "pathlib"
+      "logging",
+      "numpy",
+      "pathlib",
+      "sys",
+      "torch"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/03_run_inference.sh",
-    "sha256": "45130aa9078f0d5c2de1401beae1057c2a15cad251679e28c3a321a2331fd1d4"
   },
   {
     "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.py",
@@ -577,16 +481,14 @@
     "imports": [
       "descort.vc.fast_cp_metrics",
       "descort.vc.metric_cli",
-      "pathlib"
+      "json",
+      "numpy",
+      "os",
+      "pandas",
+      "pathlib",
+      "sys",
+      "warnings"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/04_calculate_vcc2026_metric.sh",
-    "sha256": "812aa8aaa80a5d19b6b9e7335a351b3dea1c1a3fbca6692cc5baf77f9e754253"
-  },
-  {
-    "path": "tutorials/06_virtual_cell/cell_line_transfer/Crispr/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/01_process_data.py",
@@ -599,12 +501,9 @@
       "descort.data.dataset",
       "descort.vc.preprocessing_compound",
       "descort.vc.utils",
-      "pathlib"
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/01_process_data_unseen_gene_generation.sh",
-    "sha256": "4d6a9044580beb42214e27206cbbd72912147476469813cc54582982886deb83"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/02_finetune.py",
@@ -620,13 +519,15 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.vc.finetune",
+      "logging",
+      "numpy",
+      "os",
       "pathlib",
+      "pickle",
+      "sys",
+      "torch",
       "transformers"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/02_finetune.sh",
-    "sha256": "3c967982bc0bee51d321b0a0be5212ca3316bb07f437df399790408e1c27ca4c"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/03_inference.py",
@@ -640,12 +541,12 @@
       "descort.model.modeling_descort",
       "descort.vc.inference_compound",
       "descort.vc.utils",
-      "pathlib"
+      "logging",
+      "numpy",
+      "pathlib",
+      "sys",
+      "torch"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/03_run_inference.sh",
-    "sha256": "923f879ec65b36c774ed3871519e6e824e0a6f78bc3889137d268dc0b5df3947"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.py",
@@ -656,16 +557,14 @@
     "imports": [
       "descort.vc.fast_cp_metrics",
       "descort.vc.metric_cli",
-      "pathlib"
+      "json",
+      "numpy",
+      "os",
+      "pandas",
+      "pathlib",
+      "sys",
+      "warnings"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.sh",
-    "sha256": "10fefda285bb12594e885692ec54fefb5ce32b490c93c4e2e906437f1127ac4c"
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Compound/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/01_process_data.py",
@@ -678,12 +577,10 @@
       "descort.data.dataset",
       "descort.vc.preprocessing_crispr",
       "descort.vc.utils",
-      "pathlib"
+      "json",
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/01_process_data_unseen_gene_generation.sh",
-    "sha256": "20b3a70d029ffaf421da8f48478845c97fbd6bd2bd8db5142cee8e93a42ff316"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/02_finetune.py",
@@ -699,13 +596,15 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.vc.finetune",
+      "logging",
+      "numpy",
+      "os",
       "pathlib",
+      "pickle",
+      "sys",
+      "torch",
       "transformers"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/02_finetune.sh",
-    "sha256": "d7e2c34330b4bbd854dde654bb801dfdbc40b6271867dea1b3d2faf8a0905305"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/03_inference.py",
@@ -719,12 +618,12 @@
       "descort.model.modeling_descort",
       "descort.vc.inference_crispr",
       "descort.vc.utils",
-      "pathlib"
+      "logging",
+      "numpy",
+      "pathlib",
+      "sys",
+      "torch"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/03_run_inference.sh",
-    "sha256": "b495e7f9190e3179ef5a5986eb632a9945ceab5dcbd00338f8edeea460610049"
   },
   {
     "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.py",
@@ -735,16 +634,14 @@
     "imports": [
       "descort.vc.fast_cp_metrics",
       "descort.vc.metric_cli",
-      "pathlib"
+      "json",
+      "numpy",
+      "os",
+      "pandas",
+      "pathlib",
+      "sys",
+      "warnings"
     ]
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/04_calculate_vcc2026_metric.sh",
-    "sha256": "16b44604e909df7d8e0679b1354f6f16d70d89c65c8dd16ac3b8b79b845806ad"
-  },
-  {
-    "path": "tutorials/06_virtual_cell/unseen_gene_generation/Crispr/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
   },
   {
     "path": "tutorials/07_biological/01_umap_analysis.py",
@@ -755,20 +652,12 @@
     "imports": [
       "descort.biological.umap_analysis",
       "descort.biological.utils",
-      "pathlib"
+      "logging",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/07_biological/01_umap_analysis.sh",
-    "sha256": "549d7476316a3d2065dbcfdf8e29575efef3c99a2847695d0a284a1a5347c82e"
-  },
-  {
-    "path": "tutorials/07_biological/01_umap_analysis_HeLa_DMEM.sh",
-    "sha256": "bacce07e030fd78036ebce35247e2d1825b80bb9125ca1e8c3ab60e0936ce035"
-  },
-  {
-    "path": "tutorials/07_biological/01_umap_analysis_HeLa_HPLM.sh",
-    "sha256": "5e53a8a510b00ac7098cee9472916eb4cdbed5f5c32a2cf36fee29b80ce82444"
   },
   {
     "path": "tutorials/07_biological/02_CORUM_STRING.py",
@@ -779,129 +668,81 @@
     "imports": [
       "descort.biological",
       "descort.biological.corum_string",
-      "pathlib"
+      "logging",
+      "matplotlib",
+      "matplotlib.pyplot",
+      "pandas",
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/07_biological/02_CORUM_STRING.sh",
-    "sha256": "2857d641876305e7f6e672c27e6a4c89b0bf95d9e9365ace24cc134b406a5b80"
-  },
-  {
-    "path": "tutorials/07_biological/02_CORUM_STRING_HeLa_DMEM.sh",
-    "sha256": "3a2d9c427e4e8abfbf87533027bb92a19a7ddede3f391bc1097cce828811cc10"
-  },
-  {
-    "path": "tutorials/07_biological/02_CORUM_STRING_HeLa_HPLM.sh",
-    "sha256": "cbbbd05b4243345206f44755b8523ebcead58859a361d82ef5954e39b56a8252"
   },
   {
     "path": "tutorials/07_biological/03_de_cluster.py",
     "sha256": "c604b52838a89661e486c9f89da9c62c8ae28ea76900df54d795e49c49fe4291",
     "functions": [
-      "main",
-      "cli"
+      "cli",
+      "main"
     ],
     "imports": [
       "descort.biological",
       "descort.biological.de_cluster",
+      "json",
+      "numpy",
+      "pandas",
       "pathlib",
       "sklearn",
       "sklearn.cluster",
       "sklearn.metrics",
+      "sys",
       "threadpoolctl",
       "umap"
     ]
   },
   {
-    "path": "tutorials/07_biological/03_de_cluster.sh",
-    "sha256": "93f133f1d0dad5bd6f215191dd863876a96713aacbebee1be217a7b889fcad4c"
-  },
-  {
-    "path": "tutorials/07_biological/03_de_cluster_all_100_clusters.sh",
-    "sha256": "f05ffa24646bff227a432ca610afdc51576fd33ff613945fb972c2301e0819bf"
-  },
-  {
-    "path": "tutorials/07_biological/03_de_cluster_all_50_clusters.sh",
-    "sha256": "e775058bc77d8f00b1b28ee047334d1ff87fbd7eb349b0e2f6ac25b1ec1013b9"
-  },
-  {
     "path": "tutorials/07_biological/04_cluster_enrichment.py",
-    "sha256": "c35a846fd66397fbe8301b29694f628a67d22d878a66668db761d1085eac3272",
+    "sha256": "5bdff29b885a41c44b7bd8febb2fe438553b49fdc90ef120d9ef15f0ff891739",
     "functions": [
       "main"
     ],
     "imports": [
       "descort.biological.cluster_enrichment",
       "descort.biological.utils",
-      "pathlib"
-    ]
-  },
-  {
-    "path": "tutorials/07_biological/04_cluster_enrichment.sh",
-    "sha256": "6d121989a8d9d90ff3650d163034936389385e999c43618a300505e4f7e25d84"
-  },
-  {
-    "path": "tutorials/07_biological/audit_panel_alignment.py",
-    "sha256": "97ecab74a123b8818e4a57fc9599d07baa6796c7144f2261914c539956fc4313",
-    "functions": [],
-    "imports": [
-      "descort.biological.audit_panel_alignment",
-      "pathlib"
-    ]
-  },
-  {
-    "path": "tutorials/07_biological/de_cluster_scalable.py",
-    "sha256": "84d15c202d3aca25821b26c785729f86a04133e55bf90bee2480e09009b606ae",
-    "functions": [],
-    "imports": [
-      "descort.biological.de_cluster_scalable",
-      "pathlib"
-    ]
-  },
-  {
-    "path": "tutorials/07_biological/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
-  },
-  {
-    "path": "tutorials/07_biological/verify_analysis.py",
-    "sha256": "535934743c5eb24596fef1522dc3681e700074803d3a3d04a4b659c3e3909e89",
-    "functions": [],
-    "imports": [
-      "pathlib"
+      "logging",
+      "pathlib",
+      "sys"
     ]
   },
   {
     "path": "tutorials/08_three_type/01_process_data.py",
     "sha256": "8702a8473b6e26b4588277a17fa3ce67f8eed617ede9903ea7132f9c1f796e14",
     "functions": [
-      "parse_args",
-      "main"
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "descort.data.dataset",
-      "pathlib"
+      "os",
+      "pathlib",
+      "pickle",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/08_three_type/01_process_data.sh",
-    "sha256": "63529f45f4320ede962008eb9b2d7fa1bc4a514730b876c40f956070e8fc58b3"
   },
   {
     "path": "tutorials/08_three_type/02_combined_dataset.py",
     "sha256": "2db47c0cd97302890ca459896d45b784274e8bc33902ea74376bf3ddf49580bf",
     "functions": [
-      "parse_args",
-      "main"
+      "main",
+      "parse_args"
     ],
     "imports": [
+      "argparse",
       "datasets",
+      "os",
       "pathlib",
+      "sys",
       "tqdm"
     ]
-  },
-  {
-    "path": "tutorials/08_three_type/02_combined_dataset.sh",
-    "sha256": "786d301cecbaf4c7f333f517dedef0af04a74ba49af1471df61de7833369d2e4"
   },
   {
     "path": "tutorials/08_three_type/02_finetune.py",
@@ -916,13 +757,12 @@
       "descort.model.configuration_descort",
       "descort.model.modeling_descort",
       "descort.training",
+      "logging",
+      "os",
       "pathlib",
+      "sys",
       "transformers"
     ]
-  },
-  {
-    "path": "tutorials/08_three_type/02_finetune.sh",
-    "sha256": "e68f877ac08aba8d93b46f8d2e728baee385c8f35adf0b5887c6280a8af7c613"
   },
   {
     "path": "tutorials/08_three_type/03_calculate_emb.py",
@@ -930,31 +770,33 @@
     "functions": [],
     "imports": [
       "descort.embedding.extract",
-      "pathlib"
+      "pathlib",
+      "sys"
     ]
-  },
-  {
-    "path": "tutorials/08_three_type/03_run_calculate_emb.sh",
-    "sha256": "0ef1ab8347159df7f6f172380088cde577ebf1567ab9c845ad14d0babb34bf66"
-  },
-  {
-    "path": "tutorials/08_three_type/run.sh",
-    "sha256": "9d728d138f79456032e0e21acadc6503594bb73767271962298486aed1ba5466"
   },
   {
     "path": "tutorials/09_paper_plot_code/code/mAP/plot_cpg0000_radar.py",
     "sha256": "5bce9a475a8b73df5dc14c3d17a163a5aafd123a7617382d4b82e99d4a4d7197",
     "functions": [
-      "read_results",
-      "heatmap_tables",
       "draw_heatmap",
-      "main"
+      "figure_x",
+      "heatmap_tables",
+      "main",
+      "read_results"
     ],
     "imports": [
       "__future__",
+      "argparse",
+      "json",
+      "matplotlib",
       "matplotlib.colors",
+      "matplotlib.pyplot",
+      "numpy",
+      "pandas",
       "paper_plot_style",
-      "pathlib"
+      "pathlib",
+      "pickle",
+      "sys"
     ]
   },
   {
@@ -966,11 +808,17 @@
     "imports": [
       "IPython.display",
       "audit_panel_alignment",
+      "hashlib",
+      "json",
       "matplotlib",
       "matplotlib.patches",
+      "matplotlib.pyplot",
       "matplotlib.ticker",
+      "numpy",
+      "pandas",
       "paper_plot_style",
-      "pathlib"
+      "pathlib",
+      "sys"
     ]
   },
   {
@@ -978,13 +826,15 @@
     "sha256": "d56a1c6637b6ca5586ef423cc69ddb2fe6bce46f93dff9a3433c25decad13eaf",
     "functions": [
       "apply_paper_style",
-      "wrap_note",
       "figure_qa_stem",
-      "save_paper_figure"
+      "save_paper_figure",
+      "wrap_note"
     ],
     "imports": [
       "audit_panel_alignment",
+      "matplotlib",
       "pathlib",
+      "sys",
       "textwrap"
     ]
   }

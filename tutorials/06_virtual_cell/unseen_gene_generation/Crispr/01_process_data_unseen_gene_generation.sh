@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../../../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 set -euo pipefail
 
@@ -28,21 +24,21 @@ SOURCE_DATA_PATHS=(
 # -------------------------------
 # Output directories
 # -------------------------------
-train_output_dir="${TRAIN_OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_unseen_gene_generation_Crispr/train_output_dir}"
-train_save_dir="${TRAIN_SAVE_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_unseen_gene_generation_Crispr/train_save_dir}"
-test_output_dir="${TEST_OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_unseen_gene_generation_Crispr/test_output_dir}"
-test_save_dir="${TEST_SAVE_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_unseen_gene_generation_Crispr/test_save_dir}"
+train_output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_unseen_gene_generation_Crispr/train_output_dir"
+train_save_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_unseen_gene_generation_Crispr/train_save_dir"
+test_output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_unseen_gene_generation_Crispr/test_output_dir"
+test_save_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_unseen_gene_generation_Crispr/test_save_dir"
 
 # -------------------------------
 # Pickle / vocabulary files
 # -------------------------------
-gene2index_pkl="$RESOURCE_ROOT/ESM2_files/gene2index_21611.pkl"
-esm2_dict_pkl="$RESOURCE_ROOT/ESM2_files/ESM2_pert_features_with_nontargeting.pkl"
-feature2index_pkl="$RESOURCE_ROOT/feature_vocab/feature2index_vocabulary_7366.pkl"
-# train_gene_list_pkl="$RESOURCE_ROOT/06_vc/random_gene_list/gene_501_train.pkl"
-# test_gene_list_pkl="$RESOURCE_ROOT/06_vc/random_gene_list/gene_501_test.pkl"
-train_gene_list_pkl="$RESOURCE_ROOT/06_vc/random_gene_list/few_shot/gene_50_train.pkl"
-test_gene_list_pkl="$RESOURCE_ROOT/06_vc/random_gene_list/few_shot/gene_50_test.pkl"
+gene2index_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/gene2index_21611.pkl"
+esm2_dict_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/ESM2_pert_features_with_nontargeting.pkl"
+feature2index_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl"
+# train_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_501_train.pkl"
+# test_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/gene_501_test.pkl"
+train_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_50_train.pkl"
+test_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list/few_shot/gene_50_test.pkl"
 need_feature_list_pkl="/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/04_new_data_generation/intersection_columns_1107.pkl"
 
 # -------------------------------
@@ -71,7 +67,6 @@ verbosity=1
 # ============================================================================
 # Build and run command
 # ============================================================================
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 DATAPARAMS=(
     --source_data_paths "${SOURCE_DATA_PATHS[@]}"
@@ -100,4 +95,4 @@ if ((${#test_data_names[@]})); then
     DATAPARAMS+=(--test_data_names "${test_data_names[@]}")
 fi
 
-python "$SCRIPT_DIR/01_process_data.py" "${DATAPARAMS[@]}" "$@"
+python "01_process_data.py" "${DATAPARAMS[@]}" "$@"

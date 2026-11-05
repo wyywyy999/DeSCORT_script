@@ -119,4 +119,4 @@ if [ "$sampling" = true ]; then
 fi
 
 # Run the embedding extraction entry.
-python 04_run_emb.py "${args[@]}" "$@"
+python 03_run_emb.py "${args[@]}" "$@"

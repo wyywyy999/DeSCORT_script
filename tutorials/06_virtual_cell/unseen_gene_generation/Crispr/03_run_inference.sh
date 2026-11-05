@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../../../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 set -euo pipefail
 
@@ -25,20 +21,20 @@ model_root="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/pape
 # Keep the output filename and loaded checkpoint tied to the same experiment.
 # MODEL_PATH remains available for explicitly evaluating an individual
 # checkpoint directory (for example checkpoint-97).
-default_model_path="${model_root}/${model_name}/models"
+default_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_new/unseen_gene_generation/Crispr/HeLa_DMEM_50genes_unseen_gene_generation_50epochs/models"
 
-pretrained_model_path="${MODEL_PATH:-$default_model_path}"
-index2gene_pkl="$RESOURCE_ROOT/label_vocab/cpg0021/index2gene_21611.pkl"
-index2esm2_pkl="$RESOURCE_ROOT/ESM2_files/Index2ESM2_pert_features_with_nontargeting_19791.pkl"
-index2feature_pkl="$RESOURCE_ROOT/feature_vocab/index2feature_vocabulary_7366.pkl"
+pretrained_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_new/unseen_gene_generation/Crispr/HeLa_DMEM_50genes_unseen_gene_generation_50epochs/models"
+index2gene_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/label_vocab/cpg0021/index2gene_21611.pkl"
+index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/Index2ESM2_pert_features_with_nontargeting_19791.pkl"
+index2feature_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/index2feature_vocabulary_7366.pkl"
 
 # -------------------------------
 # Dataset and output paths
 # -------------------------------
 # These datasets match this task's preprocessing outputs.
-train_dataset_path="${TRAIN_DATASET_PATH:-/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/train_data/hit}"
-test_dataset_path="${TEST_DATASET_PATH:-/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/test_data/hit}"
-output_dir="${OUTPUT_DIR:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/${model_name}}"
+train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/train_data/hit"
+test_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/few_shot/HeLa_DMEM_13k_5k_50_genes/test_data/hit"
+output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/test_anndata/HeLa_DMEM_50genes_unseen_gene_generation_50epochs"
 
 prediction_filename="${PREDICTION_FILENAME:-${model_name}_pred_data.h5ad}"
 ground_truth_filename="${GROUND_TRUTH_FILENAME:-ground_truth.h5ad}"
@@ -50,7 +46,6 @@ mean_baseline_filename="${MEAN_BASELINE_FILENAME:-perturb_mean_data.h5ad}"
 # CUDA_VISIBLE_DEVICES selects physical GPUs; DEVICE is the logical visible index.
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-7}"
 device="${DEVICE:-cuda:0}"
-python_bin="${PYTHON_BIN:-python}"
 batch_size="${BATCH_SIZE:-64}"
 max_length="${MAX_LENGTH:-1107}"
 pad_value=100
@@ -70,13 +65,12 @@ control_label="nontargeting"
 # -------------------------------
 # Logging
 # -------------------------------
-log_file="${LOG_FILE:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/logs/inference_${model_name}.log}"
+log_file="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_virtual_cell/unseen_gene_generation/Crispr/logs/inference_HeLa_DMEM_50genes_unseen_gene_generation_50epochs.log"
 log_level="INFO"
 
 # ============================================================================
 # Build and run command
 # ============================================================================
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 args=(
     --pretrained_model_path "$pretrained_model_path"
@@ -120,4 +114,4 @@ else
     args+=(--no_dataloader_persistent_workers)
 fi
 
-"$python_bin" "$SCRIPT_DIR/03_inference.py" "${args[@]}" "$@"
+python "03_inference.py" "${args[@]}" "$@"

@@ -1,8 +1,4 @@
 #!/usr/bin/env bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../../../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 set -euo pipefail
 
 # Process one cell line at a time. Defaults follow the HeLa DMEM CRISPR script.
@@ -13,13 +9,13 @@ SOURCE_DATA_PATHS=(
 # A549 source:
 # /fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data
 
-train_output_dir="${TRAIN_OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_cell_line_transfer_Crispr/train_output_dir}"
-train_save_dir="${TRAIN_SAVE_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/06_virtual_cell_cell_line_transfer_Crispr/train_save_dir}"
+train_output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_cell_line_transfer_Crispr/train_output_dir"
+train_save_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_cell_line_transfer_Crispr/train_save_dir"
 
-gene2index_pkl=$RESOURCE_ROOT/ESM2_files/gene2index_21611.pkl
-esm2_dict_pkl=$RESOURCE_ROOT/ESM2_files/ESM2_pert_features_with_nontargeting.pkl
-feature2index_pkl=$RESOURCE_ROOT/feature_vocab/feature2index_vocabulary_7366.pkl
-need_feature_list_pkl=/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/04_new_data_generation/intersection_columns_1107.pkl
+gene2index_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/gene2index_21611.pkl"
+esm2_dict_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/ESM2_files/ESM2_pert_features_with_nontargeting.pkl"
+feature2index_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_vocab/feature2index_vocabulary_7366.pkl"
+need_feature_list_pkl="/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/04_new_data_generation/intersection_columns_1107.pkl"
 
 # Empty: process all mapped genes with ESM2, without a train/test gene split.
 # Set a pickle path only when an explicit gene subset is needed.
@@ -32,7 +28,7 @@ train_data_names=(CP257A CP257B CP257D CP257F CP257H)
 nproc="${NPROC:-1}"
 merge_nproc="${MERGE_NPROC:-2}"
 verbosity=1
-SCRIPT=$PROJECT_ROOT/tutorials/06_virtual_cell/cell_line_transfer/Crispr/01_process_data.py
+SCRIPT=01_process_data.py
 DATAPARAMS=(
     --source_data_paths "${SOURCE_DATA_PATHS[@]}"
     --train_output_dir "$train_output_dir"

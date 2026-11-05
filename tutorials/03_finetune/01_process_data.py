@@ -9,6 +9,7 @@ import os
 import sys
 import argparse
 import pickle
+from pathlib import Path
 
 from descort.data.dataset import DeSCORTForContrastiveLMDataProcessor
 from descort.data.dataset import merge_datasets_direct
@@ -38,7 +39,7 @@ def parse_args():
     # ---- Pickle / vocabulary files ----
     parser.add_argument(
         "--gene2index_pkl", required=True,
-        help="Path to label2index pickle file."
+        help="Path to gene2index pickle file."
     )
     parser.add_argument(
         "--feature2index_pkl", required=True,
@@ -55,8 +56,12 @@ def parse_args():
         help="Column name used as the gene key. (default: %(default)s)"
     )
     parser.add_argument(
-        "--train_data_names", nargs="+", default=None,
-        help="List of data names to process for training. (default: None)"
+        "--train_data_names", nargs="*", default=None,
+        help="Optional filename/path substrings. Omitted or empty: recursively process all parquet files in source_data_paths."
+    )
+    parser.add_argument(
+        "--need_gene_list", default=None,
+        help="Optional pickle file containing a gene list. Omitted: use all keys in gene2index_pkl."
     )
     # ---- Processing options ----
     parser.add_argument(
@@ -78,6 +83,9 @@ def parse_args():
 def main():
     args = parse_args()
 
+    # None disables filename filtering in the pretraining processor.
+    train_data_names = [name for name in (args.train_data_names or []) if name.strip()] or None
+
     # ---- Load dictionaries ----
     with open(args.gene2index_pkl, "rb") as f:
         gene2index_dict = pickle.load(f)
@@ -89,6 +97,14 @@ def main():
         need_feature_list = pickle.load(f)
 
     ems2_genes_list = list(gene2index_dict.keys())
+    if args.need_gene_list:
+        with open(args.need_gene_list, "rb") as f:
+            need_gene_list = pickle.load(f)
+        if isinstance(need_gene_list, (str, bytes, dict)):
+            raise ValueError("need_gene_list pickle must contain a gene list, not a string or dictionary")
+        need_gene_list = list(need_gene_list)
+    else:
+        need_gene_list = ems2_genes_list
 
     # ---- Processor ----
     processor = DeSCORTForContrastiveLMDataProcessor(
@@ -103,11 +119,11 @@ def main():
     processor(
         parquet_dirs=args.source_data_paths,
         output_dir=args.train_output_dir,
-        data_name=args.train_data_names,
+        data_name=train_data_names,
         key_gene_column=args.key_gene_column,
         GENE2INDEX_DICT=gene2index_dict,
         FEATURE2INDEX_DICT=feature2index_dict,
-        need_genes_list=ems2_genes_list,
+        need_genes_list=need_gene_list,
         save_to_disk=True,
         need_feature_list=need_feature_list,
     )

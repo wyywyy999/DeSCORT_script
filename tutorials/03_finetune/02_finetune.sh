@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/BacthCorrection/cpg0021_cpg0000/train_merged_data'
 # train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/train_merged_data'
@@ -10,8 +6,8 @@ cd "$SCRIPT_DIR"
 train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_cpg0021_A549_161/all_data'
 # train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_1_99_clip/Targert_1_Compound/train_merged_data'
 # train_dataset_path='/fse/DC/CP_data/feature_data/all_merged_data_select_feature_intersection/normaliztion_data_chunk/A549/A549_merged_data'
-output_dir="${OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/03_finetune/output_dir}"
-deepspeed_config="$PROJECT_ROOT/tutorials/03_finetune/ds_zeors2.json"
+output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/03_finetune/output_dir"
+deepspeed_config="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/03_finetune/ds_zeors2.json"
 pretrianed_model_path='/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models'
 # pretrianed_model_path='/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/foundation_model/feature_1024_0.3_mlm_autoembedding_3epochs_well_level_clip_cpg0021_mlm_contrastive_first_stage/models'
 

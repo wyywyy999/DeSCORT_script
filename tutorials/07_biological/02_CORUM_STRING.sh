@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 # Common hit genes -> PCA -> L2 normalization -> subtract nonedge similarity background.
 # To redraw only a saved CORUM distribution, pass --stage corum-plot and set
 # OUTPUT_DIR to the existing dataset result directory (containing results/).
 # Use --stage string-plot to redraw the STRING line in fixed [-1, 1] intervals.
 set -euo pipefail
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-WORKSPACE_ROOT="$(cd -- "$PROJECT_ROOT/.." && pwd)"
 # ============================================================================
 # Data input and output paths: edit the explicit paths below.
 # ============================================================================
@@ -21,7 +14,7 @@ DEFAULT_MODEL_INPUT="/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutori
 DEFAULT_ORIGINAL_INPUT="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data"
 
 # Save all analysis tables, figures and logs under this directory.
-DEFAULT_OUTPUT_DIR="$PROJECT_ROOT/tutorials/07_biological/result/02_CORUM_STRING"
+DEFAULT_OUTPUT_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/07_biological/result/02_CORUM_STRING"
 
 # Set to an empty string to analyze all common/available genes.
 DEFAULT_HIT_FILE="/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/A549_DMEM_hits.xlsx"
@@ -33,17 +26,16 @@ DEFAULT_CORUM_FILE="/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files
 DEFAULT_STRING_FILE="/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv"
 
 # Candidate original morphology feature names.
-DEFAULT_ORIGINAL_FEATURES_PKL="$RESOURCE_ROOT/feature_intersection_union/cpg0021_A549/cpg0021_A549_union_feature_1382.pkl"
+DEFAULT_ORIGINAL_FEATURES_PKL="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_union_feature_1382.pkl"
 
 # Runtime settings. Environment variables and trailing CLI arguments can override defaults.
-PYTHON_BIN="${PYTHON_BIN:-python}"
-MODEL_INPUT="${MODEL_INPUT:-$DEFAULT_MODEL_INPUT}"
-ORIGINAL_INPUT="${ORIGINAL_INPUT:-$DEFAULT_ORIGINAL_INPUT}"
-OUTPUT_DIR="${OUTPUT_DIR:-$DEFAULT_OUTPUT_DIR}"
-HIT_FILE="${HIT_FILE-$DEFAULT_HIT_FILE}"
-CORUM_FILE="${CORUM_FILE:-$DEFAULT_CORUM_FILE}"
-STRING_FILE="${STRING_FILE:-$DEFAULT_STRING_FILE}"
-ORIGINAL_FEATURES_PKL="${ORIGINAL_FEATURES_PKL:-$DEFAULT_ORIGINAL_FEATURES_PKL}"
+MODEL_INPUT="/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549/20200805_A549_WG_Screen/normalization_clip_data"
+ORIGINAL_INPUT="/fse/DC/CP_data/feature_data/20200805_A549_WG_Screen/raw_data/well_level_new/normalization_clip_data"
+OUTPUT_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/07_biological/result/02_CORUM_STRING"
+HIT_FILE="/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/A549_DMEM_hits.xlsx"
+CORUM_FILE="/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt"
+STRING_FILE="/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv"
+ORIGINAL_FEATURES_PKL="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0021_A549/cpg0021_A549_union_feature_1382.pkl"
 
 PARAMS=(
     --dataset-name A549
@@ -66,11 +58,11 @@ PARAMS=(
     --memory-limit 24GB
 )
 export MPLBACKEND=Agg USE_TF=0
-export MPLCONFIGDIR="${MPLCONFIGDIR:-/tmp/descort_corum_matplotlib_${UID}}"
+export MPLCONFIGDIR="/tmp/descort_corum_matplotlib_1021"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-8}"
 export OPENBLAS_NUM_THREADS="${OPENBLAS_NUM_THREADS:-8}"
 export MKL_NUM_THREADS="${MKL_NUM_THREADS:-8}"
-exec "$PYTHON_BIN" -u "$SCRIPT_DIR/02_CORUM_STRING.py" \
+exec python -u "02_CORUM_STRING.py" \
     --model-input "$MODEL_INPUT" --original-input "$ORIGINAL_INPUT" \
     --hit-file "$HIT_FILE" --corum-file "$CORUM_FILE" --string-file "$STRING_FILE" \
     --original-features-pkl "$ORIGINAL_FEATURES_PKL" --output-dir "$OUTPUT_DIR" \

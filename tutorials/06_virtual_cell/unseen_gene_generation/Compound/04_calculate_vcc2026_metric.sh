@@ -1,19 +1,14 @@
 #!/usr/bin/env bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../../../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 set -euo pipefail
 
 # Metric options match the notebook; paths follow 03_run_inference.sh.
 MODEL_NAME="${MODEL_NAME:-${EXPERIMENT_NAME:-A549_214_compound_20epochs_Morgan_cell_line_transfer}}"
-GROUND_TRUTH_PATH="${GROUND_TRUTH_PATH:-$PROJECT_ROOT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/${MODEL_NAME}/ground_truth.h5ad}"
-PREDICTION_PATH="${PREDICTION_PATH:-$PROJECT_ROOT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/${MODEL_NAME}/${MODEL_NAME}_pred_data.h5ad}"
-BASELINE_PATH="${BASELINE_PATH-$PROJECT_ROOT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/${MODEL_NAME}/perturb_mean_data.h5ad}"
-OUTDIR="${OUTDIR:-$PROJECT_ROOT/tutorials/06_vc_compound/result/cell_line_transfer/A549_2_U2OS/DeSCORT/${MODEL_NAME}}"
-CACHE_DIR="${CACHE_DIR:-$PROJECT_ROOT/tutorials/06_vc_compound/result/cell_line_transfer/Morgan/A549_2_U2OS/de_cache}"
-PYTHON_BIN="${PYTHON_BIN:-python}"
-METRIC_SCRIPT="${METRIC_SCRIPT:-$PROJECT_ROOT/tutorials/06_virtual_cell/unseen_gene_generation/Compound/04_calculate_vcc2026_metric.py}"
+GROUND_TRUTH_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer/ground_truth.h5ad"
+PREDICTION_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer/A549_214_compound_20epochs_Morgan_cell_line_transfer_pred_data.h5ad"
+BASELINE_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer/perturb_mean_data.h5ad"
+OUTDIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/result/cell_line_transfer/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer"
+CACHE_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/result/cell_line_transfer/Morgan/A549_2_U2OS/de_cache"
+METRIC_SCRIPT=04_calculate_vcc2026_metric.py
 
 PERT_COL="${PERT_COL:-Metadata_Smiles}"
 CONTROL_NAME="${CONTROL_NAME:-CS(=O)C}"
@@ -29,7 +24,7 @@ BLAS_THREADS="${BLAS_THREADS:-4}"
 SCIPY_CHECKS="${SCIPY_CHECKS:-100}"
 REUSE_CACHE="${REUSE_CACHE:-true}"
 SHOW_PROGRESS="${SHOW_PROGRESS:-true}"
-# Set RUN_BASELINE=false or BASELINE_PATH="" to skip baseline evaluation.
+# Set RUN_BASELINE=false, or edit BASELINE_PATH="", to skip baseline evaluation.
 RUN_BASELINE="${RUN_BASELINE:-true}"
 export OMP_NUM_THREADS="${OMP_NUM_THREADS:-$BLAS_THREADS}"
 export MKL_NUM_THREADS="${MKL_NUM_THREADS:-$BLAS_THREADS}"
@@ -62,4 +57,4 @@ if [[ -n "$GROUND_TRUTH_LAYER" ]]; then PARAMS+=(--ground_truth_layer "$GROUND_T
 if [[ -n "$PREDICTION_LAYER" ]]; then PARAMS+=(--prediction_layer "$PREDICTION_LAYER"); fi
 if [[ -n "$BASELINE_LAYER" ]]; then PARAMS+=(--baseline_layer "$BASELINE_LAYER"); fi
 
-exec "$PYTHON_BIN" -u "$METRIC_SCRIPT" "${PARAMS[@]}" "$@"
+exec python -u "$METRIC_SCRIPT" "${PARAMS[@]}" "$@"

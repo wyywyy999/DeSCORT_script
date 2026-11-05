@@ -50,6 +50,7 @@ def sphinx_image(match, source):
 def prepare():
     sources = {ROOT / "README.md", ROOT / "tutorials/README.md"}
     sources.update((ROOT / "tutorials").rglob("README.md"))
+    sources.add(ROOT / "tutorials/07_biological/OUTPUT_FILES.md")
     sources.update(ROOT / "docs" / name for name in GUIDES)
     sources.update((ROOT / "result").rglob("README.md"))
     sources.update((ROOT / "environments").glob("*.md"))
@@ -101,7 +102,8 @@ def prepare():
 
     primary = {ROOT / "README.md", ROOT / "tutorials/README.md"}
     primary.update(ROOT / "docs" / name for name in GUIDES)
-    primary.update(p for p in sources if p.parent.parent == ROOT / "tutorials")
+    primary.update(p for p in sources
+                   if p.parent.parent == ROOT / "tutorials" and p.name == "README.md")
     extra = sorted(p.relative_to(ROOT).with_suffix("").as_posix()
                    for p in sources - primary)
     (DEST / "additional.rst").write_text(

@@ -239,35 +239,37 @@ output_model/pretrain_run_01/
 └── trainer_state.json
 ```
 
-## Step 4 — Extract Pretrained Embeddings (`04_run_emb.sh`)
+## Step 4 — Extract CLS Embeddings
 
-Load the representation model saved in Step 3 and extract one embedding per retained input profile. This step reads normalized **Parquet profiles**, not the Arrow training dataset. It does not update the model weights.
+### Key arguments and presets
 
-The Python entry `04_run_emb.py` contains its own argument parser and extraction loop. It recursively finds input Parquet files, optionally filters plate paths, keeps labels present in the label mapping, selects features using the feature vocabulary/list, and calls `model.get_latent_embedding()` in evaluation mode with gradients disabled.
-
-### Key arguments
-
-| Argument | Description |
+| Argument | Current Bash setting or Python behavior |
 |---|---|
-| `--source_data_paths` | One or more directories containing normalized Parquet profiles |
-| `--gene2index_pkl` | Label mapping matching the selected metadata column |
-| `--feature2index_pkl` | The feature vocabulary used for the model inputs |
-| `--need_feature_list_pkl` | Selected feature list; use the feature definition appropriate to the checkpoint |
-| `--pretrained_model_path` | Step 3's final `models/` directory or a compatible representation checkpoint |
-| `--save_path` | Root directory for embedding Parquet outputs |
-| `--key_gene_column` | Perturbation metadata column used for label filtering |
-| `--need_plate_list` | Optional filename/path substrings selecting plates; omitted means all matching files |
-| `--metadata_parts` | Two input-path component indices: batch first, type second; Python default `-2 -5` |
-| `--device` | Device such as `cuda:0` or `cpu`; the entry falls back to CPU when CUDA is unavailable |
-| `--batch_size` | Number of profiles per inference batch; Bash preset 64 |
-| `--max_length` | Feature sequence length; set it to suit the checkpoint and feature list |
-| `--mlm_probability` | Masking probability; use 0.0 with MLM disabled for embedding extraction |
-| `--sampling` | Enable random feature sampling; omitted means disabled (default `False`) |
-| `--log_file`, `--log_level` | Log destination and verbosity |
+| `--source_data_paths` | `.../github_code_test/raw_data/well_level_new/normalization_clip_data_select_feature/normalization_clip_data`; accepts normalized Parquet directories |
+| `--gene2index_pkl` | `gene2index_21611.pkl`; labels are matched against the selected metadata column |
+| `--feature2index_pkl` | `feature2index_vocabulary_7366.pkl` |
+| `--need_feature_list_pkl` | `github_code_test_union_feature_894.pkl`; the filename does not guarantee the actual feature count |
+| `--pretrained_model_path` | `/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/output_model/pretrain/models` |
+| `--save_path` | `/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/outputs/02_pretrain/` |
+| `--key_gene_column` | `Metadata_Foci_Barcode_MatchedTo_GeneCode` |
+| `--need_plate_list` | Empty in Bash; all discovered files are used unless filtered on the command line |
+| `--metadata_parts` | Not passed by Bash; Python defaults to `-2 -5`, interpreted as batch index followed by type index |
+| `--device` | Bash passes `cuda:2`; direct Python execution defaults to `cuda:0`; CPU is used when CUDA is unavailable |
+| `--batch_size` | 64 |
+| `--max_length` | Bash passes 3505; direct Python execution defaults to 1024 |
+| `--do_mlm` | Bash sets `do_mlm=false` and omits the flag; Python defaults to `False` |
+| `--mlm_probability` | 0.0 |
+| `--sampling` | Bash sets `sampling=false` and omits the flag, but the current Python default is **`False`** |
+| `--nproc`, `--verbosity` | 1 and 1 |
+| `--log_file` | Absolute path ending in `tutorials/02_pretrain/logs/pretrain_embeddings.log` |
+| `--log_level` | `INFO` |
+
+Keep MLM disabled for this extraction entry. Its default collator/model input path uses the unmasked first-view features.
+
 
 ### Example
 
-For a directory layout such as:
+For this input layout:
 
 ```text
 /absolute/path/profiles/
@@ -276,21 +278,21 @@ For a directory layout such as:
         └── plate01.parquet
 ```
 
-Run from the `02_pretrain` directory:
+Run with explicit absolute paths:
 
 ```bash
 bash 04_run_emb.sh \
   --source_data_paths /absolute/path/profiles \
-  --gene2index_pkl /absolute/path/label_vocab/my_dataset_label2index_161.pkl \
+  --gene2index_pkl /absolute/path/label_vocab/my_dataset_label2index.pkl \
   --feature2index_pkl /absolute/path/feature_vocab/feature2index_vocabulary_7366.pkl \
-  --need_feature_list_pkl /absolute/path/feature_intersection_union/my_dataset_union_feature_894.pkl \
+  --need_feature_list_pkl /absolute/path/feature_intersection_union/my_dataset_union_feature.pkl \
   --pretrained_model_path /absolute/path/output_model/pretrain_run_01/models \
   --save_path /absolute/path/embeddings/pretrain_run_01 \
   --key_gene_column Metadata_Foci_Barcode_MatchedTo_GeneCode \
   --metadata_parts -2 -3 \
   --device cuda:0 \
   --batch_size 64 \
-  --max_length 1024 \
+  --max_length 3505 \
   --mlm_probability 0.0 \
   --nproc 1 \
   --verbosity 1 \
@@ -298,17 +300,17 @@ bash 04_run_emb.sh \
   --log_level INFO
 ```
 
-For the illustrated input path, `--metadata_parts -2 -3` selects `Batch01` and `Crispr`, respectively. These indices control the output directory structure; change them if your input layout differs. They do not read batch/type values from Parquet metadata columns. For CPU extraction, replace `--device cuda:0` with `--device cpu`. To select plates, append an option such as `--need_plate_list plate01`.
+To display the available options without extracting embeddings:
 
 ### Output
 
-The output path is:
+The writer uses this path structure:
 
 ```text
 <save_path>/<type>/<batch>/<input_file_stem>.parquet
 ```
 
-For the example above:
+The example produces:
 
 ```text
 embeddings/pretrain_run_01/

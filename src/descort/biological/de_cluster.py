@@ -78,7 +78,7 @@ def argument_parser():
     p.add_argument('--hit-column', default='Gene')
     p.add_argument('--corum-file', type=Path, default=ROOT/'LLLM/common_files/CORUM_humanComplexes.txt')
     p.add_argument('--string-file', type=Path, default=ROOT/'LLLM/common_files/STRING_data.csv')
-    p.add_argument('--pathway-snapshot', type=Path, default=PROJECT/'tutorials/07_biological/GO_KEGG_ANNOTATED_pathway_UMAP/results/all_pathway_distances.csv')
+    p.add_argument('--pathway-snapshot', type=Path, default=RESOURCE_ROOT.parent/'tutorials/07_biological/GO_KEGG_ANNOTATED_pathway_UMAP/results/all_pathway_distances.csv')
     p.add_argument('--selected-pathways-json', type=Path, default=HERE/'03_de_cluster_selected_pathways.json')
     p.add_argument('--model-gene-profiles', type=Path)
     p.add_argument('--original-gene-profiles', type=Path)
