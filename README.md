@@ -35,7 +35,7 @@ python -m pip install --upgrade pip setuptools wheel
 python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu118
 # CUDA 12.6
 python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu126
-#CUDA 12.8
+# CUDA 12.8
 python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu128
 ```
 
