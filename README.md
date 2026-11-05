@@ -10,7 +10,7 @@ DeSCORT 是一个基于大规模 CRISPR 扰动数据构建的孔级（well-level
 
 ## Documentation
 
-For installation instructions and step-by-step tutorials, see the [DeSCORT documentation](https://descort-script.readthedocs.io/en/latest/?refresh=latest).
+For installation instructions and step-by-step tutorials, see the [DeSCORT documentation](https://descort-script.readthedocs.io/en/latest/?refresh=no-reference-v2).
 
 ## 安装
 

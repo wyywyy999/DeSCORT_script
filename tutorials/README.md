@@ -2,7 +2,7 @@
 
 ## Documentation
 
-完整在线教程见 [DeSCORT documentation](https://descort-script.readthedocs.io/en/latest/)。部署和本地预览步骤见 [Documentation hosting](../docs/hosting.md)。
+完整在线教程见 [DeSCORT documentation](https://descort-script.readthedocs.io/en/latest/?refresh=no-reference-v2)。部署和本地预览步骤见 [Documentation hosting](../docs/hosting.md)。
 
 所有入口均位于这个独立副本内；只读复用原项目的资源与模型时，请显式指定绝对路径。
 
