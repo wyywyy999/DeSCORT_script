@@ -9,8 +9,7 @@ from urllib.parse import quote, unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "docs/_generated"
 GITHUB = "https://github.com/wyywyy999/DeSCORT_script"
-GUIDES = ["installation.md", "data_format.md", "model_architecture.md",
-          "model_zoo.md", "reproducibility.md", "hosting.md", "api/index.md", "workflows/index.md"]
+GUIDES = ["installation.md"]
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".svg", ".gif", ".webp"}
 
 
@@ -49,11 +48,9 @@ def sphinx_image(match, source):
 
 def prepare():
     sources = {ROOT / "README.md", ROOT / "tutorials/README.md"}
-    sources.update((ROOT / "tutorials").rglob("README.md"))
+    sources.update((ROOT / "tutorials").glob("*/README.md"))
     sources.add(ROOT / "tutorials/07_biological/OUTPUT_FILES.md")
     sources.update(ROOT / "docs" / name for name in GUIDES)
-    sources.update((ROOT / "result").rglob("README.md"))
-    sources.update((ROOT / "environments").glob("*.md"))
     sources = {p.resolve() for p in sources if p.is_file()}
     if DEST.exists():
         shutil.rmtree(DEST)
@@ -100,15 +97,6 @@ def prepare():
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text("".join(parts))
 
-    primary = {ROOT / "README.md", ROOT / "tutorials/README.md"}
-    primary.update(ROOT / "docs" / name for name in GUIDES)
-    primary.update(p for p in sources
-                   if p.parent.parent == ROOT / "tutorials" and p.name == "README.md")
-    extra = sorted(p.relative_to(ROOT).with_suffix("").as_posix()
-                   for p in sources - primary)
-    (DEST / "additional.rst").write_text(
-        "Additional references\n=====================\n\n"
-        ".. toctree::\n   :maxdepth: 1\n\n" + "".join(f"   {name}\n" for name in extra))
     return len(sources)
 
 

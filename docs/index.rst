@@ -31,17 +31,9 @@ and model checkpoints must be prepared separately as described in each tutorial.
    09 Paper figures <_generated/tutorials/09_paper_plot_code/README>
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Reference
+   :hidden:
 
-   _generated/docs/data_format
-   _generated/docs/model_architecture
-   _generated/docs/api/index
-   _generated/docs/model_zoo
-   _generated/docs/reproducibility
-   _generated/docs/workflows/index
-   _generated/docs/hosting
-   _generated/additional
+   _generated/tutorials/07_biological/OUTPUT_FILES
 
 Search
 ======
