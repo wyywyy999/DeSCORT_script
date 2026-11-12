@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "descort"
-version = "0.1.4"
+version = "0.1.5"
 description = "Cell Painting morphology representation and perturbation prediction"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -34,6 +34,9 @@ dependencies = [
     "umap-learn",
     "gseapy",
     "statsmodels",
+    "pillow",
+    "tifffile",
+    "matplotlib-venn",
 ]
 
 [project.optional-dependencies]

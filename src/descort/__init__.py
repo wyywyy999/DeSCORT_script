@@ -1,7 +1,7 @@
 """DeSCORT morphology representation and perturbation prediction models."""
 from importlib import import_module
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 __all__ = ["DeSCORTConfig", "DeSCORTModel", "DeSCORTForMaskedLM",
            "DeSCORTForContrastiveLM", "DeSCORTForPerturbPrediction"]
 

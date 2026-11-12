@@ -4,22 +4,22 @@ set -euo pipefail
 # Compound settings follow 06_vc_compound/01_process_data.sh.
 # Train/test SMILES filtering follows 06_vc/01_process_data.sh.
 SOURCE_DATA_PATHS=(
-    '/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/A549/Compound/raw_data/normalization_clip_data'
+    '/fse/DC/CP_data/feature_data/cpg000_jump_pilot/raw_data_bulk_download/U2OS/Compound/raw_data/normalization_clip_data'
 )
 
 # Keep this split separate from the existing all-compound dataset.
-output_root="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549"
-train_output_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/train_data/tmp"
-train_save_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/train_data/hit"
-test_output_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/test_data/tmp"
-test_save_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/unseen_gene/Morgan/A549/test_data/hit"
+output_root="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/50_gene/U2OS"
+train_output_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/50_gene/U2OS/train_data/tmp"
+train_save_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/50_gene/U2OS/train_data/hit"
+test_output_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/50_gene/U2OS/test_data/tmp"
+test_save_dir="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/50_gene/U2OS/test_data/hit"
 
 # Preprocessing needs SMILES -> integer ID, not fingerprint -> list of IDs.
 gene2index_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/smiles2index_577.pkl"
 feature2index_pkl="/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl"
 need_feature_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/feature_intersection_union/cpg0000_compound/vocab_intersect_feature_2319.pkl"
-train_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list_compound_unseen_gene/smiles_214_train.pkl"
-test_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list_compound_unseen_gene/smiles_94_test.pkl"
+train_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list_compound_few_shot/50_gene/smiles_51_train.pkl"
+test_gene_list_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc/random_gene_list_compound_few_shot/50_gene/smiles_257_test.pkl"
 
 key_gene_column="Metadata_Smiles"
 control_key_word="CS(=O)C"

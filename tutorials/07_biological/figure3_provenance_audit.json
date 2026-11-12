@@ -1,0 +1,96 @@
+{
+  "audit_date": "2026-11-10",
+  "scope": "Existing A549 biological outputs referenced by packaged tutorial; final manuscript panel assembly unavailable",
+  "checkpoint": {
+    "path": "/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/03_biological/cpg0021_A549_DMEM_1epochs_layernorm/models",
+    "embedding_log": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/04_mAP/logs/calculate_emb_cpg0021_HeLa_DeSCORT_1615_nosampling_nolayernorm_finetune.log",
+    "log_line_model": 504,
+    "log_line_save_path": 509,
+    "trained_epoch": 0.9997806055287407,
+    "global_step": 3038
+  },
+  "figure3D": {
+    "file": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/comparison/top_strict_pathways.csv",
+    "rows": 285,
+    "eligible_rows": 948,
+    "top_fraction": 0.3,
+    "ranking": "mean_distance_model ascending",
+    "selection_reproduced": true,
+    "database_counts": {
+      "GO_BP": 183,
+      "GO_CC": 49,
+      "KEGG": 34,
+      "GO_MF": 19
+    },
+    "interpretation": "Pathway terms, not genes; selected by observed DeSCORT compactness; overlapping sets and selection make P exploratory"
+  },
+  "enrichment": {
+    "default_mode": "raw",
+    "raw_displayed_terms": {
+      "2": 10,
+      "3": 10,
+      "4": 10
+    },
+    "adjusted_displayed_terms": {
+      "2": 0,
+      "3": 8,
+      "4": 10
+    },
+    "raw_preview_image_exact_match": true,
+    "final_panel_mode": "Not uniquely identifiable without final figure file or assembly manifest"
+  },
+  "annotation_versions": {
+    "CORUM": "Release not recorded in local table or located provenance",
+    "STRING": "Release not recorded in local symbol-score CSV or located provenance",
+    "GO": [
+      "GO_Biological_Process_2025",
+      "GO_Cellular_Component_2025",
+      "GO_Molecular_Function_2025"
+    ],
+    "KEGG": "KEGG_2021_Human",
+    "library_fetch_logged": "2026-11-02",
+    "legacy_cluster_snapshot_matches_current_GO_KEGG_memberships": 948
+  },
+  "resources": [
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/CORUM_humanComplexes.txt",
+      "bytes": 3020975,
+      "sha256": "dd4c04d2060d5fe90f1299b406ed4a63869f9c789425fe1f783e2da46b646ecb"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/LLLM/common_files/STRING_data.csv",
+      "bytes": 197782409,
+      "sha256": "ada7898703c0cd7b57693d97bacf95544a7748979d5dbbbc30d6880678fe3f6d"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological/GO_KEGG_ANNOTATED_pathway_UMAP/results/all_pathway_distances.csv",
+      "bytes": 261825,
+      "sha256": "a1960bc8f541f74a48ccc2f675a971c77a4b46deaa4e2b10ef85dd1ff85aa714"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/gene_sets_used.json",
+      "bytes": 4681142,
+      "sha256": "9b40317abd9c3fb470620d85baa03eab69c5d56a882f73f5a4ec6ecdab63bbbf"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/library_cache/GO_Biological_Process_2025.json",
+      "bytes": 2565772,
+      "sha256": "c4e3df3149acb594a0ac0220df8619ab95b2274943b5cad76ee6ceb319007878"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/library_cache/GO_Cellular_Component_2025.json",
+      "bytes": 439205,
+      "sha256": "6db9c6879b54fa53ee2ef81e75264340604970f5ab68fd798340b8f63c5da7d4"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/library_cache/GO_Molecular_Function_2025.json",
+      "bytes": 625432,
+      "sha256": "c3b21c8a971284f0463349581cb66ae5f2074ba222b291db21379f25c93509d8"
+    },
+    {
+      "path": "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/07_biological_new/result/01_umap_analysis/cpg0021_A549_DMEM/library_cache/KEGG_2021_Human.json",
+      "bytes": 441902,
+      "sha256": "da9ebaf7ac0038f9d5f99d8405a3fff340162a947e06f922bcbed916af60c0ed"
+    }
+  ]
+}

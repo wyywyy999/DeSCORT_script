@@ -1351,24 +1351,24 @@ class DeSCORTForPerturbPrediction(DeSCORTPreTrainedModel):
         
         hidden_states = outputs[0]  # last_hidden_states
 
-        perturb_pred = self._predict_values(
-            hidden_states, gene_embedding, Control_Expr
-        )
-        mlm_loss = perturb_pred.sum() * 0.0
-        if Perturb_Expr is not None:
+        if Perturb_Expr is None:
+            loss = None
+            self.last_loss_components = {}
+        else:
             # Preserve the public weight attributes used by older experiment scripts.
             self.config.mean_weight = self.mean_weight
             self.config.direction_weight = self.direction_weight
             self.config.marginal_quantile_weight = self.marginal_quantile_weight
-            mlm_loss, self.last_loss_components = perturbation_loss(
-                perturb_pred, Perturb_Expr, Control_Expr, Perturb_Gene_Index,
+            loss, self.last_loss_components = perturbation_loss(
+                self._predict_values(hidden_states, gene_embedding, Control_Expr),
+                Perturb_Expr, Control_Expr, Perturb_Gene_Index,
                 Attention_mask, self.config, Feature_Name_Index,
             )
-            self.last_loss_components["total"] = float(mlm_loss.detach())
+            self.last_loss_components["total"] = float(loss.detach())
 
         
         return DeSCORTForPerturbPredictionOutput(
-            loss=mlm_loss,
+            loss=loss,
             logits=hidden_states[:, 0, :],
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,

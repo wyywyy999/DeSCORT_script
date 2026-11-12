@@ -2,12 +2,12 @@
 set -euo pipefail
 
 # Match the U2OS Morgan experiment configured in 02_finetune.sh.
-model_name="${MODEL_NAME:-${EXPERIMENT_NAME:-A549_214_compound_20epochs_Morgan_cell_line_transfer}}"
+model_name="A549_2_U2OS_100_gene"
 # model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/unseen_gene/Morgan/A549_214_compound_20epochs_Morgan_cell_line_transfer/models"
-model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/cell_line_transfer/Morgan/A549_214_compound_20epochs_Morgan_cell_line_transfer/models"
-train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit"
-test_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/U2OS/hit"
-output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer"
+model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/cell_line_transfer/Morgan_few_shot/A549_2_U2OS_100_gene/models"
+train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/100_gene/U2OS/train_data/hit"
+test_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/100_gene/U2OS/test_data/hit"
+output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan_few_shot/A549_to_U2OS/epoch_20/100_gene/DeSCORT"
 
 smiles2index_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/smiles2index_577.pkl"
 index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/index2morgan_577.pkl"
@@ -15,7 +15,7 @@ index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/
 feature2index_pkl="/fse/home/wangyongyan/Project/CellPainting/Final_well_level_new_LLM/common_files/00_pretrain/feature2index_vocabulary_7366.pkl"
 inference_script=03_inference.py
 # Physical GPU selection; DEVICE is the logical index within the visible set.
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-4}"
+export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-7}"
 export USE_TF=0
 
 # Default to the sequence length saved in the checkpoint, including padding.

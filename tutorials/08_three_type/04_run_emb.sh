@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # ============================================================================
 # 01_calculate_emb.sh
@@ -52,7 +48,7 @@ pretrained_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD
 # pretrained_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/03_biological/cpg0021_A549_DMEM_1epochs_layernorm/models"
 # pretrained_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
 # save_path="/fse/home/wangyongyan/Project/CellPainting/Paper_LLm/tutorials/01_mAP/well_level_new_site_pretrain_emb_attention_mask/cpg0021_A549_DeSCORT_1382_nosampling_layernorm_finetune_A549"
-save_path="$PROJECT_ROOT/tutorials/08_three_type/data/U2OS_300epochs"
+save_path="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/08_three_type/data/U2OS_300epochs"
 
 # -------------------------------
 # Column / gene / data filtering
@@ -90,14 +86,15 @@ max_length=3344
 do_mlm=false
 mlm_probability=0.0
 # mlm_probability=0.15
-sampling=false
+sampling=true
+# Match the reference Python default (sampling=True).
 nproc=1
 verbosity=1
 
 # -------------------------------
 # Logging
 # -------------------------------
-log_file="$PROJECT_ROOT/tutorials/04_mAP/logs/calculate_emb_cpg0021_HeLa_DeSCORT_1615_nosampling_nolayernorm_finetune.log"
+log_file="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/04_mAP/logs/calculate_emb_cpg0021_HeLa_DeSCORT_1615_nosampling_nolayernorm_finetune.log"
 log_level="INFO"
 
 # ============================================================================
@@ -125,7 +122,7 @@ if [ -n "$need_plate_list" ]; then
     args+=(--need_plate_list $need_plate_list)
 fi
 
-# 添加布尔标志
+# Add Boolean flags
 if [ "$do_mlm" = true ]; then
     args+=(--do_mlm)
 fi
@@ -134,5 +131,5 @@ if [ "$sampling" = true ]; then
     args+=(--sampling)
 fi
 
-# 执行
-python 03_calculate_emb.py "${args[@]}" "$@"
+# Run
+python "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/08_three_type/04_run_emb.py" "${args[@]}" "$@"

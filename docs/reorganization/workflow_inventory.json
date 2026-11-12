@@ -714,7 +714,7 @@
   },
   {
     "path": "tutorials/08_three_type/01_process_data.py",
-    "sha256": "8702a8473b6e26b4588277a17fa3ce67f8eed617ede9903ea7132f9c1f796e14",
+    "sha256": "9b99075fa02d27697e435502c6da48bc003bc8ef622dec540a0e94e59a8fe845",
     "functions": [
       "main",
       "parse_args"
@@ -730,7 +730,7 @@
   },
   {
     "path": "tutorials/08_three_type/02_combined_dataset.py",
-    "sha256": "2db47c0cd97302890ca459896d45b784274e8bc33902ea74376bf3ddf49580bf",
+    "sha256": "e519dd44d31339315b913a874ec5269fcdbdd90a92012dfb4ffd1a7aa0ef2a14",
     "functions": [
       "main",
       "parse_args"
@@ -745,8 +745,8 @@
     ]
   },
   {
-    "path": "tutorials/08_three_type/02_finetune.py",
-    "sha256": "0dbb071e011156aeeb60bae6f387c328873dd3727511c6503bd0ca842d84556f",
+    "path": "tutorials/08_three_type/03_finetune.py",
+    "sha256": "a5daadaeb5388f4683776036784b86850089ad57a46129d78017772d07cc399c",
     "functions": [
       "main"
     ],
@@ -765,12 +765,73 @@
     ]
   },
   {
-    "path": "tutorials/08_three_type/03_calculate_emb.py",
-    "sha256": "08df4049d8b29a5ddd74df734d15a4d3854bb7aaba2eab31b7ad5c3a947d266f",
-    "functions": [],
+    "path": "tutorials/08_three_type/04_run_emb.py",
+    "sha256": "cc2697512fd568b731bdf7d5ee839d5ba16f55b41c3ec9ef0ddf2a2b909dc6d8",
+    "functions": [
+      "main",
+      "parse_args"
+    ],
     "imports": [
-      "descort.embedding.extract",
+      "argparse",
+      "datasets",
+      "descort.data.collator",
+      "descort.data.dataset",
+      "descort.model.modeling_descort",
+      "descort.preprocess.preprocess",
+      "logging",
+      "numpy",
+      "os",
+      "pandas",
       "pathlib",
+      "pickle",
+      "sys",
+      "torch",
+      "tqdm"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/05_umap.py",
+    "sha256": "03d2f5b8ae2dbf9fdc50ee5adee5a0d0b34abe340abee537d146e33706987302",
+    "functions": [
+      "main"
+    ],
+    "imports": [
+      "descort.multimodality.umap",
+      "json",
+      "pathlib",
+      "sys",
+      "threadpoolctl"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/06_compare.py",
+    "sha256": "330bd9fcfb4524933a8796993276d94e764d21aeadc520956f944f17697444a2",
+    "functions": [
+      "main",
+      "save_status"
+    ],
+    "imports": [
+      "descort.multimodality.comparison",
+      "json",
+      "pathlib",
+      "sys",
+      "threadpoolctl"
+    ]
+  },
+  {
+    "path": "tutorials/08_three_type/07_get_image.py",
+    "sha256": "ac0853e09d1ed6fb64a6dc9155f312e86f969340fa4e520565b733f2a973de7e",
+    "functions": [
+      "main"
+    ],
+    "imports": [
+      "argparse",
+      "csv",
+      "descort.multimodality.get_image",
+      "json",
+      "pandas",
+      "pathlib",
+      "re",
       "sys"
     ]
   },

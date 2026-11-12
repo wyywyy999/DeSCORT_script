@@ -12,13 +12,12 @@ set -euo pipefail
 # -------------------------------
 # Paths
 # -------------------------------
-experiment_name="${EXPERIMENT_NAME:-A549_214_compound_20epochs_Morgan_cell_line_transfer}"
-default_train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit"
-train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan/A549/hit"
-output_dir="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/06_virtual_cell_cell_line_transfer_Compound/output_dir"
+experiment_name="${EXPERIMENT_NAME:-U2OS_100_compound_20epochs_Morgan_cell_line_transfer_finetune}"
+
+train_dataset_path="/fse/DC/CP_data/feature_data/Paper_MAD_unseen_data_generation_clip/06_vc_compound/cell_line_transfer/Morgan_few_shot/100_gene/U2OS/train_data/hit"
+output_dir="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/cell_line_transfer/Morgan_few_shot/A549_2_U2OS_100_gene"
 deepspeed_config="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/configs/deepspeed/zero2.json"
-default_pretrained_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
-pretrianed_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models"
+pretrianed_model_path="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/06_vc_compound/cell_line_transfer/Morgan/A549_214_compound_20epochs_Morgan_cell_line_transfer/models"
 index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/Morgan/index2morgan_577.pkl"
 # index2esm2_pkl="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/common_files/06_vc_compound/index2Unimol_577.pkl"
 
@@ -29,7 +28,7 @@ gene_column="Perturb_Gene"
 # Distributed launch settings
 # -------------------------------
 # GPU device IDs; use a comma-separated list to launch on multiple GPUs.
-gpu_ids="${GPU_IDS:-0,2,3,7}"
+gpu_ids="${GPU_IDS:-1,3}"
 deepspeed_bin="${DEEPSPEED_BIN:-deepspeed}"
 
 # -------------------------------

@@ -1,8 +1,4 @@
 #!/bin/bash
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-RESOURCE_ROOT="${DESCORT_RESOURCE_ROOT:-$PROJECT_ROOT/../../common_files}"
-cd "$SCRIPT_DIR"
 
 # train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/BacthCorrection/cpg0021_cpg0000/train_merged_data'
 # train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0016/batch_effect/train_merged_data'
@@ -10,8 +6,8 @@ cd "$SCRIPT_DIR"
 train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/paper_well_level_new_1_99_clip/cpg0000_three_type/U2OS/all_data'
 # train_dataset_path='/fse/DC/CP_data/feature_data/MAD_merged_data_NNLLM/intersection_data/well_level_new_1_99_clip/Targert_1_Compound/train_merged_data'
 # train_dataset_path='/fse/DC/CP_data/feature_data/all_merged_data_select_feature_intersection/normaliztion_data_chunk/A549/A549_merged_data'
-output_dir="${OUTPUT_DIR:-${DESCORT_OUTPUT_ROOT:-$PROJECT_ROOT/outputs}/08_three_type/output_dir}"
-deepspeed_config="$PROJECT_ROOT/tutorials/08_three_type/ds_zeors2.json"
+output_dir="/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/08_three_type/cpg0000_U2OS_three_type_300epochs"
+deepspeed_config="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/08_three_type/ds_zeors2.json"
 pretrianed_model_path='/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/paper_model/foundation_model/DeSCORT_layernorm/models'
 # pretrianed_model_path='/fse/DC/CP_data/feature_data/benchmark_MAD_output/All_MAD_model/foundation_model/feature_1024_0.3_mlm_autoembedding_3epochs_well_level_clip_cpg0021_mlm_contrastive_first_stage/models'
 
@@ -91,13 +87,13 @@ TRAINPARAMS="
     --remove_unused_columns=False "
 
 RADOM_PORT=$(shuf -i 1024-65535 -n 1)
-echo "使用的端口号: $RADOM_PORT"
+echo "Master port: $RADOM_PORT"
 
 
-# python 02_finetune.py $MODELPARAMS $DATAPARAMS $FINETUNEPARAMS $TRAINPARAMS
+# python "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/08_three_type/03_finetune.py" $MODELPARAMS $DATAPARAMS $FINETUNEPARAMS $TRAINPARAMS
 
 # # deepspeed
-deepspeed --include=localhost:1,5 --master_port=$RADOM_PORT 02_finetune.py \
+deepspeed --include=localhost:1,5 --master_port=$RADOM_PORT "/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/08_three_type/03_finetune.py" \
     --deepspeed=$deepspeed_config \
     $MODELPARAMS \
     $DATAPARAMS \

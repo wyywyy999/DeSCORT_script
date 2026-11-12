@@ -2,12 +2,12 @@
 set -euo pipefail
 
 # Metric options match the notebook; paths follow 03_run_inference.sh.
-MODEL_NAME="${MODEL_NAME:-${EXPERIMENT_NAME:-A549_214_compound_20epochs_Morgan_cell_line_transfer}}"
-GROUND_TRUTH_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer/ground_truth.h5ad"
-PREDICTION_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer/A549_214_compound_20epochs_Morgan_cell_line_transfer_pred_data.h5ad"
-BASELINE_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer/perturb_mean_data.h5ad"
-OUTDIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/result/cell_line_transfer/A549_2_U2OS/DeSCORT/A549_214_compound_20epochs_Morgan_cell_line_transfer"
-CACHE_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/06_vc_compound/result/cell_line_transfer/Morgan/A549_2_U2OS/de_cache"
+
+GROUND_TRUTH_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan_few_shot/A549_to_U2OS/epoch_20/100_gene/DeSCORT/ground_truth.h5ad"
+PREDICTION_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan_few_shot/A549_to_U2OS/epoch_20/100_gene/DeSCORT/A549_2_U2OS_100_gene_pred_data.h5ad"
+BASELINE_PATH="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/test_anndata/cell_line_transfer/Morgan_few_shot/A549_to_U2OS/epoch_20/100_gene/DeSCORT/perturb_mean_data.h5ad"
+OUTDIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/result/cell_line_transfer/Morgan_few_shot/A549_to_U2OS/epoch_20/100_gene/DeSCORT"
+CACHE_DIR="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/tutorials/06_vc_compound/result/cell_line_transfer/Morgan_few_shot/A549_to_U2OS/epoch_20/100_gene/de_cache"
 METRIC_SCRIPT=04_calculate_vcc2026_metric.py
 
 PERT_COL="${PERT_COL:-Metadata_Smiles}"
