@@ -1,18 +1,18 @@
-# 论文绘图代码
+# Paper plotting code
 
-三个 notebook 共用 `paper_plot_style.py` 中的 `FONT` 字号表和 `save_paper_figure()` 导出函数。
-使用 DeSCORT Python 环境，从上到下运行 notebook，图和统计表会写入上一级的 `result/`。
+The three notebooks share the `FONT` size dictionary and `save_paper_figure()` export function from `paper_plot_style.py`.
+Use the DeSCORT Python environment and execute the notebooks from top to bottom. Figures and statistical tables are written to the parent `result/` directory.
 
-| 元素 | 字号（pt） |
+| Element | Font size (pt) |
 | --- | ---: |
-| 默认字体、坐标轴标签 | 13 |
-| 图标题、分组标题 | 15 |
-| 表格 Method 表头 | 15.5 |
-| 子图标题、方法名称、面板字母 | 13.5 |
-| 刻度、图例、数值、说明文字 | 12.5 |
-| 色条标题 | 14.5 |
+| Default font and axis labels | 13 |
+| Figure titles and group headings | 15 |
+| Method header in tables | 15.5 |
+| Subplot titles, method names, and panel letters | 13.5 |
+| Ticks, legends, values, and explanatory text | 12.5 |
+| Colorbar title | 14.5 |
 
-每张图同时保存 PNG（300 dpi）、SVG、PDF；SVG 和 PDF 保留文字。
+Each figure is exported as PNG (300 dpi), SVG, and PDF. SVG and PDF retain text.
 
 ```text
 result/
@@ -24,8 +24,8 @@ result/
 │   ├── metrics/
 │   └── umap/
 │       └── individual/
-└── _qa/                 # 字体、布局和遮挡检查
+└── _qa/                 # Font, layout, and overlap checks
 ```
 
-输入数据路径、方法筛选、五次重复的统计方式和显著性检验均沿用原 notebook。
-批次校正结果继续排除 DESC，保留 DeSCORT。
+Input paths, method selection, statistics across five repetitions, and significance tests follow the original notebooks.
+Batch-correction results continue to exclude DESC and retain DeSCORT.

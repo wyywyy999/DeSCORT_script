@@ -70,7 +70,7 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### Run root
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `all.log` | Stage execution log, containing processing messages, paths, and any warnings/errors. |
 | `all_parameters.json` | Resolved command-line parameters for this calculation or redraw stage, including actual input/output paths. |
@@ -78,7 +78,7 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `comparison/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `all_strict_pathways.csv` | Paired model/original pathway distances after the strict gene-set comparison rules, including distance changes and model-better flags. |
 | `by_database_summary.csv` | Per-database paired-pathway summary, model-better fraction, and Wilcoxon comparison. |
@@ -93,7 +93,7 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `library_cache/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `GO_Biological_Process_2025.json` | Cached Enrichr library mapping pathway names to member genes; supports annotation reuse without refetching. |
 | `GO_Cellular_Component_2025.json` | Cached Enrichr library mapping pathway names to member genes; supports annotation reuse without refetching. |
@@ -102,7 +102,7 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `model/figures/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `01_GO_KEGG_distance_distributions.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
 | `selected_plotted_pathways_combined_UMAP_direct_labels.labels.csv` | Display-label placement records for the combined pathway UMAP. |
@@ -113,37 +113,37 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `model/figures/ANNOTATED/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 100 image files. |
 
 ### `model/figures/GO_BP/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 350 image files. |
 
 ### `model/figures/GO_CC/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 72 image files. |
 
 ### `model/figures/GO_MF/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 62 image files. |
 
 ### `model/figures/KEGG/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 88 image files. |
 
 ### `model/results/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `GO_KEGG_distance_thresholds.csv` | Per-database distance threshold and percentile used to select compact GO/KEGG pathways. |
 | `all_gene_profiles.parquet` | Aggregated gene-level profiles before the final hit/valid-gene subset; index identifies genes and numerical columns hold the representation features. |
@@ -163,14 +163,14 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `neighbor_queries/figures/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `figure7_query_example_ATP6V0C.{pdf,png}` | Nearest-neighbor query figure for the named gene, comparing representations and biological support. |
 | `figure7_query_example_PSMA1.{pdf,png}` | Nearest-neighbor query figure for the named gene, comparing representations and biological support. |
 
 ### `neighbor_queries/qa/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `figure7_query_example_ATP6V0C.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
 | `figure7_query_example_ATP6V0C.alignment.svg` | Visual overlay of the panel-layout audit for checking alignment; not a new scientific figure. |
@@ -179,7 +179,7 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `neighbor_queries/results/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `figure7_manifest.json` | Neighbor-query run provenance, query genes, selected profiles, representation settings, and output records. |
 | `gene_neighbor_rank.csv` | Query/neighbor gene pairs, rank, similarities, clusters, and CORUM/STRING/GO/KEGG support annotations. |
@@ -193,7 +193,7 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `original/figures/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `01_GO_KEGG_distance_distributions.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
 | `selected_plotted_pathways_combined_UMAP_direct_labels.labels.csv` | Display-label placement records for the combined pathway UMAP. |
@@ -204,37 +204,37 @@ All paths in this section are relative to `01_umap_analysis/cpg0021_A549_DMEM/`.
 
 ### `original/figures/ANNOTATED/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 100 image files. |
 
 ### `original/figures/GO_BP/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 350 image files. |
 
 ### `original/figures/GO_CC/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 72 image files. |
 
 ### `original/figures/GO_MF/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 62 image files. |
 
 ### `original/figures/KEGG/`
 
-| File pattern | Contents |
+| File pattern | Content |
 |---|---|
 | `<rank>_<pathway>.{png,pdf,svg}` | Individual pathway overlay on the global gene UMAP; member genes are highlighted. The rank/name and number of exported formats depend on the run. This historical directory contains 88 image files. |
 
 ### `original/results/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `GO_KEGG_distance_thresholds.csv` | Per-database distance threshold and percentile used to select compact GO/KEGG pathways. |
 | `all_gene_profiles.parquet` | Aggregated gene-level profiles before the final hit/valid-gene subset; index identifies genes and numerical columns hold the representation features. |
@@ -258,7 +258,7 @@ All paths in this section are relative to `02_CORUM_STRING/cpg0021_A549_DMEM/`.
 
 ### Run root
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `corum-plot.log` | Stage execution log, containing processing messages, paths, and any warnings/errors. |
 | `corum-plot_parameters.json` | Resolved command-line parameters for this calculation or redraw stage, including actual input/output paths. |
@@ -267,7 +267,7 @@ All paths in this section are relative to `02_CORUM_STRING/cpg0021_A549_DMEM/`.
 
 ### `figures/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `CORUM_background_corrected_distribution.{pdf,png,svg}` | Distribution of background-corrected CORUM pair similarities. |
 | `CORUM_paired_model_minus_original.{pdf,png}` | Paired changes in CORUM similarities between representations. |
@@ -279,7 +279,7 @@ All paths in this section are relative to `02_CORUM_STRING/cpg0021_A549_DMEM/`.
 
 ### `qa/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `CORUM_distribution.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
 | `CORUM_distribution.collision-audit.json` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
@@ -295,7 +295,7 @@ All paths in this section are relative to `02_CORUM_STRING/cpg0021_A549_DMEM/`.
 
 ### `results/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `CORUM_background_corrected.csv` | Per-gene-pair and per-representation raw cosine similarity, background mean, and background-corrected similarity. |
 | `CORUM_background_pairs.csv` | Gene pairs used as the CORUM non-associated background. |
@@ -319,7 +319,7 @@ All paths in this section are relative to `02_CORUM_STRING/cpg0021_A549_DMEM/`.
 
 ### `results/model/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `all_gene_profiles.parquet` | Aggregated gene-level profiles before the final hit/valid-gene subset; index identifies genes and numerical columns hold the representation features. |
 | `excluded_requested_features.csv` | Requested morphology features not used, for example because they are unavailable in the input schema. |
@@ -329,7 +329,7 @@ All paths in this section are relative to `02_CORUM_STRING/cpg0021_A549_DMEM/`.
 
 ### `results/original/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `all_gene_profiles.parquet` | Aggregated gene-level profiles before the final hit/valid-gene subset; index identifies genes and numerical columns hold the representation features. |
 | `excluded_requested_features.csv` | Requested morphology features not used, for example because they are unavailable in the input schema. |
@@ -343,14 +343,14 @@ All paths in this section are relative to `03_de_cluster/hit_10_cluster/`.
 
 ### Run root
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `all.log` | Stage execution log, containing processing messages, paths, and any warnings/errors. |
 | `all_parameters.json` | Resolved command-line parameters for this calculation or redraw stage, including actual input/output paths. |
 
 ### `figures/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `figure6b_case_umap.labels.csv` | Display-label positions and identifiers exported for this figure. |
 | `figure8b_specified_pathways_umap.labels.csv` | Display-label positions and identifiers exported for this figure. |
@@ -372,7 +372,7 @@ All paths in this section are relative to `03_de_cluster/hit_10_cluster/`.
 
 ### `qa/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `figure1_cluster_sizes.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
 | `figure1_cluster_sizes.alignment.svg` | Visual overlay of the panel-layout audit for checking alignment; not a new scientific figure. |
@@ -407,7 +407,7 @@ All paths in this section are relative to `03_de_cluster/hit_10_cluster/`.
 
 ### `results/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `analysis_summary.json` | Analysis summary. Step 3 combines data provenance, clustering, differential-feature and biological-support counts; Step 4 records requested clusters and enrichment selection/plotting counts. |
 | `biological_co_clustering_support.csv` | Biological edge co-clustering rates, random expectations, fold enrichment, and permutation results for both representations. |
@@ -450,7 +450,7 @@ All paths in this section are relative to `03_de_cluster/hit_10_cluster/`.
 
 ### `results/profiles/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `model_gene_profiles.parquet` | Aggregated DeSCORT gene profile matrix before final shared-hit selection. |
 | `model_hit_gene_profiles.parquet` | Final selected shared finite DeSCORT gene profile matrix. |
@@ -459,14 +459,14 @@ All paths in this section are relative to `03_de_cluster/hit_10_cluster/`.
 
 ### `results/profiles/model/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `excluded_requested_features.csv` | Requested morphology features not used, for example because they are unavailable in the input schema. |
 | `features_used.csv` | Names of the numerical features actually retained from the input. |
 
 ### `results/profiles/original/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `excluded_requested_features.csv` | Requested morphology features not used, for example because they are unavailable in the input schema. |
 | `features_used.csv` | Names of the numerical features actually retained from the input. |
@@ -477,7 +477,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### Run root
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `analysis.log` | Stage execution log, containing processing messages, paths, and any warnings/errors. |
 | `analysis_p.adjust.log` | Stage execution log, containing processing messages, paths, and any warnings/errors. |
@@ -486,7 +486,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `figures/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `figure_cluster2_enrichment_bubble_data.csv` | Terms eligible under this plotting mode; includes GeneRatio, Count, raw/adjusted P, transformed color values, and plotted flag. |
 | `figure_cluster3_enrichment_bubble_data.csv` | Terms eligible under this plotting mode; includes GeneRatio, Count, raw/adjusted P, transformed color values, and plotted flag. |
@@ -497,7 +497,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `figures_p.adjust/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `README.md` | Historical explanatory notes or manual/automated figure-review notes; not automatically generated by the four analysis steps. |
 | `figure_cluster2_enrichment_bubble_data.csv` | Terms eligible under this plotting mode; includes GeneRatio, Count, raw/adjusted P, transformed color values, and plotted flag. |
@@ -509,7 +509,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `qa/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `bubble_blue_red_review.md` | Historical explanatory notes or manual/automated figure-review notes; not automatically generated by the four analysis steps. |
 | `figure_cluster2_enrichment_bubble.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
@@ -521,7 +521,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `qa/figure_cluster2_enrichment_bubble/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `collision.log` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
 | `collisions.json` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
@@ -529,7 +529,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `qa/figure_cluster3_enrichment_bubble/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `collision.log` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
 | `collisions.json` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
@@ -537,7 +537,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `qa/figure_cluster4_enrichment_bubble/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `collision.log` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
 | `collisions.json` | Historical figure-review record for text/object collisions; JSON/log records findings and PDF visualizes review output. External review artifact, not guaranteed from the four analysis commands. |
@@ -546,7 +546,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `qa_p.adjust/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `QA_NOTES.md` | Historical explanatory notes or manual/automated figure-review notes; not automatically generated by the four analysis steps. |
 | `figure_cluster2_enrichment_bubble.alignment.json` | Panel-layout alignment audit: measured geometry, tolerances, findings, and verdict; not a biological score. |
@@ -564,7 +564,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `results/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `analysis_summary.json` | Analysis summary. Step 3 combines data provenance, clustering, differential-feature and biological-support counts; Step 4 records requested clusters and enrichment selection/plotting counts. |
 | `cluster2_DeSCORT_enrichment_significant.csv` | Existing database-wise BH-significant terms for this DeSCORT cluster, selected using --fdr; includes overlap/effect/significance columns. |
@@ -576,7 +576,7 @@ All paths in this section are relative to `04_cluster_enrichment/`.
 
 ### `results_p.adjust/`
 
-| File or pattern | Contents |
+| File or pattern | Content |
 |---|---|
 | `analysis_summary.json` | Analysis summary. Step 3 combines data provenance, clustering, differential-feature and biological-support counts; Step 4 records requested clusters and enrichment selection/plotting counts. |
 | `cluster2_DeSCORT_enrichment_significant.csv` | Existing database-wise BH-significant terms for this DeSCORT cluster, selected using --fdr; includes overlap/effect/significance columns. |

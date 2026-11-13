@@ -4,19 +4,17 @@
 
 # DeSCORT: Decoding Morphological Signatures of Cellular Responses to Perturbations
 
-![DeSCORT 模型架构](assets/workflow.png)
+![DeSCORT model architecture](assets/workflow.png)
 
-DeSCORT 是一个基于大规模 CRISPR 扰动数据构建的孔级（well-level）形态学基础模型。该模型采用 Transformer 架构联合编码形态学特征身份与连续数值，并结合掩码特征重构和扰动一致性对比学习，学习通用形态学表征。基于这一框架，DeSCORT 将开展扰动检索、批次校正、生物学功能关联、形态学特征生成及跨细胞系迁移研究，并进一步探索化学扰动、CRISPR 基因敲除与 ORF 过表达之间的功能联系，为形态学数据整合、虚拟扰动预测及作用机制解析提供新的方法学支持。
+DeSCORT is a well-level morphological foundation model built from large-scale CRISPR perturbation data. Its Transformer architecture jointly encodes morphological feature identities and continuous values, combining masked feature reconstruction with perturbation-consistent contrastive learning to learn general morphological representations. This framework supports research into perturbation retrieval, batch correction, biological functional associations, morphological feature generation, and transfer across cell lines. It also enables exploration of functional relationships among chemical perturbations, CRISPR gene knockouts, and ORF overexpression for morphological data integration, virtual perturbation prediction, and mechanism-of-action analysis.
 
-## Documentation
 
-For installation instructions and step-by-step tutorials, see the [DeSCORT documentation](https://descort-script.readthedocs.io/en/latest/?refresh=no-reference-v2).
 
-## 安装
+## Installation
 
-### Step 1：创建 Python 环境
+### Step 1 — Create a Python environment
 
-建议使用独立的 Conda 环境。以下以 Python 3.9 为例：
+Use a dedicated Conda environment. The following example uses Python 3.9:
 
 ```bash
 conda create -n DeSCORT python=3.9 pip -y
@@ -24,9 +22,9 @@ conda activate DeSCORT
 python -m pip install --upgrade pip setuptools wheel
 ```
 
-### Step 2：安装 PyTorch
+### Step 2 — Install PyTorch
 
-根据机器的 NVIDIA 驱动支持情况选择 PyTorch 的 CUDA 构建。以下是 PyTorch **2.7.0** 的安装示例，**选择其中一种执行**；完整平台支持与命令见 [PyTorch 官方安装说明](https://pytorch.org/get-started/previous-versions/)。
+Select a PyTorch CUDA build supported by your NVIDIA driver. The examples below install PyTorch **2.7.0**; **run only one option**. See the [official PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/) for platform support and commands.
 
 
 
@@ -39,43 +37,43 @@ python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/
 python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cu128
 ```
 
-仅使用 CPU：
+For CPU-only use:
 
 ```bash
 python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
 ```
 
-安装后检查版本及 GPU 是否可用：
+After installation, check the version and GPU availability:
 
 ```bash
 python -c "import torch; print('PyTorch:', torch.__version__); print('CUDA build:', torch.version.cuda); print('GPU available:', torch.cuda.is_available())"
 ```
-CPU 版本的 `GPU available` 为 `False` 是正常的；GPU 训练环境需要能检测到可用 GPU。
+For a CPU build, `GPU available: False` is expected. A GPU training environment must detect an available GPU.
 
-### Step 3：安装 DeepSpeed
+### Step 3 — Install DeepSpeed
 
-使用教程中以 `deepspeed` 启动的预训练或微调脚本时，需要先安装 DeepSpeed。以下使用本项目已使用的 **0.18.0** 版本：
+Install DeepSpeed before running tutorial pretraining or fine-tuning scripts launched with `deepspeed`. The example uses **0.18.0**, a version used in this project:
 
 ```bash
 python -m pip install deepspeed==0.18.0
 ```
 
-### Step 4：安装 DeSCORT
+### Step 4 — Install DeSCORT
 
-#### 方式一：通过包索引安装（当前使用 TestPyPI）
+#### Option 1 — Install from a package index (currently TestPyPI)
 
-目前 `descort==0.1.6` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。先只从 TestPyPI 下载 DeSCORT 的 wheel，再从正式 PyPI 安装依赖。
+`descort==0.1.7` is published on **TestPyPI**, not the production PyPI index. The command below makes TestPyPI and PyPI available to pip for package and dependency resolution.
 
 ```bash
 python -m pip install \
   --index-url https://test.pypi.org/simple/ \
   --extra-index-url https://pypi.org/simple/ \
-  descort==0.1.6
+  descort==0.1.7
 ```
 
-#### 方式二：从 GitHub 克隆并安装
+#### Option 2 — Clone and install from GitHub
 
-先准备 Git，再克隆仓库并在仓库根目录安装：
+Install Git, then clone the repository and install from its root directory:
 
 ```bash
 git clone https://github.com/wyywyy999/DeSCORT_script.git
@@ -83,45 +81,39 @@ cd DeSCORT_script
 python -m pip install .
 ```
 
-源码 0.1.6 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
+Version 0.1.7 installs training, preprocessing, virtual-cell, and downstream-analysis dependencies by default; no dependency extras are required. If the repository is private, authenticate with a GitHub account that has access before cloning.
 
-### Step 5：检查安装
+### Step 5 — Verify installation
 
-两种安装方式都可以使用同一组检查命令：
+Use the same verification commands for either installation method:
 
 ```bash
 python -c "import descort; from descort import DeSCORTConfig, DeSCORTForContrastiveLM; print('DeSCORT:', descort.__version__); print('Package path:', descort.__file__)"
 python -m pip show descort
 ```
 
-需要确认 DeepSpeed 环境时，另行运行 `ds_report`。批次校正中的 R、scIB、DESC/TensorFlow 等后端按对应任务准备，见 [安装文档](docs/installation.md)。
+Run `ds_report` separately to inspect the DeepSpeed environment. Prepare task-specific backends such as R, scIB, and DESC/TensorFlow for batch correction as needed; see the [installation guide](docs/installation.md).
 
-`environments/environment.yml` 和 `environments/requirement.txt` 记录了原服务器的完整环境，其中包含额外工具及已知版本约束冲突，并不是上面两种安装方式的必经步骤；本节通过项目声明的依赖安装 DeSCORT。
+`environments/environment.yml` and `environments/requirement.txt` record the full environment from the original server, including additional tools and known version-constraint conflicts. Neither is a required step for the installation methods above, which use the dependencies declared by this project.
 
-## 加载已有模型
+## Documentation
 
-真实模型的基本用法：
+For installation instructions and step-by-step tutorials, see the [DeSCORT documentation](https://descort-script.readthedocs.io/en/latest/?refresh=no-reference-v2).
 
-```python
-from descort import DeSCORTForContrastiveLM
-model = DeSCORTForContrastiveLM.from_pretrained('/absolute/path/to/models')
-model.eval()
-# 输入字段与提取入口见 docs/data_format.md 和 docs/api/index.md。
-```
 
-## 任务导航
+## Task navigation
 
-| 任务 | 入口 | 输入 → 输出 |
+| Task | Entry point | Input → Output |
 |---|---|---|
-| Cell Painting 数据下载 | [00_download](tutorials/00_download/README.md) | Cell Painting Gallery（cpg0021、cpg0000、cpg0016）→ 原始特征文件 |
-| 数据预处理与词表 | [01_preprocess_data](tutorials/01_preprocess_data/README.md) | CSV / Parquet → 聚合、归一化及裁剪数据、标签词表、特征交并集与筛选数据 |
-| 预训练 | [02_pretrain](tutorials/02_pretrain/README.md) | parquet → Arrow dataset → 基础模型 |
-| 表征微调与 embedding | [03_finetune](tutorials/03_finetune/README.md) | 基础模型、标注数据 → 表征模型与 embedding |
-| mAP | [04_mAP](tutorials/04_mAP/README.md) | embedding → 检索指标 |
-| 批次效应 | [05_batch_effect](tutorials/05_batch_effect/README.md) | AnnData → 校正结果和指标 |
-| 虚拟细胞 | [06_virtual_cell](tutorials/06_virtual_cell/README.md) | 对照形态、扰动向量 → 扰动形态预测 |
-| 生物学分析 | [07_biological](tutorials/07_biological/README.md) | 形态表征、注释 → 通路、聚类、富集分析 |
-| 跨扰动类型 | [08_three_type](tutorials/08_three_type/README.md) | CRISPR / Compound / ORF → 共享表征分析 |
-| 论文作图 | [09_paper_plot_code](tutorials/09_paper_plot_code/README.md) | 已有结果表 → 论文图 |
+| Cell Painting downloads | [00_download](tutorials/00_download/README.md) | Cell Painting Gallery (cpg0021, cpg0000, cpg0016) → raw feature files |
+| Preprocessing and vocabularies | [01_preprocess_data](tutorials/01_preprocess_data/README.md) | CSV / Parquet → aggregated, normalized, clipped data; label vocabularies; feature intersections/unions and filtered data |
+| Pretraining | [02_pretrain](tutorials/02_pretrain/README.md) | Parquet → Arrow dataset → foundation model |
+| Representation fine-tuning and embeddings | [03_finetune](tutorials/03_finetune/README.md) | Foundation model, labeled data → representation model and embeddings |
+| mAP | [04_mAP](tutorials/04_mAP/README.md) | Embeddings → retrieval metrics |
+| Batch effects | [05_batch_effect](tutorials/05_batch_effect/README.md) | AnnData → corrected outputs and metrics |
+| Virtual cells | [06_virtual_cell](tutorials/06_virtual_cell/README.md) | Control profiles, perturbation vectors → predicted perturbed morphology |
+| Biological analysis | [07_biological](tutorials/07_biological/README.md) | Morphological representations, annotations → pathways, clustering, and enrichment analysis |
+| Cross-perturbation types | [08_three_type](tutorials/08_three_type/README.md) | CRISPR / Compound / ORF → shared-representation analysis |
+| Paper figures | [09_paper_plot_code](tutorials/09_paper_plot_code/README.md) | Existing result tables → paper figures |
 
-下载脚本在文件内配置路径后直接运行；预处理教程按五个步骤执行，其 Bash 脚本需在 `tutorials/01_preprocess_data` 目录下启动。其他任务的入口与参数见各自 README。详见 [教程总览](tutorials/README.md)。
+Configure paths inside the download scripts and run them directly. The preprocessing tutorial has five steps; launch its Bash scripts from `tutorials/01_preprocess_data`. See each task README for its entry points and parameters, and the [tutorial overview](tutorials/README.md) for the complete workflow.

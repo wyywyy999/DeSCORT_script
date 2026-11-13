@@ -49,16 +49,9 @@ Activate the environment and enter this tutorial directory:
 
 ```bash
 conda activate DeSCORT
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/07_biological
-bash 01_umap_analysis.sh --help
-bash 02_CORUM_STRING.sh --help
-bash 03_de_cluster.sh --help
-bash 04_cluster_enrichment.sh --help
+cd /absolute/path/tutorials/07_biological
 ```
-
-Follow the [installation instructions](../../docs/installation.md) for the base environment. Reading the Excel hit list additionally requires `openpyxl`. These analyses run on CPU; the Bash presets use 8 threads and a DuckDB memory limit of `24GB`, which is not a limit on total Python process memory.
-
-Replace every `/absolute/path/...` placeholder below with your actual absolute path. The examples override the experiment-specific input and output presets explicitly. External datasets and annotation resources are not included in the Python package.
+Replace `/absolute/path/...` with actual absolute paths. The examples explicitly override the experiment input/output presets.
 
 ### Required inputs
 
@@ -80,7 +73,7 @@ The example uses plates `CP186A CP186B CP186C CP186D CP186E CP186F CP186G CP186H
 
 Ensure the hit-list file exists. An empty or nonexistent hit file means using all available valid non-control genes, which changes the analysis cohort.
 
-The preview images below come from existing A549 analyses, not a new run of these commands. Their source records are in the [image manifest](../../result/07_biological/A549_DMEM/manifest.json). Their cluster IDs and selected terms describe those historical results.
+The figure below shows an existing A549 analysis
 
 ## Step 1 — Analyze Gene Profiles, Pathway UMAPs, and Neighbors
 
@@ -90,22 +83,32 @@ The workflow averages profiles within gene/guide groups, then takes the median a
 
 | Argument | Supplied Bash preset / meaning |
 |---|---|
-| `--model-input`, `--original-input` | Embedding and normalized morphology directories |
+| `--model-input` | Embedding input directory |
+| `--original-input` | Normalized morphological input directory |
 | `--output-dir` | Independent output directory for this step |
-| `--hit-file`, `--hit-column` | Hit list and column `Gene` |
+| `--hit-file` | Hit file |
+| `--hit-column` | `Gene` column |
 | `--original-features-pkl` | Candidate original morphology features |
 | `--annotated-gene-sets` | Manual pathway annotations |
 | `--gene-sets-json` | Offline full pathway mapping; otherwise libraries are fetched/cached through Enrichr |
-| `--gene-column`, `--guide-column` | Metadata columns used for gene-level aggregation |
+| `--gene-column` | Gene metadata column used for gene-level aggregation |
+| `--guide-column` | Guide metadata column used for gene-level aggregation |
 | `--plates` | The nine A549 plates listed above |
-| `--model-feature-prefix`, `--model-feature-dim` | `emb_` and 256 |
+| `--model-feature-prefix` | `emb_` |
+| `--model-feature-dim` | 256 |
 | `--pca-variance` | 0.95 |
-| `--umap-n-neighbors`, `--umap-min-dist`, `--umap-metric` | 10, 0.05, and `cosine` |
+| `--umap-n-neighbors` | 10 |
+| `--umap-min-dist` | 0.05 |
+| `--umap-metric` | `cosine` |
 | `--distance-metric` | `cosine` for pathway distances |
-| `--min-go-kegg-genes`, `--max-go-kegg-genes` | 5 and 200 selected genes per GO/KEGG pathway |
+| `--min-go-kegg-genes` | At least 5 selected genes per GO/KEGG pathway |
+| `--max-go-kegg-genes` | At most 200 selected genes per GO/KEGG pathway |
 | `--min-annotated-genes` | 2 |
-| `--query-gene`, `--query-top-n` | Bash enables `PSMA1 ATP6V0C`, with 20 neighbors |
-| `--seed`, `--threads`, `--memory-limit` | 42, 8, and `24GB` |
+| `--query-gene` | Bash enables queries for `PSMA1 ATP6V0C` |
+| `--query-top-n` | Retrieve 20 neighbors for each query gene |
+| `--seed` | 42 |
+| `--threads` | 8 |
+| `--memory-limit` | `24GB` |
 | `--stage` | `all`, `model`, `original`, `compare`, `check`, `combined-plot`, or `query` |
 
 ### Example
@@ -134,7 +137,7 @@ Use `--stage check` with the same paths before a full run. It inspects profile s
 
 ### Output
 
-| File relative to `01_umap/` | Contents |
+| File relative to `01_umap/` | Content |
 |---|---|
 | `gene_sets_used.json` | Full pathway mapping used by the run |
 | `model/results/hit_gene_profiles.parquet` | Selected valid DeSCORT gene profiles |
@@ -156,15 +159,22 @@ This step selects valid hit genes common to both representations, fits PCA separ
 
 | Argument | Supplied Bash preset / meaning |
 |---|---|
-| `--model-input`, `--original-input`, `--hit-file` | Same experiment inputs and hit list as Step 1 |
+| `--model-input` | Embedding input directory matching Step 1 |
+| `--original-input` | Normalized morphological input directory matching Step 1 |
+| `--hit-file` | Hit table matching Step 1 |
 | `--original-features-pkl` | Candidate morphology features |
-| `--corum-file`, `--string-file` | Complex-membership and interaction tables |
+| `--corum-file` | CORUM complex membership table |
+| `--string-file` | STRING interaction table |
 | `--output-dir` | CORUM/STRING output directory |
 | `--pca-variance` | 0.95 |
 | `--corum-min-coverage` | 0.333; coverage criterion for CORUM complexes |
-| `--string-low-score`, `--string-high-score` | 300 and 700; score thresholds used by the analysis |
-| `--string-chunk-size`, `--pair-chunk-size` | 500000 and 50000 |
-| `--seed`, `--threads`, `--memory-limit` | 20260918, 8, and `24GB` |
+| `--string-low-score` | 300; lower score threshold used in analysis |
+| `--string-high-score` | 700; upper score threshold used in analysis |
+| `--string-chunk-size` | 500000 |
+| `--pair-chunk-size` | 50000 |
+| `--seed` | 20260918 |
+| `--threads` | 8 |
+| `--memory-limit` | `24GB` |
 | `--stage` | Includes `all`, `check`, `corum-plot`, and `string-plot` |
 
 ### Example
@@ -191,7 +201,7 @@ Use `--stage check` with these paths before calculation. Use `--stage corum-plot
 
 ### Output
 
-| File relative to `02_CORUM_STRING/` | Contents |
+| File relative to `02_CORUM_STRING/` | Content |
 |---|---|
 | `results/common_selected_genes.csv` | Genes used in both representations |
 | `results/input_qc.json` | Input and processing records |
@@ -239,18 +249,26 @@ This creates membership annotations, not pathway distances. The cluster workflow
 
 | Argument | Supplied Bash preset / meaning |
 |---|---|
-| `--model-input`, `--original-input`, `--hit-file` | Matched representation inputs and hit list |
+| `--model-input` | Embedding input directory matching Step 1 |
+| `--original-input` | Normalized morphological input directory matching Step 1 |
+| `--hit-file` | Hit table matching Step 1 |
 | `--pathway-snapshot` | Membership CSV prepared above; specify explicitly for this run |
 | `--selected-pathways-json` | List of `[database, pathway]` pairs; supplied JSON must remain available |
-| `--corum-file`, `--string-file` | Biological relation resources |
+| `--corum-file` | CORUM complex membership table |
+| `--string-file` | STRING interaction table |
 | `--output-dir` | Cluster-analysis output directory |
 | `--n-clusters` | 10; override for another experiment |
-| `--stability-seeds`, `--kmeans-n-init` | 5 and 20 |
+| `--stability-seeds` | 5 |
+| `--kmeans-n-init` | 20 |
 | `--de-fdr` | 0.05 |
-| `--min-cohens-d`, `--min-mean-difference` | 0.5 and 0.2 |
-| `--pair-permutations`, `--cluster-permutations` | 200 and 200 |
-| `--case-random-repeats`, `--pathway-random-repeats` | 10000 and 10000 |
-| `--seed`, `--umap-seed` | 20260926 and 42 |
+| `--min-cohens-d` | 0.5 |
+| `--min-mean-difference` | 0.2 |
+| `--pair-permutations` | 200 |
+| `--cluster-permutations` | 200 |
+| `--case-random-repeats` | 10000 |
+| `--pathway-random-repeats` | 10000 |
+| `--seed` | 20260926 |
+| `--umap-seed` | 42 |
 | `--stage` | `all`, `check`, `plot`, or `query` |
 
 ### Example
@@ -279,7 +297,7 @@ Use `--stage check` first. After a completed run, `--stage plot` redraws cached 
 
 ### Output
 
-| File relative to `03_de_cluster/` | Contents |
+| File relative to `03_de_cluster/` | Content |
 |---|---|
 | `results/gene_cluster_assignment.csv` | Gene assignments for DeSCORT and original-feature clustering |
 | `results/cluster_differential_features.csv` | Differential morphology features for DeSCORT clusters |
@@ -306,7 +324,8 @@ This step reads Step 3's enrichment table. It does not rerun clustering or recal
 | `--top-n` | Maximum plotted terms per cluster; preset 10 |
 | `--fdr` | Threshold for existing database-wise BH-adjusted values; preset 0.05 |
 | `--p-value-mode` | `raw` by default, or `adjusted` |
-| `--figure-formats`, `--png-dpi` | Presets `pdf svg png` and 400 |
+| `--figure-formats` | Preset `pdf svg png` |
+| `--png-dpi` | 400 |
 
 ### Choose the plotting mode
 
@@ -339,7 +358,7 @@ Run the same command with `--p-value-mode adjusted` for adjusted-P filtering, ra
 
 For raw mode, paths relative to `04_cluster_enrichment/` include:
 
-| File | Contents |
+| File | Content |
 |---|---|
 | `results/cluster3_DeSCORT_enrichment_significant.csv` | BH-significant terms for cluster 3 |
 | `results/cluster3_analysis_summary.json` | Selection counts, plotting mode, and ranking details |

@@ -45,27 +45,24 @@
 
 ## Before You Start
 
-Complete [data preprocessing](../01_preprocess_data/README.md) first. Prepare normalized numerical features, consistent label and feature mappings, and the feature list needed by the experiment. These files and the experimental datasets are not included in the Python package.
+Complete [data preprocessing](../01_preprocess_data/README.md) first. Prepare normalized numerical features, consistent label and feature mappings, and the feature list required by the experiment.
 
 Activate the DeSCORT environment and enter this tutorial directory:
 
 ```bash
 conda activate DeSCORT
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/02_pretrain
+cd /absolute/path/tutorials/02_pretrain
 ```
 
-Run the numbered Bash scripts from this directory because they launch Python scripts by filename and do not change the working directory. Replace every `/absolute/path/...` placeholder below with your actual absolute path.
 
-
-For example, inspect an entry without processing data:
+Inspect script arguments:
 
 ```bash
 bash 01_process_data.sh --help
 bash 02_combined_dataset.sh --help
+bash 03_pretrain_model.sh --help
 bash 04_run_emb.sh --help
 ```
-
-Pretraining uses PyTorch, Transformers, datasets, and DeepSpeed. Follow the [installation instructions](../../docs/installation.md) to prepare the GPU environment. Steps 1 and 2 run on CPU; Step 3 uses the GPUs configured in its Bash script. Step 4 extracts embeddings using one selected GPU or CPU.
 
 ## Step 1 — Prepare Arrow Datasets
 
@@ -80,7 +77,7 @@ Pretraining uses PyTorch, Transformers, datasets, and DeepSpeed. Follow the [ins
 | `--feature2index_pkl` | Feature-name-to-integer vocabulary; index 0 is reserved for padding |
 | `--need_feature_list_pkl` | Selected feature list, such as the union/intersection list from preprocessing |
 | `--key_gene_column` | Metadata column containing perturbation labels |
-| `--need_gene_list` | Optional pickle containing a label subset; omitted by the supplied Bash preset |
+| `--need_gene_list` | Optional pickle defining a label subset |
 | `--train_data_names` | Optional filename/path substrings; omitted or empty means no filename filtering |
 | `--nproc` | Processor configuration, including dataset serialization workers; default 1 |
 | `--merge_nproc` | Number of concurrent shard-loading workers; default 2 |
@@ -164,23 +161,7 @@ bash 02_combined_dataset.sh \
 The combined dataset is saved in `/absolute/path/pretrain_data/all_data`.
 
 ## Step 3 — Pretrain the Model
-The reported training objective is:
 
-```text
-loss = 0.5 × reconstruction_loss_view_1
-     + 0.5 × reconstruction_loss_view_2
-     + contrastive_loss
-```
-
-Reconstruction uses mean squared error on the selected masked feature values. It predicts continuous morphology values rather than categorical feature tokens.
-
-### Configure the GPU launcher
-
-The supplied Bash script currently launches DeepSpeed with:
-
-```bash
-deepspeed --include=localhost:1,2,3 --master_port=$RADOM_PORT 03_pretrain_model.py
-```
 
 ### Key arguments and presets
 
@@ -188,21 +169,31 @@ deepspeed --include=localhost:1,2,3 --master_port=$RADOM_PORT 03_pretrain_model.
 |---|---|
 | `--train_dataset_path` | Arrow dataset from Step 1 or Step 2 |
 | `--output_dir` | Experiment directory for checkpoints, logs, and the final model |
-| `--deepspeed` | Absolute path to the ZeRO-2 configuration |
-| `--hidden_size`, `--n_layers`, `--num_attention_heads` | 256, 8, and 8 |
+| `--deepspeed` | `/absolute/path/deepspeed/zero2.json` |
+| `--hidden_size` | 256 |
+| `--n_layers` | 8 |
+| `--num_attention_heads` | 8 |
 | `--feature_name_vocab_size` | 7366; must cover the feature IDs in the dataset |
-| `--max_seq_len`, `--max_length` | 1024 and 1024 |
+| `--max_seq_len` | 1024 |
+| `--max_length` | 1024 |
 | `--esm2_input_dim` | 5120, persisted in the model configuration; this entry does not load an ESM2 pickle |
-| `--mlm_probability`, `--do_mlm` | 0.3 and `True` |
-| `--mask_value`, `--pad_value` | -100 and 100 |
-| `--sampling`, `--keep_first_n_tokens` | `True` and 0 |
-| `--n_routed_experts`, `--num_experts_per_tok` | 8 routed experts, selecting 4 per token |
+| `--mlm_probability` | 0.3 |
+| `--do_mlm` | `True` |
+| `--mask_value` | -100 |
+| `--pad_value` | 100 |
+| `--sampling` | `True` |
+| `--keep_first_n_tokens` | 0 |
+| `--n_routed_experts` | 8 routed experts |
+| `--num_experts_per_tok` | Select 4 experts per token |
 | `--num_train_epochs` | 1 |
 | `--per_device_train_batch_size` | 64 |
 | `--gradient_accumulation_steps` | 3 |
-| `--learning_rate`, `--lr_scheduler_type` | `1e-3` and `cosine` |
-| `--warmup_ratio`, `--seed` | 0.1 and 42 |
-| `--bf16`, `--report_to` | `True` and `tensorboard` |
+| `--learning_rate` | `1e-3` |
+| `--lr_scheduler_type` | `cosine` |
+| `--warmup_ratio` | 0.1 |
+| `--seed` | 42 |
+| `--bf16` | `True` |
+| `--report_to` | `tensorboard` |
 | `--do_eval` | `False`; no validation dataset is supplied by this entry |
 
 ### Example
@@ -213,7 +204,7 @@ After configuring the launcher GPUs, run:
 bash 03_pretrain_model.sh \
   --train_dataset_path /absolute/path/pretrain_data/all_data \
   --output_dir /absolute/path/output_model/pretrain_run_01 \
-  --deepspeed /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/configs/deepspeed/zero2.json \
+  --deepspeed /absolute/path/deepspeed/zero2.json \
   --feature_name_vocab_size 7366 \
   --max_seq_len 1024 \
   --max_length 1024 \
@@ -245,22 +236,23 @@ output_model/pretrain_run_01/
 
 | Argument | Current Bash setting or Python behavior |
 |---|---|
-| `--source_data_paths` | `.../github_code_test/raw_data/well_level_new/normalization_clip_data_select_feature/normalization_clip_data`; accepts normalized Parquet directories |
+| `--source_data_paths` | `/absolute/path/raw_data/well_level_new/normalization_clip_data`; normalized Parquet directory |
 | `--gene2index_pkl` | `gene2index_21611.pkl`; labels are matched against the selected metadata column |
 | `--feature2index_pkl` | `feature2index_vocabulary_7366.pkl` |
-| `--need_feature_list_pkl` | `github_code_test_union_feature_894.pkl`; the filename does not guarantee the actual feature count |
-| `--pretrained_model_path` | `/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/output_model/pretrain/models` |
-| `--save_path` | `/fse/home/wangyongyan/Project/CellPainting/DeSCORT_Script/outputs/02_pretrain/` |
+| `--need_feature_list_pkl` | `xxx_union_feature_N.pkl`; the filename does not guarantee the actual feature count |
+| `--pretrained_model_path` | `/absolute/path/pretrain/models` |
+| `--save_path` | `/absolute/path/02_pretrain_data/` |
 | `--key_gene_column` | `Metadata_Foci_Barcode_MatchedTo_GeneCode` |
 | `--need_plate_list` | Empty in Bash; all discovered files are used unless filtered on the command line |
 | `--metadata_parts` | Not passed by Bash; Python defaults to `-2 -5`, interpreted as batch index followed by type index |
-| `--device` | Bash passes `cuda:2`; direct Python execution defaults to `cuda:0`; CPU is used when CUDA is unavailable |
+| `--device` | Bash passes `cuda:0`; falls back to CPU when CUDA is unavailable |
 | `--batch_size` | 64 |
-| `--max_length` | Bash passes 3505; direct Python execution defaults to 1024 |
+| `--max_length` | Bash passes the length of the selected xxx_union_feature_N.pkl list |
 | `--do_mlm` | Bash sets `do_mlm=false` and omits the flag; Python defaults to `False` |
 | `--mlm_probability` | 0.0 |
 | `--sampling` | Bash sets `sampling=false` and omits the flag, but the current Python default is **`False`** |
-| `--nproc`, `--verbosity` | 1 and 1 |
+| `--nproc` | 1 |
+| `--verbosity` | 1 |
 | `--log_file` | Absolute path ending in `tutorials/02_pretrain/logs/pretrain_embeddings.log` |
 | `--log_level` | `INFO` |
 

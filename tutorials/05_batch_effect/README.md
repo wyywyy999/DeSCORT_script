@@ -19,7 +19,7 @@
                    ▼                             ▼
        ┌───────────────────────┐     ┌─────────────────────────┐
        │    01_batch_method    │     │ 02_batch_method_R_clean │
-       │ Seven Python adapters │     │ FastMNN, Seurat CCA/RPCA │
+       │ Six documented Python methods │     │ FastMNN, Seurat CCA/RPCA │
        └───────────┬───────────┘     └────────────┬────────────┘
                    │                             │
                    ▼                             ▼
@@ -41,25 +41,20 @@
 
 Prepare normalized morphological profiles from [preprocessing](../01_preprocess_data/README.md). To include DeSCORT representations in the comparison, first extract embeddings with `04_run_emb.sh` in [pretraining](../02_pretrain/README.md) or `03_run_emb.sh` in [fine-tuning](../03_finetune/README.md), then prepare an AnnData file containing those embeddings and matching sample metadata.
 
-Start with `00_preprocess_batch_data.ipynb` to prepare the initial `MAD_adata.h5ad` and `MAD_adata.parquet`. Run the Python adapters and R notebook on these matched inputs, then evaluate their H5AD results. Converting corrected R outputs to H5AD remains a separate preparation step.
 
 Activate the Python environment and inspect the entry points:
 
 ```bash
 conda activate DeSCORT
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/05_batch_effect
-bash run.sh --help
-bash run.sh 01_batch_method.py --help
-bash run.sh 03_calculate_metrics.py --help
+cd /absolute/path/tutorials/05_batch_effect
 ```
 
-Use the existing Bash wrapper to launch Python entries. Replace every `/absolute/path/...` placeholder below with your actual absolute path. Follow the [installation instructions](../../docs/installation.md) for the base environment.
-
-Method-specific Python dependencies include BBKNN, harmonypy, Scanorama, the Scanpy MNN backend. Evaluation additionally imports scIB and uses its kBET backend. The R notebook requires an R Jupyter kernel and the packages `arrow`, `batchelor`, `SingleCellExperiment`, `Seurat`, `dplyr`, and `Matrix`. These method-specific dependencies may require additional installation beyond the base DeSCORT environment. The notebook uses Seurat's `layer` interface; use a compatible Seurat installation.
+Python methods require BBKNN, harmonypy, Scanorama, and Scanpy's MNN backend. Evaluation additionally requires scIB and its kBET backend.
+The R notebook requires an R Jupyter kernel and `arrow`, `batchelor`, `SingleCellExperiment`, `Seurat`, `dplyr`, and `Matrix`. Additional installation may be needed. The Seurat version must support the notebook's `layer` interface.
 
 ## Step 0 — Prepare Batch Evaluation Data
 
-Open [00_preprocess_batch_data.ipynb](00_preprocess_batch_data.ipynb) with the DeSCORT Python kernel and run its cells in order. Use this tutorial directory as the working directory: the notebook imports repository utilities through the relative path `../../`.
+Open [00_preprocess_batch_data.ipynb](00_preprocess_batch_data.ipynb) with the DeSCORT Python kernel and run its cells in order.
 
 ### Input paths and settings
 
@@ -81,15 +76,15 @@ hit_meta_path = "/absolute/path/batch_inputs/JUMP-Target-2-Compound-Plate.csv"
 DATA_ROOT = "/absolute/path/cpg0016_jump"
 
 # Save cell
-save_path = "/absolute/path/batch_inputs/MAD_adata.h5ad"
-parquet_save_path = "/absolute/path/batch_inputs/MAD_adata.parquet"
+save_path = "/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.h5ad"
+parquet_save_path = "/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.parquet"
 ```
 
 
 ### Output
 
 ```text
-batch_inputs/
+batch_adata/
 ├── MAD_adata.h5ad      # Float32 profiles, obs metadata, PCA, graph, UMAP, clusters
 └── MAD_adata.parquet   # Cleaned profiles and metadata for R
 ```
@@ -120,15 +115,15 @@ batch_inputs/
 ### Example
 
 ```bash
-bash run.sh 01_batch_method.py \
-  --data-path /absolute/path/batch_inputs/MAD_adata.h5ad \
-  --save-path /absolute/path/batch_results/python_methods \
+python 01_batch_method.py \
+  --data-path /absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.h5ad \
+  --save-path /absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata \
   --batch-key Metadata_Source
 ```
 
 ### Methods and outputs
 
-The entry runs all seven adapters on separate copies of the input:
+This tutorial covers the following six methods. The entry point runs each method on an independent input copy:
 
 | Method | Output filename | Representation used by the evaluation preset |
 |---|---|---|
@@ -141,6 +136,7 @@ The entry runs all seven adapters on separate copies of the input:
 
 BBKNN corrects the neighbor graph; its original `X` and PCA are not a corrected feature matrix. The current evaluation preset uses UMAP derived from the BBKNN graph for embedding-based metrics. This evaluates its UMAP representation and should be reported as such when comparing it with higher-dimensional representations.
 
+Exceptions for individual methods are caught and execution continues. Check the log and output files for each method after running; the completion message does not mean every method succeeded.
 
 ## Step 2 — Run R Methods and Prepare Their H5AD Files
 
@@ -149,8 +145,8 @@ BBKNN corrects the neighbor graph; its original `X` and PCA are not a corrected 
 Open [02_batch_method_R_clean.ipynb](02_batch_method_R_clean.ipynb) with an R kernel. In its configuration cell, replace the historical server paths with your experiment paths:
 
 ```r
-input_file <- "/absolute/path/batch_inputs/MAD_adata.parquet"
-output_dir <- "/absolute/path/batch_results/r_methods"
+input_file <- "/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.parquet"
+output_dir <- "/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata"
 batch_col <- "Metadata_Source"
 dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 ```
@@ -178,13 +174,11 @@ The Seurat helper replaces underscores in feature names with hyphens for process
 5. Save with method prefixes matching the evaluation mapping, for example:
 
 ```text
-batch_results/r_h5ad/
+batch_adata/
 ├── Fast_adata.h5ad
 ├── Seuratcca_adata.h5ad
 └── Seuratrpca_adata.h5ad
 ```
-
-These conversion steps are required preparation; they are not executed by the supplied notebook or evaluation entry. In particular, `Seurat_cca_adata.h5ad` would be parsed as method `Seurat`, which is absent from the default mapping. Use `Seuratcca_adata.h5ad` or provide an appropriate mapping.
 
 ## Step 3 — Calculate Batch and Biological Metrics
 
@@ -198,7 +192,7 @@ These conversion steps are required preparation; they are not executed by the su
 
 ### Current evaluation settings
 
-These settings are fixed inside `03_calculate_metrics.py`, rather than exposed as CLI arguments:
+The following settings are hard-coded in `03_calculate_metrics.py`:
 
 | Setting | Current value |
 |---|---|
@@ -210,22 +204,25 @@ These settings are fixed inside `03_calculate_metrics.py`, rather than exposed a
 | Negative sampling | `random` |
 | mAP helper defaults | Seed 42, negative multiplier 2, 10 parallel workers |
 
-For another dataset, update these settings in the evaluation script before running. Passing a different `--batch-key` to Step 1 does not change Step 3. The negative-control label must be present, and both mAP calculations need valid repeated perturbation groups.
+Update these settings in the evaluation script when changing datasets.
+The control label must exist in the data, and both mAP modes require perturbation groups with sufficient replicates.
 
 ### Example
 
-With files collected in `/absolute/path/batch_results/evaluation_h5ad`:
+Python correction results are saved by default in `/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata`, alongside the original MAD input, so no additional move is needed. Convert the R results and add any DeSCORT H5AD to be compared, then run:
 
 ```bash
-bash run.sh 03_calculate_metrics.py \
-  --data-path /absolute/path/batch_results/evaluation_h5ad \
-  --save-path /absolute/path/batch_results/metrics
+python 03_calculate_metrics.py \
+  --data-path /absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata \
+  --save-path /absolute/path/outputs/05_batch_effect/Target_2_Compoud/metrics
 ```
+
+Evaluation identifies the method from the filename prefix before the first underscore: for example, `Harmony_adata.h5ad` maps to `Harmony`. Names must exactly match keys in the method mapping. A custom JSON replaces the entire mapping and should therefore cover every method evaluated in this run.
 
 For a custom representation mapping, append:
 
 ```text
---method-embeddings-json /absolute/path/batch_results/method_embeddings.json
+--method-embeddings-json /absolute/path/outputs/05_batch_effect/Target_2_Compoud/method_embeddings.json
 ```
 
 ### Output metrics
@@ -248,7 +245,7 @@ For a custom representation mapping, append:
 The scIB fields are retained when returned by the installed scIB implementation. The mAP significance values come from helper calls performed separately for each perturbation; they do not provide one multiple-testing correction over the full experiment. See the [mAP tutorial](../04_mAP/README.md) for the retrieval definitions.
 
 ```text
-batch_results/metrics/
+metrics/
 ├── MAD_scib_metric_result.pkl
 ├── DeSCORT_scib_metric_result.pkl
 ├── Bbknn_scib_metric_result.pkl
@@ -257,4 +254,4 @@ batch_results/metrics/
 └── ...
 ```
 
-Each pickle contains one Python dictionary of summary metrics. The entry does not save the full per-perturbation mAP tables. It catches failures per file and continues, so check the error messages and output files before interpreting the final completion message.
+Each pickle contains a dictionary of summary metrics, not the full per-perturbation mAP table.

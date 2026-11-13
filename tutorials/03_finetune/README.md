@@ -44,19 +44,9 @@ Activate the environment and enter this directory:
 
 ```bash
 conda activate DeSCORT
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/03_finetune
+cd /absolute/path/tutorials/03_finetune
 ```
 
-Run the numbered Bash scripts from this directory because they launch Python scripts by filename. Replace every `/absolute/path/...` placeholder below with your actual absolute path. Follow the [installation instructions](../../docs/installation.md) to prepare PyTorch and DeepSpeed.
-
-Step 1 runs on CPU, Step 2 uses the GPUs selected in its DeepSpeed launcher, and Step 3 uses one selected GPU or CPU. Inspect the data and extraction arguments without processing files:
-
-```bash
-bash 01_process_data.sh --help
-bash 03_run_emb.sh --help
-```
-
-The examples override the experiment-specific Bash presets. In particular, the current Step 1 preset points to `data/02_pretrain`, and the Step 3 preset points to a pretraining model, pretraining output directory, and pretraining log. Use the separate fine-tuning paths shown below, or update those presets before running without arguments.
 
 ## Step 1 — Prepare Arrow Datasets
 
@@ -73,7 +63,9 @@ The examples override the experiment-specific Bash presets. In particular, the c
 | `--key_gene_column` | Metadata column containing perturbation labels |
 | `--need_gene_list` | Optional pickle containing a label subset; omitted means all keys in the label mapping |
 | `--train_data_names` | Optional filename/path substrings; omitted or empty means no filename filtering |
-| `--nproc`, `--merge_nproc`, `--verbosity` | Processing/serialization workers, shard-loading workers, and verbosity; defaults 1, 2, and 1 |
+| `--nproc` | Processing/serialization workers; default 1 |
+| `--merge_nproc` | Shard-loading workers; default 2 |
+| `--verbosity` | Logging verbosity; default 1 |
 
 ### Example
 
@@ -91,9 +83,8 @@ bash 01_process_data.sh \
   --verbosity 1
 ```
 
-Optionally append `--need_gene_list /absolute/path/label_vocab/selected_genes.pkl` to restrict labels, or `--train_data_names CP186N` to restrict input paths. Labels selected for processing must exist in the label mapping.
+Append `--need_gene_list /absolute/path/label_vocab/selected_genes.pkl` to restrict labels, or `--train_data_names CP186N` to restrict the selected plates.
 
-Use a separate shard directory for each experiment: the merger loads the datasets already present in `--train_output_dir`, including shards from earlier runs.
 
 ### Output
 
@@ -129,17 +120,6 @@ loss = 0.5 × reconstruction_loss_view_1
      + contrastive_loss
 ```
 
-Reconstruction predicts continuous morphological feature values using mean squared error at masked positions.
-
-### Configure the GPU launcher
-
-The supplied Bash script launches:
-
-```bash
-deepspeed --include=localhost:0 --master_port=$RADOM_PORT 02_finetune.py
-```
-
-Edit `--include` in `02_finetune.sh` to select the GPUs available on your machine. The launcher chooses a random master port.
 
 ### Key arguments and presets
 
@@ -148,17 +128,23 @@ Edit `--include` in `02_finetune.sh` to select the GPUs available on your machin
 | `--train_dataset_path` | Merged Arrow dataset from Step 1 |
 | `--pretrianed_model_path` | Pretrained representation checkpoint; preserve this exact spelling for the current CLI |
 | `--output_dir` | Directory for fine-tuning checkpoints, logs, and the final model |
-| `--deepspeed` | Absolute path to `ds_zeors2.json` in this tutorial directory |
+| `--deepspeed` | `/absolute/path/deepspeed/zero2.json` |
 | `--max_length` | 1024; input sequence length used by the collator |
-| `--mlm_probability`, `--do_mlm` | 0.3 and `True` |
-| `--mask_value`, `--pad_value` | -100 and 100 |
-| `--sampling`, `--keep_first_n_tokens` | `True` and 0; sample features when the sequence exceeds `max_length` |
+| `--mlm_probability` | 0.3 |
+| `--do_mlm` | `True` |
+| `--mask_value` | -100 |
+| `--pad_value` | 100 |
+| `--sampling` | `True`; sample features when their count exceeds `max_length` |
+| `--keep_first_n_tokens` | 0 |
 | `--num_train_epochs` | 10 |
 | `--per_device_train_batch_size` | 32 |
 | `--gradient_accumulation_steps` | 3 |
-| `--learning_rate`, `--lr_scheduler_type` | `1e-3` and `cosine` |
-| `--warmup_ratio`, `--seed` | 0.1 and 42 |
-| `--bf16`, `--report_to` | `True` and `tensorboard` |
+| `--learning_rate` | `1e-3` |
+| `--lr_scheduler_type` | `cosine` |
+| `--warmup_ratio` | 0.1 |
+| `--seed` | 42 |
+| `--bf16` | `True` |
+| `--report_to` | `tensorboard` |
 | `--do_eval` | `False`; this entry supplies no validation dataset |
 
 The Python entry constructs a configuration from model arguments, but its `from_pretrained()` call loads the saved checkpoint configuration without passing that new configuration. Therefore, flags such as `--hidden_size`, `--n_layers`, and `--feature_name_vocab_size` do not change the loaded architecture. The checkpoint must already support the feature IDs used by your dataset.
@@ -170,7 +156,7 @@ bash 02_finetune.sh \
   --train_dataset_path /absolute/path/finetune_data/Crispr/train_merged_data \
   --pretrianed_model_path /absolute/path/output_model/pretrain_run_01/models \
   --output_dir /absolute/path/output_model/finetune_run_01 \
-  --deepspeed /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/03_finetune/ds_zeors2.json \
+  --deepspeed /absolute/path/deepspeed/zero2.json \
   --max_length 1024 \
   --do_mlm True \
   --mlm_probability 0.3 \
@@ -198,18 +184,20 @@ output_model/finetune_run_01/
 └── trainer_state.json
 ```
 
-Use `output_model/finetune_run_01/models` as the model directory in Step 3.
+
 
 ## Step 3 — Extract Fine-tuned CLS Embeddings
 
-`03_run_emb.py` contains its own argument parser and main function. It reads normalized Parquet files, filters labels against the supplied mapping, selects features, and extracts the final-layer CLS representation with `get_latent_embedding()`. It uses the first collated view, without averaging the two views or applying the contrastive projection head.
+`03_run_emb.py` provides argument parsing and a main function. It reads normalized Parquet, filters rows using the label mapping, selects features, and uses `get_latent_embedding()` to extract the final-layer CLS representation. One view's embedding is exported.
 
 ### Key arguments and presets
 
 | Argument | Current Bash setting or Python behavior |
 |---|---|
 | `--source_data_paths` | One or more normalized Parquet directories; searched recursively |
-| `--gene2index_pkl`, `--feature2index_pkl`, `--need_feature_list_pkl` | Explicit label mapping, checkpoint-compatible feature vocabulary, and selected feature list |
+| `--gene2index_pkl` | Explicitly specified label mapping |
+| `--feature2index_pkl` | Feature vocabulary compatible with the checkpoint |
+| `--need_feature_list_pkl` | Selected feature list |
 | `--pretrained_model_path` | Model directory; override the Bash pretraining preset with the fine-tuned `models/` directory |
 | `--save_path` | Embedding output root; use a separate fine-tuning directory |
 | `--key_gene_column` | `Metadata_Foci_Barcode_MatchedTo_GeneCode` |
@@ -218,10 +206,13 @@ Use `output_model/finetune_run_01/models` as the model directory in Step 3.
 | `--device` | Bash passes `cuda:2`; Python defaults to `cuda:0`; CPU is used if CUDA is unavailable |
 | `--batch_size` | 64 |
 | `--max_length` | Bash passes 3505; Python defaults to 1024 |
-| `--do_mlm`, `--mlm_probability` | `False` and 0.0 |
+| `--do_mlm` | `False` |
+| `--mlm_probability` | 0.0 |
 | `--sampling` | `False` in both the supplied Bash preset and Python default; append `--sampling` to enable |
-| `--nproc`, `--verbosity` | 1 and 1 |
-| `--log_file`, `--log_level` | Override the pretraining log path for this run; level `INFO` |
+| `--nproc` | 1 |
+| `--verbosity` | 1 |
+| `--log_file` | Override the pretraining log path with a path for this run |
+| `--log_level` | `INFO` |
 
 Keep MLM disabled for this extraction entry: its embedding method expects the unmasked collator input fields. When the selected feature count exceeds `max_length`, sampling selects a random subset if enabled; otherwise it retains the first `max_length` features. Shorter sequences are padded, and sequences of exactly that length are retained. Sampling has no selection effect when all features fit.
 
@@ -276,7 +267,3 @@ embeddings/finetune_run_01/
     └── Batch01/
         └── plate01.parquet
 ```
-
-Each file contains the retained `Metadata*` columns and `emb_0` through `emb_<hidden_size-1>` in matching row order. Labels outside the supplied mapping are excluded. Existing files at the same output path are overwritten.
-
-Inspect the log for failed files: the current script skips several processing errors and can print its final completion message even when some files failed.

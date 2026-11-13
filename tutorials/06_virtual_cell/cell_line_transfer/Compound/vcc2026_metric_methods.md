@@ -70,14 +70,14 @@ This is a check of existing files, not a new evaluation run. The 100-compound de
 
 ## Chinese author notes and terminology
 
-- 推荐写作定位：**Cell Painting metrics adapted from VCC2026**，不能声称完全复现官方 RNA competition score。
-- 对形态特征使用 differential morphological features / differential-feature analysis；不要把形态特征称为 DE genes。
-- `de_wilcoxon_lfc_nmae` 是保留的代码字段名；论文中应称 normalized mean absolute effect error，不应描述成 log2-fold-change error。
-- 主图若读取 `mse`，应使用普通均值 MSE 的定义。只有确实报告 `expr_mse_unbiased_capped_norm` 时才加入上面的 optional paragraph。
-- Methods 中不能写 pooled/global BH；当前 preset 是 per-perturbation BH。
-- 当前 PM baseline 仅单独评分，不提供官方 baseline–replicate 两个锚点，不用于 s=(u-b)/(r-b) 校准。
-- 本文的共同对照陈述已对上述 DeSCORT 文件核实；扩展到所有模型、数据划分前，需要核对各预测文件内实际 control 值，而不仅是 control 标签。
-- 这里未更改指标代码、未重算生产指标。报告忠实描述现有实现，包括与 PDF 不一致的边界情况。
+- Recommended framing: **Cell Painting metrics adapted from VCC2026**. Do not claim exact reproduction of the official RNA competition score.
+- For morphology, use differential morphological features / differential-feature analysis; do not call morphological features DE genes.
+- `de_wilcoxon_lfc_nmae` is retained as a code field name. In a paper, call it normalized mean absolute effect error rather than log2-fold-change error.
+- If the main figure reads `mse`, use the ordinary group-mean MSE definition. Include the optional paragraph above only when reporting `expr_mse_unbiased_capped_norm`.
+- Do not describe BH correction as pooled/global in Methods; the current preset uses per-perturbation BH.
+- The current PM baseline is scored separately. It does not provide the official baseline–replicate anchors and is not used to calibrate s=(u-b)/(r-b).
+- The shared-control statement here has been verified for the DeSCORT files above. Before extending it to all models or splits, check actual control values in each prediction file, not only control labels.
+- No metric code was changed and no production metrics were recomputed here. This report describes the existing implementation faithfully, including edge cases that differ from the PDF.
 
 | Canonical manuscript term | Code field | Meaning |
 |---|---|---|

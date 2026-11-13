@@ -48,15 +48,15 @@ Run the parameterized examples above in order from this tutorial directory:
                                          └─────────────────────────────────────────┘
 ```
 
-Before running the Bash scripts below, activate your DeSCORT environment and enter the tutorial directory:
+This tutorial directory:
 
 ```bash
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/01_preprocess_data
+cd /absolute/path/tutorials/01_preprocess_data
 ```
 
 ## Step-by-Step Guide
 
-### Step 1 — CSV to Parquet (`01_csv2parquet.sh`)
+### Step 1 — Convert CSV to Parquet
 
 Converts raw Cell Painting CSV feature files into the more efficient Parquet format.
 
@@ -80,9 +80,9 @@ bash 01_csv2parquet.sh \
 
 ***
 
-### Step 2 — Preprocess Data (`02_preprocess_data.sh`)
+### Step 2 — Preprocess data
 
-The core preprocessing step. For each plate/Parquet file, it runs a pipeline of:
+For each plate/Parquet file:
 
 1. **Median aggregation** — Aggregates single-cell features to well-level by median (optional, controlled by `--data_level`)
 2. **Normalization** — Supports `standardize`, `robustize`, `mad_robustize`, and `spherize` methods. Control samples can be selected via `--normalize_samples_query` (e.g., `"Metadata_Foci_Barcode_MatchedTo_GeneCode == 'nontargeting'"`)
@@ -94,11 +94,11 @@ The core preprocessing step. For each plate/Parquet file, it runs a pipeline of:
 | Argument                      | Description                                                                               |
 | ----------------------------- | ----------------------------------------------------------------------------------------- |
 | `--source_data_paths`         | One or more directories of Parquet files                                                  |
-| `--data_level`                | `well` or `sc` (single-cell) aggregation level                                            |
+| `--data_level`                | Start with the `well` or `sc` aggregation level                                            |
 | `--normalize_method`          | Normalization method (default: `mad_robustize`)                                           |
-| `--normalize_samples_query`   | Pandas query to select control samples for normalization                                  |
-| `--clip_lower_percentile`     | Lower percentile for clipping (default: 1)                                                |
-| `--clip_upper_percentile`     | Upper percentile for clipping (default: 99)                                               |
+| `--normalize_samples_query`   | Select normalization controls with a Pandas query expression; the default control label is `nontargeting`                                 |
+| `--clip_lower_percentile`     | Lower clipping percentile; default `1`                                                |
+| `--clip_upper_percentile`     | Upper clipping percentile; default `99`                                               |
 | `--feature_select_operations` | Operations: `variance_threshold`, `correlation_threshold`, `drop_na_columns`, `blocklist` |
 | `--corr_threshold`            | Correlation threshold for feature removal (default: 0.9)                                  |
 | `--na_cutoff`                 | Maximum NA fraction before dropping a column (default: 0.05)                              |
@@ -127,7 +127,7 @@ bash 02_preprocess_data.sh \
 
 ***
 
-### Step 3 — Build Label Vocabulary (`03_make_label_vocab.sh`)
+### Step 3 — Build the label vocabulary
 
 Collects unique label values from a specified metadata column across all Parquet files and builds a bidirectional vocabulary (`label2index` and `index2label`) saved as pickle files.
 
@@ -136,7 +136,7 @@ Collects unique label values from a specified metadata column across all Parquet
 | Argument              | Description                                                              |
 | --------------------- | ------------------------------------------------------------------------ |
 | `--source_data_paths` | One or more directories of Parquet files                                 |
-| `--label_column`      | Metadata column used as the label key (default: `Metadata_Broad_Sample`) |
+| `--label_column`      | Metadata column containing labels; default `Metadata_Foci_Barcode_MatchedTo_GeneCode` |
 | `--output_dir`        | Directory to save vocabulary pickle files                                |
 | `--output_prefix`     | Prefix for output filenames                                              |
 
@@ -158,7 +158,7 @@ bash 03_make_label_vocab.sh \
 
 ***
 
-### Step 4 — Feature Intersection & Union (`04_select_intersection_union_feature.sh`)
+### Step 4 — Feature intersection and union
 
 Computes the **intersection** (features shared across ALL plates) and the **union** (features present in ANY plate) of feature columns. Optionally filters by a pre-existing feature vocabulary to retain only known features.
 
@@ -189,9 +189,9 @@ bash 04_select_intersection_union_feature.sh \
 
 ***
 
-### Step 5 — Extract Union Feature Data (`05_get_union_feature_data.sh`)
+### Step 5 — Extract union-feature data (optional)
 
-Filters each Parquet file to retain only the features present in a given union feature set (from Step 4), separates metadata and feature columns, and saves the filtered data. Batch subdirectory structure is preserved.
+Filter each Parquet using the feature set from Step 4, separate metadata and feature columns, and save the result. The retained features can differ between plates after preprocessing; this step uses their union for analysis.
 
 **Key arguments:**
 

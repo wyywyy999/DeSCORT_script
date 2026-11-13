@@ -34,14 +34,14 @@ Follow the [installation guide](../../docs/installation.md), activate the enviro
 
 ```bash
 conda activate DeSCORT
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/08_three_type
+cd /absolute/path/tutorials/08_three_type
 ```
 
 Configure experiment paths and settings in each `.sh` file. Additional command-line arguments can override the options supplied by the launcher. Resource paths point to local datasets and checkpoints; these resources are not bundled with the package.
 
 | Scripts | Current preset |
 |---|---|
-| 01–04 | U2OS, 300 epochs; the active preprocessing/extraction input is Orf |
+| 01–04 | A549, 150 epochs; the current preprocessing/extraction preset enables Orf input |
 | 05–06 | A549, 150 epochs; Original and DeSCORT representations |
 | 07 | Six selected A549 compound/CRISPR queries in batch `2020_11_04_CPJUMP1` |
 
@@ -94,12 +94,18 @@ PCA is fitted independently for model and Original profiles. Cosine distances an
 
 | Setting | Default |
 |---|---|
-| `input_mode` / `UMAP_INPUT_MODE` | `both`; alternatives: `model`, `original` |
-| `representation`, `pca_variance` | `pca95`, 0.95; `native` skips PCA |
+| `input_mode` | `both`; alternatives: `model`, `original` |
+| `UMAP_INPUT_MODE` | Environment variable corresponding to `input_mode`; accepts `both`, `model`, or `original` |
+| `representation` | `pca95`; `native` skips PCA |
+| `pca_variance` | 0.95 |
 | `top_n` | 20 highlighted targets |
-| `n_neighbors`, `min_dist`, `umap_metric` | 15, 0.5, `cosine` |
-| `seed`, `threads` | 0, 4 |
-| `figure_formats`, `dpi` | `png pdf`, 450; also supports `svg` and `tiff` |
+| `n_neighbors` | 15 |
+| `min_dist` | 0.5 |
+| `umap_metric` | `cosine` |
+| `seed` | 0 |
+| `threads` | 4 |
+| `figure_formats` | `png pdf`; also supports `svg` and `tiff` |
+| `dpi` | 450 |
 | `output_dir` | `06_umap/outputs/A549_150epochs/` |
 
 ```bash
@@ -112,9 +118,9 @@ bash 05_umap.sh --figure-formats png pdf svg tiff
 
 The dry-run checks schemas and metadata; full numerical validation occurs during analysis. The script records excluded features and repaired CRISPR DMSO annotations. It does not silently impute invalid measurement values.
 
-### Outputs
+### Output
 
-| Relative to the output root | Contents |
+| Relative to the output root | Content |
 |---|---|
 | `{model,original}/results/perturbation_profiles.parquet` | Aggregated profiles with input counts |
 | `{model,original}/results/source_file_manifest.csv` | Source files and metadata-repair counts |
@@ -147,12 +153,19 @@ Temporal manifests come from the corresponding mAP result roots. The reference s
 | Setting | Default |
 |---|---|
 | `stages` | `comparison temporal` |
-| `cell_line`, `model_epochs` | A549, 150 |
-| `pca_variance`, `top_k` | 0.95, `20 50` |
-| `bootstraps`, `seed`, `threads` | 5000, 20261012, 4 |
+| `cell_line` | A549 |
+| `model_epochs` | 150 |
+| `pca_variance` | 0.95 |
+| `top_k` | `20 50` |
+| `bootstraps` | 5000 |
+| `seed` | 20261012 |
+| `threads` | 4 |
 | `target_modalities` | `crispr orf` |
-| `batch_scope`, `temporal_representation`, `reference_seed` | `primary`, `pca95`, 42 |
-| `figure_formats`, `dpi` | `png pdf`, 600; also supports `svg` and `tiff` |
+| `batch_scope` | `primary` |
+| `temporal_representation` | `pca95` |
+| `reference_seed` | 42 |
+| `figure_formats` | `png pdf`; also supports `svg` and `tiff` |
+| `dpi` | 600 |
 | `output_dir` | `07_compare_results/A549_150epochs/` |
 
 ```bash
@@ -182,7 +195,7 @@ MRR averages reciprocal target ranks. Hit@K measures whether a correct target is
 
 ### Current figure numbering
 
-| Number | File stem | Contents |
+| Number | File stem | Content |
 |---|---|---|
 | 1 | `figure1_paired_gene_distance_distributions` | Matched gene-distance distributions |
 | 2 | `figure2_paired_distance_scatter` | Paired Original/model distances |
@@ -195,7 +208,7 @@ The other seven plotting routines have been removed; their statistical tables re
 
 ### Saved results
 
-| Relative to `07_compare_results/A549_150epochs/` | Contents |
+| Relative to `07_compare_results/A549_150epochs/` | Content |
 |---|---|
 | `REPORT_zh.md` | Integrated report |
 | `retrieval_summary_all_workflows.csv` | Both retrieval definitions, explicitly identified |
@@ -210,13 +223,7 @@ The other seven plotting routines have been removed; their statistical tables re
 | `temporal_retrieval/` | Time-specific ranks, candidate evidence, summaries, and three retrieval figures |
 | `{profile_comparison,temporal_retrieval}/qa/` | Alignment, PDF text, and collision checks |
 
-Existing A549 pooled-profile results:
-
-![Pooled-profile MRR](07_compare_results/A549_150epochs/profile_comparison/figures/figure3_true_target_retrieval_MRR.png)
-
-![Pooled-profile Hit](07_compare_results/A549_150epochs/profile_comparison/figures/figure4_true_target_retrieval_Hit.png)
-
-These are saved figures, not results newly calculated by reading this document.
+After Step 6, pooled-profile figures are saved under `07_compare_results/A549_150epochs/profile_comparison/figures/`, including `figure3_true_target_retrieval_MRR.png` and `figure4_true_target_retrieval_Hit.png`. These experiment outputs are not included in this repository; run the comparison to generate them.
 
 ## Step 07 — Retrieve Five-Channel Microscopy Fields
 
@@ -234,13 +241,21 @@ Set an unused query type to `()`. Gene names match annotated Treatment targets; 
 
 | Setting | Default / meaning |
 |---|---|
-| `annotation`, `index_dir` | Existing JUMP pilot annotation and well-index cache |
+| `annotation` | Existing JUMP pilot annotations |
+| `index_dir` | Well-index cache directory |
 | `load_data_dir` | Root containing `<batch>/<plate>/load_data.csv` |
-| `cell_line`, `batch` | A549, `2020_11_04_CPJUMP1` |
-| `plate`, `well`, `timepoint` | Empty: no additional restriction |
-| `site`, `max_fields` | 1, 1 per query |
-| `all_sites`, `all_fields` | `false`; enable to expand the selected wells/sites |
-| `low_percentile`, `high_percentile`, `dpi` | 1, 99.8, 600 |
+| `cell_line` | A549 |
+| `batch` | `2020_11_04_CPJUMP1` |
+| `plate` | Empty; no additional plate restriction |
+| `well` | Empty; no additional well restriction |
+| `timepoint` | Empty; no additional timepoint restriction |
+| `site` | 1 site per query |
+| `max_fields` | At most 1 field per query |
+| `all_sites` | `false`; enabling it expands the sites selected within the well |
+| `all_fields` | `false`; enabling it expands the fields selected within the site |
+| `low_percentile` | 1 |
+| `high_percentile` | 99.8 |
+| `dpi` | 600 |
 | `output_dir` | `07_get_image_results/` |
 
 ```bash
@@ -270,13 +285,3 @@ Each selected field is saved under:
 Query roots also contain `matching_wells.csv`, `download_plan.csv`, and, after rendering, `run_summary.json`.
 
 Channels are DNA blue, ER green, RNA yellow, AGP red, and Mito magenta. Each field/channel is independently percentile-scaled before equal-weight additive RGB merging. Native channel/composite PNGs retain the original pixel dimensions; DPI metadata does not add microscope resolution. The 12×8-inch montage is rendered at the requested DPI. This is full-field visualization without single-cell cropping or illumination correction; independently stretched brightness is not suitable for direct quantitative comparison between samples.
-
-Step 7 requires AWS CLI and Python packages pandas, NumPy, tifffile, Pillow, and matplotlib. Public image downloads use unsigned S3 requests. Edit the query arrays for single-query runs; trailing launcher arguments are intended for filters, output paths, and display settings.
-
-## Interpretation and Reproducibility
-
-Review input manifests and matched identities before comparing representations. The existing A549 Original data contain additional CRISPR DMSO wells, which can affect PCA even when controls are excluded from the final statistics.
-
-Profile statistics use paired genes, separate BH test families, and observed-gene bootstrap intervals. Temporal statistics use paired drug IDs after averaging repeated time comparisons. Neither unit represents independent culture or training replicates. `up`/`down` denotes cosine distance below/above 1, not gene-expression regulation or target activation/inhibition. Ranking overlap measures agreement, not biological correctness.
-
-These examples reuse data involved in fine-tuning. Treat candidates and statistical comparisons as exploratory; establish generalization or mechanisms with independent evidence. Saved manifests describe historical runs, whereas Bash configuration edits affect future runs only.

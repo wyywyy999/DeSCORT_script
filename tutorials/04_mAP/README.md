@@ -45,7 +45,7 @@ Activate the environment and inspect the available arguments:
 
 ```bash
 conda activate DeSCORT
-cd /fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/tutorials/04_mAP
+cd /absolute/path/tutorials/04_mAP
 bash 01_run_mAP.sh --help
 ```
 
@@ -63,21 +63,26 @@ For the **CRISPR** example, each Parquet file contains:
 | `emb_0`, `emb_1`, ... | Numerical embedding dimensions; alternatively, normalized morphological features |
 
 
+The Bash preset enables aggregation: numerical features are averaged by gene, barcode, and well within each Parquet, then the files are concatenated. No further aggregation across files occurs. A well split across files will remain as multiple rows. Organize each independent retrieval well completely within the input to avoid counting it repeatedly.
+
 ## Step 2 — Calculate Retrieval mAP
 
 ### Choose the metric
 
-| `--mAP_type` | Positive profiles | Negative profiles | Result grouping |
+| `--mAP_type` | Positive profiles | Negative profiles | Main question |
 |---|---|---|---|
-| `replicates_activity` | Other profiles with the same gene and sgRNA barcode | Negative-control profiles | Gene and barcode |
-| `sister_activity` | Other profiles with the same gene, pooling barcodes | Negative-control profiles | Gene |
-| `sister_consistency` | Other profiles with the same gene, pooling barcodes | Profiles from other non-control genes | Gene |
+| `replicates_activity` | Other samples with the same gene and sgRNA barcode | Negative-control profiles | Can replicates of the same sgRNA be distinguished from controls? |
+| `sister_activity` | Other samples with the same gene, regardless of sgRNA barcode | Negative-control profiles | Can samples perturbing the same gene be distinguished from controls overall? |
+| `sister_consistency` | Other samples with the same gene, regardless of sgRNA barcode | Profiles from other non-control genes | Can samples perturbing the same gene retrieve one another among other genes? |
 
-For every query, the helper ranks profiles by descending cosine similarity and excludes the query itself. Average precision is the mean precision at the ranks occupied by positive profiles; copairs then aggregates query AP values within the result group. Higher mAP indicates stronger retrieval under the chosen positive/negative definition. Sister metrics do not explicitly require positives to have a different barcode.
+`sister` defines positives by gene and includes other replicates of the same sgRNA; positives are not required to come from a different sgRNA. `replicates_activity` aggregates by gene and barcode, whereas the other two modes aggregate by gene.
+
+For each query, candidates are ranked by descending cosine similarity with the query itself excluded. AP is the mean precision at positive-sample ranks; copairs then aggregates within each result group. Higher mAP indicates better retrieval under the specified positive and negative definitions.
 
 With `--sample_method random`, negative profiles are sampled without replacement up to `min(group_size × n_number, available_negatives)`.
 
-With `all`, every available negative profile is used. For `sister_consistency`, controls are removed before retrieval and negative samples come from other genes.
+`all` uses all available negatives.
+`sister_consistency` removes controls before retrieval and uses other genes as negatives.
 
 ### Key arguments and presets
 
@@ -98,10 +103,14 @@ With `all`, every available negative profile is used. For `sister_consistency`, 
 | `--do_intersect_features` | Disabled in Bash and Python |
 | `--need_plate_list` | Optional path-substring filters; Bash preset is empty |
 | `--random_seeds` | Bash passes `42`; Python defaults to `42 2026 2025 2024 2023` |
-| `--sample_method`, `--n_number` | `random` and 2 |
+| `--sample_method` | `random` |
+| `--n_number` | 2 |
 | `--n_jobs` | 20 parallel gene-level workers; reduce to fit CPU and memory resources |
-| `--log_file`, `--log_level` | Experiment log path and `INFO` |
+| `--log_file` | Experiment log path |
+| `--log_level` | `INFO` |
 
+
+`--do_groupby_mean` and `--do_intersect_features` are flags: pass the option alone to enable it, without `True` or `False`. Bash already passes `--do_groupby_mean`. To disable aggregation, set `do_groupby_mean=false` in Bash, or invoke Python directly and omit the flag. Removing `--do_groupby_mean` from the command below still retains the enabled Bash preset.
 
 ### Example
 
@@ -131,9 +140,19 @@ bash 01_run_mAP.sh \
 
 For activity evaluation, change `--mAP_type` to `sister_activity` or `replicates_activity` and choose a separate `--save_path` and log file. Ensure negative controls are present in the input embeddings; upstream label filtering may already have excluded them.
 
-To evaluate a morphological baseline, replace `--source_data_paths` with the normalized feature directories and use a separate result root. Keep the aggregation, controls, metric, and negative-sampling settings consistent when comparing representations.
+For the morphological baseline, point `--source_data_paths` to normalized feature directories and use a separate result directory. To select vocabulary features shared across all input files, append this flag:
+
+```bash
+--do_intersect_features
+```
+
+Whether to enable this option depends on the feature selection used in the evaluation. Leave it disabled if the inputs already have consistent, appropriate feature columns. Both feature pickle files remain required when filtering is disabled, but are not used to filter columns. Numerical feature columns must be consistent across files; otherwise concatenation may introduce missing values that cause cosine similarity to fail.
+
+**Check that metadata survives intersection filtering.** The current implementation intersects all DataFrame columns without protecting metadata separately. Include required metadata names in `--need_feature_list_pkl` and ensure these columns exist in every input file. Retain at least the column specified by `--perturbation_gene_key`; `replicates_activity` also requires the column specified by `--sgRNA_barcode_key`. Declaring these columns in `--need_columns` alone does not preserve them through intersection filtering; missing columns can cause a later `KeyError`.
 
 ### Output
+
+The structure below assumes all five seeds in the example produce valid results. The Bash defaults run only seed `42`.
 
 ```text
 map_results/finetune_run_01/sister_consistency/
@@ -148,3 +167,5 @@ map_results/finetune_run_01/sister_consistency/
 └── 2023/
     └── ap_scores_dict.pickle
 ```
+
+Each seed writes `ap_scores_dict.pickle` only when valid results exist. Groups with insufficient replicates are skipped: `replicates_activity` requires at least two samples per gene/barcode group, and the other modes require at least two samples per gene. If every group is skipped, the seed directory may exist without a result file, and the log reports `No valid results to save!`.

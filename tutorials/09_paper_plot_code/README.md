@@ -1,7 +1,7 @@
-# 论文图复现入口
+# Paper figure reproduction entry points
 
-`code/` 保留原有轻量绘图脚本及说明，`code/mAP/` 包含组合柱状图、cpg0000 雷达图与热图相关说明。读取结果表后使用原 `paper_plot_style.py`。
+`code/` retains the original lightweight plotting scripts and instructions. `code/mAP/` documents combined bar plots, cpg0000 radar plots, and heatmaps. Use the original `paper_plot_style.py` after loading result tables.
 
-大型结果与 QA 图仍在原项目的 `tutorials/09_paper_plot_code/result/`。绘图脚本可能含特定实验输入路径，运行前修改新副本的参数或显式指定参数；不要对不存在的结果自动生成替代值。
+Large results and QA figures remain in the original project's `tutorials/09_paper_plot_code/result/`. Plotting scripts may contain experiment-specific paths; update parameters in the new copy or pass explicit arguments before running. Do not fabricate substitute values for missing results.
 
-本次整理没有重绘或宣称复现全部论文图。模型架构图使用用户给出的原图。
+This reorganization did not redraw or claim to reproduce every paper figure. The model architecture diagram is the original figure provided by the user.
