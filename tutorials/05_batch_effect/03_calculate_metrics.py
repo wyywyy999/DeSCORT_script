@@ -17,8 +17,8 @@ from tqdm import tqdm
 def main():
     import argparse
     parser = argparse.ArgumentParser(description="Evaluate existing batch-corrected AnnData files")
-    parser.add_argument("--data-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/new_batch_adata")
-    parser.add_argument("--save-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/new_metrices_result")
+    parser.add_argument("--data-path", default="/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata")
+    parser.add_argument("--save-path", default="/absolute/path/outputs/05_batch_effect/Target_2_Compoud/metrics")
     parser.add_argument("--method-embeddings-json", type=_Path, help='JSON mapping method prefixes to X/obsm keys; default preserves the Bbknn-only experiment')
     args = parser.parse_args()
     import scanpy as sc

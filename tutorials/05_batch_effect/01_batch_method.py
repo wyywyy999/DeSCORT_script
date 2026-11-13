@@ -16,8 +16,8 @@ from descort.batch.batch_func import (
     )
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--data-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.h5ad")
-    parser.add_argument("--save-path", default="/fse/home/wangyongyan/Project/CellPainting/DeSCORT/other_model/DeSCORT/outputs/05_batch_effect/Target_2_Compoud/batch_adata/")
+    parser.add_argument("--data-path", default="/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata/MAD_adata.h5ad")
+    parser.add_argument("--save-path", default="/absolute/path/outputs/05_batch_effect/Target_2_Compoud/batch_adata/")
     parser.add_argument("--batch-key", default="Metadata_Source")
     args = parser.parse_args()
 

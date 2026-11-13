@@ -11,8 +11,7 @@
 
 脚本沿用原服务器的绝对路径，使用前请直接修改本目录脚本中的配置。
 
-Python 依赖为 `requests`、`pandas`、`tqdm`；系统命令需要 `wget`（cpg0021）或 AWS CLI 的 `aws`（cpg0000/cpg0016）。四个原脚本不提供 `--output-dir`、`--metadata-csv`、`--dry-run` 或 Python `--help` 参数，路径和筛选配置均在脚本内设置。
-
+Python 依赖为 `requests`、`pandas`、`tqdm`；系统命令需要 `wget`（cpg0021）或 AWS CLI 的 `aws`（cpg0000/cpg0016）。
 从仓库根目录运行所需脚本，例如：
 
 ```bash

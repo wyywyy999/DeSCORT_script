@@ -64,13 +64,13 @@ python -m pip install deepspeed==0.18.0
 
 #### 方式一：通过包索引安装（当前使用 TestPyPI）
 
-目前 `descort==0.1.5` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。先只从 TestPyPI 下载 DeSCORT 的 wheel，再从正式 PyPI 安装依赖。
+目前 `descort==0.1.6` 已发布到 **TestPyPI 测试站**，尚未发布到正式 PyPI。先只从 TestPyPI 下载 DeSCORT 的 wheel，再从正式 PyPI 安装依赖。
 
 ```bash
 python -m pip install \
   --index-url https://test.pypi.org/simple/ \
   --extra-index-url https://pypi.org/simple/ \
-  descort==0.1.5
+  descort==0.1.6
 ```
 
 #### 方式二：从 GitHub 克隆并安装
@@ -83,7 +83,7 @@ cd DeSCORT_script
 python -m pip install .
 ```
 
-源码 0.1.5 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
+源码 0.1.6 默认一起安装训练、预处理、虚拟细胞和下游分析依赖，无需填写依赖组。如果仓库为私有仓库，克隆时需要使用具有访问权限的 GitHub 账号完成 Git 认证。
 
 ### Step 5：检查安装
 

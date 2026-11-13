@@ -37,7 +37,7 @@ def parse_args():
 
     # ---- Label column ----
     parser.add_argument(
-        "--label_column", default="Metadata_Broad_Sample",
+        "--label_column", default="Metadata_Foci_Barcode_MatchedTo_GeneCode",
         help="Column name used as the label key. (default: %(default)s)"
     )
 
